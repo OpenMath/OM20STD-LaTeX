@@ -1,3 +1,9 @@
+## special
+*.css
+*.ltxlog
+*.cache
+auto
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -178,3 +184,4 @@ TSWLatexianTemp*
 
 # KBibTeX
 *~[0-9]*
+
