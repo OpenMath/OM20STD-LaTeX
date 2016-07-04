@@ -70,7 +70,6 @@ document should have \lstinline|version="2.0"|.
 We briefly discuss the \XML encoding for each type of \OM object starting from the basic
 objects.
 
-
 \begin{description}
 \item[Integers] are encoded using the
   \lstinline|OMI| element around the sequence of their
@@ -105,7 +104,6 @@ objects.
   is the encoding of the symbol named \lstinline|sin| in the Content Dictionary named
   \lstinline|transc1|, which is part of the collection maintained by the \OM Society.
 
-
   As described in \ref{sec_names}, the three attributes of the \lstinline|OMS| can be used
   to build a URI reference for the symbol, for use in contexts where URI-based referencing
   mechanisms are used.  For example the URI for the above symbol is
@@ -123,9 +121,9 @@ objects.
   two (\XML) attributes cannot be present simultaneously. The value of \lstinline|dec| is
   the floating-point number expressed in base 10, using the common syntax:
 
-\begin{lstinline}
+\begin{lstlisting}
 (-?)([0-9]+)?("."[0-9]+)?([eE](-?)[0-9]+)?
-\end{lstinline}
+\end{lstlisting}
 
 or one of the special values: INF, -INF or NaN.
 
@@ -508,7 +506,7 @@ shows.
 \begin{figure}\centering
 \caption{Sharing between \OM objects (A cycle of order 2).}\label{fig_sharing_between}
 \begin{lstlisting}
-<OMOBJ version="2.0">                   <OMOBJ version="2.0">
+% <OMOBJ version="2.0">                   <OMOBJ version="2.0">
   <OMA id="bar">                         <OMA id="baz">
     <OMS cd="arith1" name="plus"/>         <OMS cd="arith1" name="plus"/>
     <OMI>1</OMI>                           <OMI>1</OMI>
@@ -540,7 +538,7 @@ Note that the \lstinline|OMR| element is a \emph{syntactic} referencing mechanis
 referencing does not interact with binding in a semantically intuitive way, since it
 allows for variable capture. Consider for instance the following \XML representation:
 \begin{lstlisting}
-<OMBIND id="outer">
+% <OMBIND id="outer">
   <OMS cd="fns1" name="lambda"/>
   <OMBVAR><OMV name="X"/></OMBVAR>
   <OMA>
