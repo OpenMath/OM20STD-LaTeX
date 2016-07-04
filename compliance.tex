@@ -170,17 +170,12 @@ where \lstinline|unhandled_symbol| is the symbol from the error Content Dictiona
 
 
 
-Similarly if it receives a symbol, e.g. $s$,
-from an unsupported Content Dictionary, it will act as if it had
-received the \OM object 
+Similarly if it receives a symbol, e.g. $s$, from an unsupported Content Dictionary, it
+will act as if it had received the \OM object
 \[\error{unsupported\_cd,s}\]
-<math display="block"><mi
-
-
-Finally if the compliant application receives a symbol from a
-supported Content Dictionary but with an unknown name, then this must
-either be an incorrect object, or possibly the object has been built
-using a later version of the Content Dictionary. In either case, the
+Finally if the compliant application receives a symbol from a supported Content Dictionary
+but with an unknown name, then this must either be an incorrect object, or possibly the
+object has been built using a later version of the Content Dictionary. In either case, the
 application will act as if it had received the \OM object
 \[\error{unexpected\_symbol,s}\]
 

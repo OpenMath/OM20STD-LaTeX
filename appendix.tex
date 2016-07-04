@@ -24,8 +24,8 @@ XML Syntax.
 \lstinputlisting{openmath2.rng}
 
 \chapter{Restricting the \OM Schema (Non-Normative)}\label{app_relaxrestricted}
-Relax NG allows one to state constraints such as <emphasis> if the cd attribute of OMS is
-arith1 then the name attribute must be one of lcm, gcd, plus etc.</emphasis> Thus it is
+Relax NG allows one to state constraints such as \emph{if the cd attribute of OMS is
+arith1 then the name attribute must be one of lcm, gcd, plus etc.} Thus it is
 easy to use a stylesheet to generate for any given CD, a Relax NG schema that expresses
 the constraint that an \lstinline|OMS| naming that CD must only use symbols defined in
 the specified dictionary.  Similarly it is possible to use the \emph{role} information
@@ -40,7 +40,7 @@ Name, a list of allowed symbol names.
     For example, a CD-specific Relax NG Schema for the arith1 CD shown in
     \ref{arith1.ocd} would look like:
 \begin{lstlisting}
-<?xml version="1.0" encoding="UTF-8"?>
+<g?xml version="1.0" encoding="UTF-8"?>
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="">
   <define name="cd.attlist.OMS" combine="choice">
     <attribute name="cd">
@@ -148,7 +148,7 @@ Additional features of abstract objects have been introduced:
   in the new \emph{foreign} constructor.
 \item The new role property can be used to indicate that a symbol is an
   \emph{attribution}, in which case an application may ignore or remove it, or a
-  <emphasis>semantic attribution</emphasis> in which case removing it is no longer
+  \emph{semantic attribution} in which case removing it is no longer
   guaranteed to produce an equivalent object.
 \item Restrictions on the names of symbols, variables and content dictionaries have been
   relaxed to be compatible with XML and to be less Anglo-Saxon.

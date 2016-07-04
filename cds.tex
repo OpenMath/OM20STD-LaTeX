@@ -88,9 +88,9 @@ A symbol definition consists of the following pieces of information:
 \item A mandatory \emph{description} of the symbol, which can be as formal or informal as
   the author likes.
 \item An optional \emph{role} as described in \ref{sec_roles}.
-\item Zero or more <emphasis>commented mathematical properties</emphasis> which are
+\item Zero or more \emph{commented mathematical properties} which are
   mathematical properties of the symbol expressed in a mechanism other than \OM.
-\item Zero or more <emphasis>formal mathematical properties</emphasis> which are
+\item Zero or more \emph{formal mathematical properties} which are
   mathematical properties of the symbol expressed in \OM.  Note that it is common for
   commented and formal mathematical properties to be introduced in pairs, with the former
   describing the latter.
@@ -108,7 +108,7 @@ Dictionary, such as the types or signatures of symbols, are better represented e
 This allows for new variants to be associated with Content Dictionaries without the
 Dictionaries themselves being changed.  A model for signatures is given in \ref{sigfiles}.
     
-Content Dictionaries may be grouped into <emphasis>CD Groups</emphasis>. These groups
+Content Dictionaries may be grouped into \emph{CD Groups}. These groups
 allow applications to easily refer to collections of Content Dictionaries. One particular
 CDGroup of interest is the \textquote{MathML CDGroup}. This group consists of the
 collection of core Content Dictionaries that is designed to have the same semantic scope
@@ -224,7 +224,7 @@ the different aspects that as a whole make up a mathematical definition.
 \OM may be used with any type system. One just needs to produce a Content Dictionary which
 gives the constructors of the type system, and then one may build \OM objects representing
 types in the given type system. These are typically associated with \OM objects via the
-\OM <varname>attribution</varname> constructor.
+\OM \lstinline|attribution| constructor.
 
 A Small Type System, called STS, has been designed to give semi-formal signatures to \OM
 symbols and is documented in~\cite{OM_D132c}.  The signature file given in
@@ -274,6 +274,7 @@ following one for the \OM symbol \lstinline|<OMS cd="arith1" name="plus"/>|.
 </OMOBJ>
 </Signature>
 \end{lstlisting}
+
 \subsection{CDGroups}\label{ssec_cdgroups}
 
 The CD Group mechanism is a convenience mechanism for identifying collections of CDs.  A

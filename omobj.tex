@@ -6,12 +6,9 @@ description (\ref{sec_omin}).
 
 \section{Formal Definition of \OM Objects}\label{sec_omabs}
 
-
-\OM represents mathematical objects as terms or as labelled
-trees that are called \OM objects or \OM expressions. The definition
-of an abstract \OM object is then the following.
-
-
+\OM represents mathematical objects as terms or as labelled trees that are called \OM
+objects or \OM expressions. The definition of an abstract \OM object is then the
+following.
 
 \subsection{Basic \OM objects}\label{sec_basic} 
 
@@ -43,29 +40,22 @@ the following.
   characters matching a regular expression, as described in \ref{sec_names}.
 \end{itemize}
 
-
 \subsection{Derived \OM Objects}\label{sec_derived}
 
-Derived \OM objects are currently used as a way by which non-\OM
-data is embedded inside an \OM object.
-A derived \OM object is built as follows: 
+Derived \OM objects are currently used as a way by which non-\OM data is embedded inside
+an \OM object.  A derived \OM object is built as follows:
 \begin{itemize}
-\item[(i)] If $A$ is \emph{not} an \OM object, then $\foreign{A}$ is an \OM
-  \emph{foreign object}.  An \OM foreign object may optionally have an \emph{encoding}
-  field which describes how its contents should be interpreted.
+\item[(i)] If $A$ is \emph{not} an \OM object, then $\foreign{A}$ is an \OM \emph{foreign
+    object}.  An \OM foreign object may optionally have an \emph{encoding} field which
+  describes how its contents should be interpreted.
 \end{itemize}
-
-
-
 
 \subsection{\OM Objects}\label{sec_compound}
   
 \OM objects are built recursively as follows.
 \begin{itemize}
-\item[(i)] Basic \OM objects are \OM objects.
-(Note that derived \OM objects are
-\emph{not} \OM objects, but are used to construct \OM
-objects as described below.)
+\item[(i)] Basic \OM objects are \OM objects.  (Note that derived \OM objects are
+  \emph{not} \OM objects, but are used to construct \OM objects as described below.)
 \item[(ii)] If $A_1$,\ldots, $A_n$ ($n>0$) are \OM objects, then
   \[\application{A_1,\ldots,A_n}\]
   is an \OM \emph{application object}.
@@ -90,6 +80,7 @@ objects as described below.)
 \end{itemize}
 \OM objects that are contstructed via rules (ii) to (v) are jointly called \emph{compound
   \OM objects}
+
 \subsection{\OM Symbol Roles}\label{sec_roles}
 
 
@@ -362,8 +353,6 @@ MathML document \cite{MathML_2003}:
   <mo> sin </mo> 
 </csymbol>
 \end{lstlisting}
-
-
 
 \section{Summary}\label{sec_summary}
 

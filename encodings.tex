@@ -287,11 +287,8 @@ attribute see \ref{sec_compl_omforeign}.
  </OME>
 \end{lstlisting}
 
-  
-
-If a \lstinline|mathml| Content Dictionary contained an
-  \lstinline|unhandled_csymbol| symbol, then an \OM to
-MathML translator might return an error such as:
+  If a \lstinline|mathml| Content Dictionary contained an \lstinline|unhandled_csymbol|
+  symbol, then an \OM to MathML translator might return an error such as:
 \begin{lstlisting}
 <OME>
   <OMS cd="mathml" name="unhandled_csymbol"/>  
@@ -304,14 +301,11 @@ MathML translator might return an error such as:
  </OME>
 \end{lstlisting}
 
-
- Note that it is possible to embed fragments
-of valid \OM inside an \lstinline|OMFOREIGN| element but that it
-cannot contain invalid \OM.  In addition, the arguments to an
-\lstinline|OMERROR| must be well-formed \XML.  If an
-application wishes to signal that the \OM it has received is invalid or
-is not well-formed then the offending data must be encoded as a string.
-For example:
+  Note that it is possible to embed fragments of valid \OM inside an \lstinline|OMFOREIGN|
+  element but that it cannot contain invalid \OM.  In addition, the arguments to an
+  \lstinline|OMERROR| must be well-formed \XML.  If an application wishes to signal that
+  the \OM it has received is invalid or is not well-formed then the offending data must be
+  encoded as a string.  For example:
 \begin{lstlisting}
 <OME>
   <OMS cd="parser" name="invalid_XML"/>  
@@ -321,8 +315,8 @@ For example:
   </OMSTR> 
  </OME>
 \end{lstlisting}
-Note that the \textquote{<} and \textquote{>} characters have been escaped as is usual in
-an \XML document.
+  Note that the \textquote{<} and \textquote{>} characters have been escaped as is usual in
+  an \XML document.
 \item[References] \OM integers, floating point numbers, character strings, bytearrays,
   applications, binding, attributions can also be encoded as an empty \lstinline|OMR|
   element with an \lstinline|href| attribute whose value is the value of a URI referencing
@@ -333,7 +327,6 @@ an \XML document.
   are resolved using the base URI of the document containing the \OM.
 
  For instance, the \OM object
-
 \begin{lstlisting}
  <math id="nestedap" display="block">
    <mrow>
@@ -436,7 +429,6 @@ can be encoded in the \XML encoding as either one of the \XML encodings given in
 \end{lstlisting}
 \end{figure}
 
-
 \subsection{Some Notes on References}\label{sec_references}
 
 We say that an \OM element dominates all its children and all elements
@@ -448,13 +440,10 @@ in \ref{fig_shared_vs_unshared}, the
 also the second \lstinline|OMR| dominate the
 \lstinline|OMA| element with \lstinline|id="t11"|.
 
-
-
 \subsubsection{An Acyclicity Constraint}\label{sec_acyclicity}
 
 The occurrences of the \lstinline|OMR| element must obey the following global
 \emph{acyclicity constraint}: An \OM element may not dominate itself.
-
 
 Consider for instance the following (illegal) \XML representation
 \begin{lstlisting}
@@ -477,6 +466,7 @@ Here, the \lstinline|OMA| element with
 \lstinline|id="foo"|. So by transitivity, this element dominates itself, and
 by the acyclicity constraint, it is not the \XML representation of an \OM
 element. Even though it could be given the interpretation of the continued fraction
+\begin{lstlisting}
 <math display="block">
  <mfrac>
    <mn>1</mn>
@@ -493,15 +483,13 @@ element. Even though it could be given the interpretation of the continued fract
      </mfrac>
    </mrow>
  </mfrac>
-</math> this would correspond to an infinite tree of applications,
-which is not admitted by the structure of \OM objects described
-in \ref{cha_obj}.
+</math>
+\end{lstlisting}
+this would correspond to an infinite tree of applications, which is not admitted by the
+structure of \OM objects described in \ref{cha_obj}.
 
-
-Note that the acyclicity constraints is not restricted
-to such simple cases, as the example in \ref{fig_sharing_between}
-shows.
-
+Note that the acyclicity constraints is not restricted to such simple cases, as the
+example in \ref{fig_sharing_between} shows.
 
 \begin{figure}\centering
 \caption{Sharing between \OM objects (A cycle of order 2).}\label{fig_sharing_between}
@@ -516,20 +504,12 @@ shows.
 \end{lstlisting}
 \end{figure}
 
- Here, the \lstinline|OMA| with
-\lstinline|id="bar"| dominates its third child, the
-\lstinline|OMR| with \lstinline|xref="baz"|,
-which dominates its target \lstinline|OMA| with
-\lstinline|id="baz"|, which in turn dominates its third
-child, the \lstinline|OMR| with
-\lstinline|xref="bar"|, this finally dominates its
-target, the original \lstinline|OMA| element with
-\lstinline|id="bar"|. So this pair of \OM objects
-violates the acyclicity constraint and is not the \XML
-representation of an \OM object.
-
-
-
+Here, the \lstinline|OMA| with \lstinline|id="bar"| dominates its third child, the
+\lstinline|OMR| with \lstinline|xref="baz"|, which dominates its target \lstinline|OMA|
+with \lstinline|id="baz"|, which in turn dominates its third child, the \lstinline|OMR|
+with \lstinline|xref="bar"|, this finally dominates its target, the original
+\lstinline|OMA| element with \lstinline|id="bar"|. So this pair of \OM objects violates
+the acyclicity constraint and is not the \XML representation of an \OM object.
 
 \subsubsection{Sharing and Bound Variables}\label{sec_sharing_bvars}
 
@@ -538,7 +518,7 @@ Note that the \lstinline|OMR| element is a \emph{syntactic} referencing mechanis
 referencing does not interact with binding in a semantically intuitive way, since it
 allows for variable capture. Consider for instance the following \XML representation:
 \begin{lstlisting}
-% <OMBIND id="outer">
+ <OMBIND id="outer">
   <OMS cd="fns1" name="lambda"/>
   <OMBVAR><OMV name="X"/></OMBVAR>
   <OMA>
