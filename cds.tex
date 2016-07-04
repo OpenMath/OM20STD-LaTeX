@@ -1,0 +1,360 @@
+\chapter{Content Dictionaries}\label{cha_cd}
+  
+In this chapter we give a brief overview of Content Dictionaries before explicitly stating
+their functionality and encoding.
+
+\section{Introduction}\label{sec_cd_summary}
+    
+Content Dictionaries (CDs) are central to the \OM philosophy of transmitting mathematical
+information. It is the \OM Content Dictionaries which actually hold the meanings of the
+objects being transmitted.
+    
+For example if application $A$ is talking to application $B$, and sends, say, an equation
+involving multiplication of matrices, then $A$ and $B$ must agree on what a matrix is, and
+on what matrix multiplication is, and even on what constitutes an equation. All this
+information is held within some Content Dictionaries which both applications agree upon.
+    
+A \emph{ Content Dictionary} holds the meanings of (various) mathematical
+\textquote{words}. These words are \OM basic objects referred to as \emph{symbols} in
+\ref{sec_omabs}.
+    
+With a set of symbol definitions (perhaps from several Content Dictionaries), $A$ and $B$
+can now talk in a common \textquote{language}.
+    
+It is important to stress that it is not Content Dictionaries themselves which are being
+transmitted, but some \textquote{mathematics} whose definitions are held within the
+Content Dictionaries. This means that the applications must have already agreed on a set
+of Content Dictionaries which they \textquote{understand} (i.e., can cope with to some
+degree).
+    
+In many cases, the Content Dictionaries that an application understands will be constant,
+and be intrinsic to the application's mathematical use. However the above approach can
+also be used for applications which can handle every Content Dictionary (such as an \OM
+parser, or perhaps a typesetting system), or alternatively for applications which
+understand a changeable number of Content Dictionaries (perhaps after being sent Content
+Dictionaries in some way).
+    
+The primary use of Content Dictionaries is thought to be for designers of Phrasebooks, the
+programs which translate between the \OM mathematical object and the corresponding (often
+internal) structure of the particular application in question. For such a use the Content
+Dictionaries have themselves been designed to be as readable and precise as possible.
+    
+Another possible use for \OM Content Dictionaries could rely on their automatic
+comprehension by a machine (e.g., when given definitions of objects defined in terms of
+previously understood ones), in which case Content Dictionaries may have to be passed as
+data. Towards this end, a Content Dictionary has been written which contains a set of
+symbols sufficient to represent any other Content Dictionary. This means that Content
+Dictionaries may be passed in the same way as other (\OM) mathematical data.
+    
+Finally, the syntax of the reference encoding for Content Dictionaries has been designed
+to be relatively easy to learn and to write, and also free from the need for any
+specialist software. This is because it is acknowledged that there is an enormous amount
+of mathematical information to represent, and so most Content Dictionaries are written by
+\textquote{ordinary} mathematicians, encoding their particular fields of expertise.  A
+further reason is that the mathematics conveyed by a specific Content Dictionary should be
+understandable independently of any application.
+    
+The key points from this section are:
+\begin{itemize}
+\item Content Dictionaries should be readable and precise to help Phrasebook designers,
+\item Content Dictionaries should be readily write-able to encourage widespread use,
+\item It ought to be possible for a machine to understand a Content Dictionary to some
+  degree.
+\end{itemize}
+  
+\section{Abstract Content Dictionaries}\label{sect_func}
+    
+In this section we define the abstract structure of Content Dictionaries.
+    
+A Content Dictionary consists of the following mandatory pieces of information:
+\begin{enumerate}
+\item A \emph{name} corresponding to the rules described in \ref{sec_names}.
+\item A \emph{description} of the Content Dictionary.
+\item A \emph{revision date}, the date of the last change to the Content Dictionary.
+  Dates should be stored in the ISO-compliant format YYYY-MM-DD, e.g. 1966-02-03.
+\item A \emph{review date}, a date until which the content dictionary is guaranteed to
+  remain unchanged.
+\item A \emph{version number} which consists of a major and minor part (see
+  \ref{sec_version}).
+\item A \emph{status}, as described in \ref{sec_status}.
+\item A \emph{CD base} which, when combined with the CD name, forms a unique identifier
+  for the Content Dictionary. It may or may not refer to an actual location from which it
+  can be retrieved.
+\item A series of one or more \emph{symbol definitions} as described below.
+\end{enumerate}
+A symbol definition consists of the following pieces of information:
+\begin{enumerate}
+\item A mandatory \emph{name} corresponding to the rules described in \ref{sec_names}.
+\item A mandatory \emph{description} of the symbol, which can be as formal or informal as
+  the author likes.
+\item An optional \emph{role} as described in \ref{sec_roles}.
+\item Zero or more <emphasis>commented mathematical properties</emphasis> which are
+  mathematical properties of the symbol expressed in a mechanism other than \OM.
+\item Zero or more <emphasis>formal mathematical properties</emphasis> which are
+  mathematical properties of the symbol expressed in \OM.  Note that it is common for
+  commented and formal mathematical properties to be introduced in pairs, with the former
+  describing the latter.
+	  
+  A Formal Mathematical Property may be given an optional \emph{kind} attribute.  An
+  author of a Content Dictionary may use this to indicate whether, for example, the
+  property provides an algorithm for evaluation of the concept it is associated with.  At
+  present no fixed scheme is mandated for how this information should be encoded or used
+  by an application.
+\item Zero or more \emph{examples} which are intended to demonstrate the use of the symbol
+  within an \OM object.
+\end{enumerate}
+Some pieces of information which might logically be thought to be part of a Content
+Dictionary, such as the types or signatures of symbols, are better represented externally.
+This allows for new variants to be associated with Content Dictionaries without the
+Dictionaries themselves being changed.  A model for signatures is given in \ref{sigfiles}.
+    
+Content Dictionaries may be grouped into <emphasis>CD Groups</emphasis>. These groups
+allow applications to easily refer to collections of Content Dictionaries. One particular
+CDGroup of interest is the \textquote{MathML CDGroup}. This group consists of the
+collection of core Content Dictionaries that is designed to have the same semantic scope
+as the content elements of MathML~2~\cite{MathML_2003}.  \OM objects built from symbols
+that come from Content Dictionaries in this CDGroup may be expected to be easily
+transformed between \OM and MathML encodings.  The detailed structure of a CDGroup is
+described in \ref{ssec_cdgroups} below.
+    
+\subsubsection{Content Dictionary Status}\label{sec_status}
+
+The status of a Content Dictionary can be either
+\begin{itemize}
+\item \lstinline|official|: approved by the \OM Society according to the procedure
+  outlined in \ref{cdapprove};
+\item \lstinline|experimental|: under development and thus liable to change;
+\item \lstinline|private|: used by a private group of \OM users;
+\item \lstinline|obsolete|: an obsolete Content Dictionary kept only for archival
+  purposes.
+\end{itemize}
+ 
+\subsubsection{Content Dictionary Version Numbers}\label{sec_version}
+      
+A version number must consist of two parts, a major version and a revision, both of which
+should be non-negative integers.  In CDs that do not have status \emph{experimental}, the
+version number should be a positive integer.
+      
+Unless a CD has status \emph{experimental}, no changes should ever be introduced that
+invalidate objects built with previous versions.  Any change that influences phrasebook
+compliance, like adding a new symbol to a Content Dictionary, is considered a major change
+and should be reflected by an increase in the major version number. Other changes, like
+adding an example or correcting a description, are considered minor changes. For minor
+changes the version number is not changed, but an increase should be made to the revision
+number.  Note that a change such as removing a symbol should not be made unless the CD has
+status \emph{experimental}.  Should this be required then a new CD with a different name
+should be produced so as not to invalidate existing objects.
+      
+When the major version number is increased, the revision number is normally reset to zero.
+      
+As detailed in \ref{cha_comp}, \OM compliant applications state which versions of which
+CDs they support.
+  
+\section{The Reference Encoding for Content Dictionaries}\label{sec_xml_cd}
+    
+The reference encoding of Content Dictionaries are as \XML documents.  A valid Content
+Dictionary document should conform to the Relax NG Schema for Content Dictionaries given
+in \ref{sec_cd_schema}.
+    
+An example of a complete Content Dictionary is given in Appendix~\ref{app_cdcd}, which is
+the \lstinline|Meta| Content Dictionary for describing Content Dictionaries themselves. A
+more typical Content Dictionary is given in \ref{arith1.ocd}, the \lstinline|arith1|
+Content Dictionary for basic arithmetic functions.
+
+    
+\subsubsection{The Relax NG Schema for Content Dictionaries}\label{sec_cd_schema}
+
+\lstinputlisting{omcd2.rnc}
+
+\subsubsection{Further Description of the CD Schema}\label{sect_pcdata}
+
+We now describe the elements used in the above schema in terms of the abstract description
+of CDs in \ref{sect_func}.  Unless stated otherwise information is encoded as the content
+of the relevant element.
+
+\begin{description}
+\item[\lstinline|CDName|] The name of the Content Dictionary.
+\item[\lstinline|Description|] The text occurring in the \lstinline|Description| element
+  is used to give a description of the enclosing element, which could be a symbol or the
+  entire Content Dictionary. The content of this element can be any \XML text.
+\item[\lstinline|CDReviewDate|] The review date of the Content Dictionary.
+\item[\lstinline|CDDate|] The revision date of this version of the Content Dictionary.
+\item[\lstinline|CDVersion|] The major version number of the CD.
+\item[\lstinline|CDRevision|] The minor version number of the CD.
+\item[\lstinline|CDStatus|] The status of the Content Dictionary.
+\item[\lstinline|CDBase|] The CD base of the CD.
+\item[\lstinline|CDURL|] The text occurring in the \lstinline|CDURL| element should be a
+  valid URL where the source file for the Content Dictionary encoding can be found (if it
+  exists). The filename should conform to ISO 9660~\cite{iso9660}.
+\item[\lstinline|CDUses|] The content of this element should be a series of
+  \lstinline|CDName| elements, each naming a Content Dictionary used in the
+  \lstinline|Example| and \lstinline|FMP|s of the current Content Dictionary. This
+  element is optional and deprecated since the information can easily be extracted
+  automatically.
+\item[\lstinline|CDComment|] The content of this element should be text that does not
+  convey any crucial information concerning the current Content Dictionary. It can be used
+  in the Content Dictionary header to report the author of the Content Dictionary and to
+  log change information. In the body of the Content Dictionary, it can be used to attach
+  extra remarks to certain symbols.
+\item[\lstinline|CDDefinition|] The element which contains the definition of an
+  individual symbol.
+\item[\lstinline|Name|]The name of a symbol.
+\item[\lstinline|Role|] The role of a symbol: it must be one of \emph{binder},
+  \emph{attribution}, \emph{semantic-attribution}, \emph{error}, \emph{application}, or
+  \emph{constant}.
+\item[\lstinline|Example|] The text occurring in the \lstinline|Example| element is used
+  to give examples of the enclosing symbol, and can be any \XML text. In addition to text
+  the element may contain examples as \XML encoded \OM, inside \lstinline|OMOBJ|
+  elements.  Note that \lstinline|Examples| must be with respect to some symbol and
+  cannot be \textquote{loose} in the Content Dictionary.
+\item[\lstinline|CMP|] A Commented Mathematical Property.
+\item[\lstinline|FMP|] A Formal Mathematical Property.  It may take an optional
+  \lstinline|kind| attribute.
+\end{description}
+
+\section{Additional Information}\label{addfiles}
+
+Content Dictionaries contain just one part of the information that can be associated to a
+symbol in order to define its meaning and its functionality. \OM Signature dictionaries,
+CDGroups, and possibly collections of extra mathematical properties, are used to convey
+the different aspects that as a whole make up a mathematical definition.
+
+\subsection{Signature Dictionaries}\label{sigfiles}
+
+\OM may be used with any type system. One just needs to produce a Content Dictionary which
+gives the constructors of the type system, and then one may build \OM objects representing
+types in the given type system. These are typically associated with \OM objects via the
+\OM <varname>attribution</varname> constructor.
+
+A Small Type System, called STS, has been designed to give semi-formal signatures to \OM
+symbols and is documented in~\cite{OM_D132c}.  The signature file given in
+\ref{arith1.sts} is based on this formalism. Using the same mechanism, \cite{OMD132b}
+shows how pure type systems can also be employed to assign types to \OM symbols.
+
+\subsubsection{Abstract Specification  of a Signature Dictionary}\label{sect_sigpcdata}
+
+Signature dictionaries have a header which specifies the type system being used and the
+Content Dictionary containing the symbols for which signatures are being given. Each
+signature takes the form of an \OM object in an appropriate encoding.
+
+\begin{enumerate}
+\item A \emph{type definition}: the name of the Content Dictionary or of the CDGroup
+  (cfg. \ref{ssec_cdgroups}) that represents the type system being used.
+\item A \emph{CD name}: the name of the CD for which signatures are being defined.
+\item A \emph{review date} as defined in \ref{sect_func}.
+\item A \emph{status}: as defined in \ref{sect_func}.
+\item A series of \emph{signatures} which are \OM objects in some encoding.  The objects
+  must represent types as defined by the type definition.
+\end{enumerate}
+
+\subsubsection{A Relax NG Schema for a Signature Dictionary}\label{sect_sigschema}
+
+The following is a reference encoding of a signature dictionary,
+designed to be used with Content Dictionaries in the \XML encoding.
+
+\lstinputlisting{omcdsig2.rnc}
+
+\subsubsection{Examples}\label{sect_sigex}
+
+An example of a signature dictionary for the type system STS and the \lstinline|arith1|
+Content Dictionary is given in \ref{arith1.sts}. Each signature entry is similar to the
+following one for the \OM symbol \lstinline|<OMS cd="arith1" name="plus"/>|.
+
+\begin{lstlisting}
+<Signature name="plus">
+<OMOBJ version="2.0">
+ <OMA>
+  <OMS name="mapsto" cd="sts"/>
+  <OMA>
+   <OMS name="nassoc" cd="sts"/> 
+   <OMV name="AbelianSemiGroup"/>
+  </OMA>
+  <OMV name="AbelianSemiGroup"/>
+ </OMA>
+</OMOBJ>
+</Signature>
+\end{lstlisting}
+\subsection{CDGroups}\label{ssec_cdgroups}
+
+The CD Group mechanism is a convenience mechanism for identifying collections of CDs.  A
+CD Group file is an \XML document used in the (static or dynamic) negotiation phase where
+communicating applications declare and agree on the Content Dictionaries which they
+process.  It is a complement, or an alternative, to the individual declaration of Content
+Dictionaries understood by an application.  Note that CD Groups do \emph{not} affect the
+\OM objects themselves.  Symbols in an object always refer to content dictionaries, not
+groups.
+
+For an application to declare that it \textquote{understands CDGroup G} is exactly
+equivalent to, and interchangeable with, the declaration that it \textquote{understands}
+Content Dictionaries $x_1$, $x_2$, \ldots $x_n$, where $x_1$, \ldots, $x_n$ are the
+members of CDGroup G.
+
+\subsubsection{The Specification of CDGroups}\label{sec_dtd_cdg}
+
+CDGroups are \XML documents, hence  a valid  CDGroup
+ should 
+\begin{itemize}
+\item be valid according to the schema given in \ref{fig_cdgroup.dtd},
+\item adhere to the extra conditions on the content of the elements
+  given in \ref{sect_cdgpcdata}.
+\end{itemize}
+
+Apart from some header information such as \lstinline|CDGroupName| and
+\lstinline|CDGroup| version, a CDGroup is simply an unordered list of
+CDs, identified by name and optionally version number and URL.
+
+\begin{figure}\centering
+  \lstinputlisting{omcdgroup2.rnc}
+  \caption{Relax NG Specification of CDGroups}\label{fig_cdgroup.dtd}
+\end{figure}
+
+
+\subsubsection{Further Requirements of a CDGroup}\label{sect_cdgpcdata}
+
+The notion of being a valid CDGroup implies that the following requirements on the content
+of the elements described by the schema given in \ref{sect_sigschema} are also met.
+
+\begin{description}
+\item[\lstinline|CDGroup|] The \XML element \lstinline|CDGroup| is the outermost element
+  in a CDGroup document.
+\item[\lstinline|CDGroupName|] The text occurring in the \lstinline|CDGroupName| element
+  corresponds to the name of the CDGroup. For the syntactical requirements, see
+  \lstinline|CDName| in \ref{sect_pcdata}.
+\item[\lstinline|CDGroupVersion|]
+\item[\lstinline|CDGroupRevision|] The text occurring in these elements contains the
+  major and minor version numbers of the CDGroup.
+\item[\lstinline|CDGroupURL|] The text occurring in the \lstinline|CDGroupURL| element
+  identifies the location of the CDGroup file, not necessarily of the member Content
+  Dictionaries. For the syntactical requirements, see \lstinline|CDURL| in
+  \ref{sect_pcdata}.
+\item[\lstinline|CDGroupDescription|] The text occurring in the
+  \lstinline|CDGroupDescription| element describes the mathematical area of the CDGroup.
+\item[\lstinline|CDGroupMember|] The \XML element \lstinline|CDGroupMember| encloses the
+  data identifying each member of the CDGroup.
+\item[\lstinline|CDName|] The text occurring in the \lstinline|CDName| element
+  corresponds to the name of a Content Dictionary in the CDGroup. For the syntactical
+  requirements, see \lstinline|CDName| in \ref{sect_pcdata}.
+\item[\lstinline|CDVersion|] The text occurring in the \lstinline|CDVersion| element
+  identifies which version of the Content Dictionary is to be taken as member of the
+  CDGroup. This element is optional. In case it is missing, the latest version is the one
+  included in the CDGroup.  For the syntactical requirements, see \lstinline|CDVersion|
+  in \ref{sect_pcdata}.
+\item[\lstinline|CDURL|] The text occurring in the \lstinline|CDURL| element identifies
+  the location of the Content Dictionary to be taken as member of the CDGroup. This
+  element is optional. In case it is missing, the location of the CDGroup identified by
+  the element \lstinline|CDGroupURL| is assumed.  For the syntactical requirements, see
+  \lstinline|CDURL| in \ref{sect_pcdata}.
+\item[\lstinline|CDComment|] See \lstinline|CDComment| in \ref{sect_pcdata}.
+\end{description}
+
+\section{Content Dictionaries Reviewing Process}\label{cdapprove}
+
+The \OM Society is responsible for implementing a review and referee process to assess the
+accuracy of the mathematical content of Content Dictionaries.  The status (see
+\lstinline|CDStatus|) and/or the version number (see \lstinline|CDVersion| ) of a
+Content Dictionary may change as a result of this review process.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "omstd20"
+%%% End:

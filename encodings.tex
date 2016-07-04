@@ -1,0 +1,1219 @@
+\chapter{\OM Encodings}\label{cha_enco}
+
+In this chapter, two encodings are defined that map between \OM objects and byte streams.
+These byte streams constitute a low level representation that can be easily exchanged
+between processes (via almost any communication method) or stored and retrieved from
+files.
+
+The first encoding is a character-based encoding in \XML format.  In previous versions of
+the \OM Standard this encoding was a restricted subset of the full legal \XML syntax.  In
+this version, however, we have removed all these restrictions so that the earlier encoding
+is a strict subset of the existing one.  The \XML encoding can be used, for example, to
+send \OM objects via e-mail, cut-and-paste, etc. and to embed \OM objects in \XML
+documents or to have \OM objects processed by \XML-aware applications.
+
+The second encoding is a binary encoding that is meant to be used when the compactness of
+the encoding is important (inter-process communications over a network is an example).
+
+Note that these two encodings are sufficiently different for
+auto-detection to be effective: an application reading the bytes can
+very easily determine which encoding is used.
+
+\section{The \XML Encoding}\label{sec_xml}
+
+This encoding has been designed with two main goals in mind:
+\begin{enumerate}
+\item to provide an encoding that uses common character sets (so that it can easily be
+  included in most documents and transport protocols) and that is both readable and
+  writable by a human.
+\item to provide an encoding that can be included (embedded) in \XML documents or
+  processed by \XML-aware applications.
+\end{enumerate}
+
+\subsection{A Schema for the \XML Encoding}\label{ssec_xml}
+
+The \XML encoding of an \OM object is defined by the Relax NG schema \cite{RELAX} given
+below.  Relax NG has a number of advantages over the older XSD Schema format \cite{XSD},
+in particular it allows for tighter control of attributes and has a modular, extensible
+structure.  Although we have made the \XML form, which is given in \ref{app_openmath.rng},
+normative, it is generated from the compact syntax given below.  It is also very easy to
+restrict the schema to allow a limited set of \OM symbols as described in
+\ref{app_relaxrestricted}.
+
+Standard tools exist for generating a DTD or an XSD schema from a Relax NG Schema.
+Examples of such documents are given in \ref{app_xsd}, respectively.
+
+\lstinputlisting{openmath2.rnc}
+
+\textbf{Note:} This schema specifies names as being of the \lstinline|xsd:NCName| type. At
+the time of writing, W3C Schema types are defined in terms of XML 1 \cite{xml_98}.  This
+limits the characters allowed in a name to a subset of the characters available in Unicode
+2.0, which is far more restrictive than the definition for an \OM name given in
+\ref{sec_names}.  It is expected that W3C Schema types will be augmented to match the new
+XML 1.1 recommendation \cite{xml_04}, but for portability reasons applications should
+avoid using the new XML 1.1 name characters unless they are absolutely required.  The XML
+1.1 specification has a useful appendix giving advice on good strategies to use when
+naming identifiers.
+
+\subsection{Informal description of the \XML Encoding}\label{sec_xml-desc}
+
+An encoded \OM object is placed inside an \lstinline|OMOBJ| element.  This 
+element can contain the elements (and integers) described above.
+ It can take an optional
+\lstinline|version| (\XML) attribute which indicates to
+which version of the \OM standard it conforms.  In previous versions of
+this standard this attribute did not exist, so any \OM object without
+such an attribute must conform to version 1 (or equivalently 1.1) of the
+\OM standard.  Objects which conform to the description given in this
+document should have \lstinline|version="2.0"|.
+
+We briefly discuss the \XML encoding for each type of \OM object starting from the basic
+objects.
+
+
+\begin{description}
+\item[Integers] are encoded using the
+  \lstinline|OMI| element around the sequence of their
+  digits in base 10 or 16 (most significant digit first).  White space
+  may be inserted between the characters of the integer representation,
+  this will be ignored.  After ignoring white space, integers written in
+  base 10 match the regular expression
+  \lstinline|-?[0-9]+|.  Integers written in base 16 match
+  \lstinline|-?x[0-9A-F]+|.  The integer 10 can be thus
+  encoded as \lstinline|<OMI> 10 </OMI>| or as
+  \lstinline|<OMI> xA </OMI>| but neither
+  \lstinline|<OMI> +10 </OMI>| nor
+  \lstinline|<OMI> +xA </OMI>| can be used.
+
+  The negative integer $-120$ can be encoded
+  as either as decimal \lstinline|<OMI> -120</OMI>| or as hexadecimal 
+  \lstinline|<OMI>-x78 </OMI>|.
+\item[Symbols] are encoded using the \lstinline|OMS| element. This element has three
+  (\XML) attributes \lstinline|cd|, \lstinline|name|, and \lstinline|cdbase|. The value
+  of \lstinline|cd| is the name of the Content Dictionary in which the symbol is defined
+  and the value of \lstinline|name| is the name of the symbol.  The optional
+  \lstinline|cdbase| attribute is a URI that can be used to disambiguate between two
+  content dictionaries with the same name.  If a symbol does not have an explicit
+  \lstinline|cdbase| attribute, then it inherits its \lstinline|cdbase| from the first
+  ancestor in the \XML tree with one, should such an element exist.  In this document we
+  have tended to omit the \lstinline|cdbase| for clarity.
+  
+  For example:
+\begin{lstlisting}
+<OMS cdbase="http://www.openmath.org/cd" cd="transc1" name="sin"/>
+\end{lstlisting}
+  is the encoding of the symbol named \lstinline|sin| in the Content Dictionary named
+  \lstinline|transc1|, which is part of the collection maintained by the \OM Society.
+
+
+  As described in \ref{sec_names}, the three attributes of the \lstinline|OMS| can be used
+  to build a URI reference for the symbol, for use in contexts where URI-based referencing
+  mechanisms are used.  For example the URI for the above symbol is
+  \url{http://www.openmath.org/cd/transc1\#sin}.
+
+  Note that the role attribute described in \ref{sec_roles} is contained in the Content
+  Dictionary and is not part of the encoding of a symbol, also the \lstinline|cdbase|
+  attribute need not be explicit on each \lstinline|OMS| as it is inherited from any
+  ancestor element.
+\item[Variables] are encoded using the \lstinline|OMV| element, with only one (\XML)
+  attribute, \lstinline|name|, whose value is the variable name. For instance, the
+  encoding of the object representing the variable $x$ is: \lstinline|<OMV name="x"/>|
+\item[Floating-point numbers] are encoded using the \lstinline|OMF| element that has
+  either the (\XML) attribute \lstinline|dec| or the (\XML) attribute \lstinline|hex|. The
+  two (\XML) attributes cannot be present simultaneously. The value of \lstinline|dec| is
+  the floating-point number expressed in base 10, using the common syntax:
+
+\begin{lstinline}
+(-?)([0-9]+)?("."[0-9]+)?([eE](-?)[0-9]+)?
+\end{lstinline}
+
+or one of the special values: INF, -INF or NaN.
+
+The value of \lstinline|hex| is a base 16 representation of the 64 bits of the
+\acronym{ieee} Double.  Thus the number represents mantissa, exponent, and sign from
+lowest to highest bits using a least significant byte ordering.  This consists of a string
+of 16 digits \lstinline|0|-\lstinline|9|, \lstinline|A|-\lstinline|F|.
+  
+
+For example, both \lstinline|<OMF dec="1.0e-10"/>| and 
+\lstinline|<OMF hex="3DDB7CDFD9D7BDBB"/>|
+are valid representations of the floating point number $1\times 10^{-10}$.
+ 
+The symbols \lstinline|INF|, \lstinline|-INF| and \lstinline|NaN| represent positive and
+negative infinity, and \emph{not a number} as defined in \cite{ieee754_85}.  Note that
+while infinities have a unique representation, it is possible for NaNs to contain extra
+information about how they were generated and if this informations is to be preserved then
+the hexadecimal representation must be used.  For example
+\lstinline|<OMF hex="FFF8000000000000"/>| and \lstinline|<OMFhex="FFF8000000000001"/>| are
+both hexadecimal representations of NaNs.
+\item[Character strings] are encoded using the \lstinline|OMSTR| element.  Its
+  content is a Unicode text. Note that as always in \XML the characters \lstinline|<| and
+  \lstinline|\&| need to be represented by the entity references \lstinline|\&lt;|
+  and \lstinline|\&amp;| respectively.
+\item[Bytearrays] are encoded using the \lstinline|OMB| element. Its content is
+  a sequence of characters that is a base64 encoding of the data.  The base64 encoding is
+  defined in \acronym{rfc} 2045 \cite{rfc2045}.  Basically, it represents an arbitrary
+  sequence of octets using 64 \textquote{digits} (\lstinline|A| through \lstinline|Z|,
+  \lstinline|a| through \lstinline|z|, \lstinline|0| through \lstinline|9|,
+  \lstinline|+| and /, in order of increasing value). Three octets are represented as
+  four digits (the \lstinline|=| character is used for padding at the end of the
+  data). All line breaks and carriage return, space, form feed and horizontal tabulation
+  characters are ignored. The reader is referred to \cite{rfc2045} for more detailed
+  information.
+\end{description}
+ 
+\begin{description}
+\item[Applications] are encoded using the \lstinline|OMA| element. The
+  application whose head is the \OM object $e_0$ and whose arguments
+  are the \OM objects $e_1$, \ldots, $e_n$ is encoded as \lstinline|<OMA>|
+  $C_0$ $C_1$\ldots $C_n$ \lstinline|</OMA>| where $C_i$ is the encoding of
+  $e_i$.
+
+
+For example, $\application{sin,x}$ is encoded as:
+\begin{lstlisting}
+<OMA>  
+  <OMS cd="transc1" name="sin"/> 
+  <OMV name="x"/>  
+</OMA>
+\end{lstlisting}
+  provided that the symbol \lstinline|sin| is defined to be a function
+  symbol in a Content Dictionary named \lstinline|transc1|.
+\item[Binding] is encoded using the \lstinline|OMBIND| element.  The binding by the \OM
+  object $b$ of the \OM variables $x_1$, $x_2$,\ldots, $x_n$ in the object $c$ is encoded
+  as \lstinline|<OMBIND>| $B$ \lstinline|<OMBVAR>| $X_1$,\ldots, $X_n$
+  \lstinline|</OMBVAR>| $C$ \lstinline|</OMBIND>| where $B$, $C$, and $X_i$ are the
+  encodings of $b$, $c$ and $x_i$, respectively.
+
+  For instance the encoding of $\binding{\lambda,x,\application{\sin,x}}$is:
+\begin{lstlisting}
+<OMBIND>
+  <OMS cd="fns1" name="lambda"/>  
+  <OMBVAR><OMV name="x"/></OMBVAR>  
+  <OMA>
+    <OMS cd="transc1" name="sin"/> 
+    <OMV name="x"/>  
+  </OMA>
+</OMBIND>
+\end{lstlisting}
+  
+Binders are defined in  Content Dictionaries, in particular,
+  the symbol \lstinline|lambda| is defined in the Content Dictionary
+  \lstinline|fns1| for functions over functions.
+\item[Attributions] are encoded using the \lstinline|OMATTR| element.  If
+  the \OM object $e$ is attributed with ($s_1$, $e_1$), \ldots, 
+  ($s_n$, $e_n$) pairs (where $s_i$ are the attributes), it is encoded
+  as \lstinline|<OMATTR>| \lstinline|<OMATP>| $S_1$ $C_1$ \ldots $S_n$ $C_n$ \lstinline|</OMATP>| $E$ \lstinline|</OMATTR>| where $S_i$ is the encoding of the
+  symbol $s_i$, $C_i$ of the object $e_i$ and $E$ is the encoding of
+  $e$.
+
+
+Examples are the use of attribution to decorate a group by its
+  automorphism group:
+\begin{lstlisting}
+<OMATTR>    
+  <OMATP>
+    <OMS cd="groups" name="automorphism_group" />  
+    [..group-encoding..] 
+  </OMATP>  
+  [..group-encoding..] 
+</OMATTR>
+\end{lstlisting}
+or to express the type of a variable:
+\begin{lstlisting}
+<OMATTR>    
+  <OMATP>
+    <OMS cd="ecc" name="type" /> 
+    <OMS cd="ecc" name="real" />
+  </OMATP> 
+  <OMV name="x" />
+</OMATTR>
+\end{lstlisting}
+
+A special use of attributions is to associate non-\OM data with an \OM object.  This is
+done using the \lstinline|OMFOREIGN| element.  The children of this element must be
+well-formed \XML.  For example the attribution of the \OM object $\sin(x)$ with its
+representation in Presentation MathML is:
+\begin{lstlisting}
+<OMATTR>
+  <OMATP>
+    <OMS cd="annotations1" name="presentation-form"/>  
+    <OMFOREIGN encoding="MathML-Presentation">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <mi>sin</mi><mfenced><mi>x</mi></mfenced>
+      </math>
+    </OMFOREIGN>  
+  </OMATP>
+  <OMA>
+   <OMS cd="transc1" name="sin"/> 
+   <OMV name="x"/>  
+  </OMA>
+</OMATTR>
+\end{lstlisting}
+Of course not everything has a natural XML encoding in this way and
+often the contents of a \lstinline|OMFOREIGN| will just
+be data or some kind of encoded string.  For example the attribution
+of the previous object with its LaTeX representation could be achieved
+as follows:
+\begin{lstlisting}
+<OMATTR>
+  <OMATP>
+    <OMS cd="annotations1" name="presentation-form"/>  
+    <OMFOREIGN encoding="text/x-latex">\sin(x)</OMFOREIGN>  
+  </OMATP>
+  <OMA>
+    <OMS cd="transc1" name="sin"/> 
+    <OMV name="x"/>  
+  </OMA>
+</OMATTR>
+\end{lstlisting}
+For a discussion on the use of the \lstinline|encoding|
+attribute see \ref{sec_compl_omforeign}.
+\item[Errors] are encoded using the \lstinline|OME| element. The error whose symbol is $s$
+  and whose arguments are the \OM objects or \OM derived objects $e_1$, \ldots, $e_n$ is
+  encoded as \lstinline|<OME>| $C_s$ $C_1$\ldots $C_n$ \lstinline|</OME>| where $C_s$ is
+  the encoding of $s$ and $C_i$ the encoding of $e_i$.
+
+  If an \lstinline|aritherror| Content Dictionary contained a \lstinline|DivisionByZero|
+  symbol, then the object
+  $\error{DivisionByZero{\application{divide,x,0}}}$ would be encoded as follows:
+
+\begin{lstlisting}
+<OME>
+  <OMS cd="aritherror" name="DivisionByZero"/>  
+  <OMA>
+    <OMS cd="arith1" name="divide" />
+    <OMV name="x"/>  
+    <OMI> 0 </OMI>
+  </OMA> 
+ </OME>
+\end{lstlisting}
+
+  
+
+If a \lstinline|mathml| Content Dictionary contained an
+  \lstinline|unhandled_csymbol| symbol, then an \OM to
+MathML translator might return an error such as:
+\begin{lstlisting}
+<OME>
+  <OMS cd="mathml" name="unhandled_csymbol"/>  
+  <OMFOREIGN encoding="MathML-Content">
+    <mathml:csymbol xmlns:mathml="http://www.w3.org/1998/Math/MathML/"
+                    definitionURL="http://www.nag.co.uk/Airy#A">
+      <mathml:mo>Ai</mathml:mo>
+    </mathml:csymbol>
+  </OMFOREIGN> 
+ </OME>
+\end{lstlisting}
+
+
+ Note that it is possible to embed fragments
+of valid \OM inside an \lstinline|OMFOREIGN| element but that it
+cannot contain invalid \OM.  In addition, the arguments to an
+\lstinline|OMERROR| must be well-formed \XML.  If an
+application wishes to signal that the \OM it has received is invalid or
+is not well-formed then the offending data must be encoded as a string.
+For example:
+\begin{lstlisting}
+<OME>
+  <OMS cd="parser" name="invalid_XML"/>  
+  <OMSTR>
+    &ltOMA> <OMS name="cos" cd="transc1">
+      <OMV name="v"> </OMA>
+  </OMSTR> 
+ </OME>
+\end{lstlisting}
+Note that the \textquote{<} and \textquote{>} characters have been escaped as is usual in
+an \XML document.
+\item[References] \OM integers, floating point numbers, character strings, bytearrays,
+  applications, binding, attributions can also be encoded as an empty \lstinline|OMR|
+  element with an \lstinline|href| attribute whose value is the value of a URI referencing
+  an id attribute of an \OM object of that type.  The \OM element represented by this
+  \lstinline|OMR| reference is a copy of the \OM element referenced \lstinline|href|
+  attribute. Note that this copy is \emph{structurally equal}, but not identical to the
+  element referenced. These URI refererences will often be relative, in which case they
+  are resolved using the base URI of the document containing the \OM.
+
+ For instance, the \OM object
+
+\begin{lstlisting}
+ <math id="nestedap" display="block">
+   <mrow>
+     <mi mathvariant="bold">application</mi>
+     <mrow>
+       <mo fence="true">(</mo>
+       <mrow>
+         <mi>f</mi>
+         <mo separator="true">,</mo>
+         <mi mathvariant="bold">application</mi>
+         <mrow>
+           <mo fence="true">(</mo>
+           <mrow>
+             <mi>f</mi>
+             <mo separator="true">,</mo>
+             <mi mathvariant="bold">application</mi>
+             <mrow>
+               <mo fence="true">(</mo>
+               <mrow><mi>f</mi><mo separator="true">,</mo><mi>a</mi><mo separator="true">,</mo><mi>a</mi></mrow>
+               <mo fence="true">)</mo>
+             </mrow>
+             <mo separator="true">,</mo>
+             <mi mathvariant="bold">application</mi>
+             <mrow>
+               <mo fence="true">(</mo>
+               <mrow><mi>f</mi><mo separator="true">,</mo><mi>a</mi><mo separator="true">,</mo><mi>a</mi></mrow>
+               <mo fence="true">)</mo>
+             </mrow>
+             <mo fence="true">)</mo>
+           </mrow>
+           <mo separator="true">,</mo>
+           <mi mathvariant="bold">application</mi>
+           <mrow>
+             <mo fence="true">(</mo>
+             <mrow>
+               <mi>f</mi>
+               <mo separator="true">,</mo>
+               <mi mathvariant="bold">application</mi>
+               <mrow>
+                 <mo fence="true">(</mo>
+                 <mrow><mi>f</mi><mo separator="true">,</mo><mi>a</mi><mo separator="true">,</mo><mi>a</mi></mrow>
+                 <mo fence="true">)</mo>
+               </mrow>
+               <mo separator="true">,</mo>
+               <mi mathvariant="bold">application</mi>
+               <mrow>
+                 <mo fence="true">(</mo>
+                 <mrow><mi>f</mi><mo separator="true">,</mo><mi>a</mi><mo separator="true">,</mo><mi>a</mi></mrow>
+                 <mo fence="true">)</mo>
+               </mrow>
+               <mo fence="true">)</mo>
+             </mrow>
+           </mrow>
+           <mo fence="true">)</mo>
+         </mrow>
+       </mrow>
+     </mrow>
+   </mrow>
+ </math>
+\end{lstlisting}
+can be encoded in the \XML encoding as either one of the \XML encodings given in
+\ref{fig_shared_vs_unshared} (and some intermediate versions as well).
+\end{description}
+
+\begin{figure}\centering
+\caption{Shared vs. unshared representations}\label{fig_shared_vs_unshared}
+    
+\begin{lstlisting}
+<OMOBJ version="2.0">         <OMOBJ version="2.0">
+  <OMA>                         <OMA>
+    <OMV name="f"/>               <OMV name="f"/> 
+    <OMA>                         <OMA id="t1">
+      <OMV name="f"/>               <OMV name="f"/>
+      <OMA>                         <OMA id="t11">
+        <OMV name="f"/>               <OMV name="f"/>
+        <OMV name="a"/>               <OMV name="a"/>
+        <OMV name="a"/>               <OMV name="a"/>
+      </OMA>                        </OMA>
+      <OMA>                         <OMR href="#t11"/>
+        <OMV name="f"/>
+        <OMV name="a"/> 
+        <OMV name="a"/>
+      </OMA>                                
+    </OMA>                      </OMA>
+    <OMA>                       <OMR href="#t1"/>
+      <OMV name="f"/>
+      <OMA>
+        <OMV name="f"/>
+        <OMV name="a"/>
+        <OMV name="a"/>
+      </OMA>
+      <OMA>
+        <OMV name="f"/>
+        <OMV name="a"/>
+        <OMV name="a"/>
+      </OMA>
+    </OMA>
+  </OMA>
+</OMOBJ>                     </OMOBJ>
+\end{lstlisting}
+\end{figure}
+
+
+\subsection{Some Notes on References}\label{sec_references}
+
+We say that an \OM element dominates all its children and all elements
+they dominate. An \lstinline|OMR| element dominates its target,
+i.e. the element that carries the \lstinline|id| attribute pointed to
+by the \lstinline|xref| attribute. For instance in the representation
+in \ref{fig_shared_vs_unshared}, the
+\lstinline|OMA| element with \lstinline|id="t1"| and
+also the second \lstinline|OMR| dominate the
+\lstinline|OMA| element with \lstinline|id="t11"|.
+
+
+
+\subsubsection{An Acyclicity Constraint}\label{sec_acyclicity}
+
+The occurrences of the \lstinline|OMR| element must obey the following global
+\emph{acyclicity constraint}: An \OM element may not dominate itself.
+
+
+Consider for instance the following (illegal) \XML representation
+\begin{lstlisting}
+<OMOBJ version="2.0">
+  <OMA id="foo">
+    <OMS cd="arith1" name="divide"/>
+    <OMI>1</OMI>
+    <OMA>
+       <OMS cd="arith1" name="plus"/>
+       <OMI>1</OMI>
+       <OMR xref="foo"/>
+    </OMA> 
+  </OMA>
+</OMOBJ>
+\end{lstlisting}
+
+Here, the \lstinline|OMA| element with
+\lstinline|id="foo"| dominates its third child, which dominates the
+\lstinline|OMR| element, which dominates its target: the element with
+\lstinline|id="foo"|. So by transitivity, this element dominates itself, and
+by the acyclicity constraint, it is not the \XML representation of an \OM
+element. Even though it could be given the interpretation of the continued fraction
+<math display="block">
+ <mfrac>
+   <mn>1</mn>
+   <mrow>
+     <mn>1</mn>
+     <mo>+</mo>
+     <mfrac>
+       <mn>1</mn>
+       <mrow>
+         <mn>1</mn>
+         <mo>+</mo>
+         <mfrac><mn>1</mn><mi>...</mi></mfrac>
+       </mrow>
+     </mfrac>
+   </mrow>
+ </mfrac>
+</math> this would correspond to an infinite tree of applications,
+which is not admitted by the structure of \OM objects described
+in \ref{cha_obj}.
+
+
+Note that the acyclicity constraints is not restricted
+to such simple cases, as the example in \ref{fig_sharing_between}
+shows.
+
+
+\begin{figure}\centering
+\caption{Sharing between \OM objects (A cycle of order 2).}\label{fig_sharing_between}
+\begin{lstlisting}
+<OMOBJ version="2.0">                   <OMOBJ version="2.0">
+  <OMA id="bar">                         <OMA id="baz">
+    <OMS cd="arith1" name="plus"/>         <OMS cd="arith1" name="plus"/>
+    <OMI>1</OMI>                           <OMI>1</OMI>
+    <OMR xref="baz"/>                      <OMR xref="bar"/>
+  </OMA>                                 </OMA>
+</OMOBJ>                               </OMOBJ>
+\end{lstlisting}
+\end{figure}
+
+ Here, the \lstinline|OMA| with
+\lstinline|id="bar"| dominates its third child, the
+\lstinline|OMR| with \lstinline|xref="baz"|,
+which dominates its target \lstinline|OMA| with
+\lstinline|id="baz"|, which in turn dominates its third
+child, the \lstinline|OMR| with
+\lstinline|xref="bar"|, this finally dominates its
+target, the original \lstinline|OMA| element with
+\lstinline|id="bar"|. So this pair of \OM objects
+violates the acyclicity constraint and is not the \XML
+representation of an \OM object.
+
+
+
+
+\subsubsection{Sharing and Bound Variables}\label{sec_sharing_bvars}
+
+Note that the \lstinline|OMR| element is a \emph{syntactic} referencing mechanism: an
+\lstinline|OMR| element stands for the exact \XML element it points to. In particular,
+referencing does not interact with binding in a semantically intuitive way, since it
+allows for variable capture. Consider for instance the following \XML representation:
+\begin{lstlisting}
+<OMBIND id="outer">
+  <OMS cd="fns1" name="lambda"/>
+  <OMBVAR><OMV name="X"/></OMBVAR>
+  <OMA>
+    <OMV name="f"/>
+    <OMBIND id="inner">
+      <OMS cd="fns1" name="lambda"/>
+      <OMBVAR><OMV name="X"/></OMBVAR>
+      <OMR id="copy" href="#orig"/>
+    </OMBIND>
+    <OMA id="orig"><OMV name="g"/><OMV name="X"/></OMA>
+  </OMA>
+</OMBIND>
+\end{lstlisting}
+it represents the \OM object
+\[\binding{\lambda,X,\application{f,\binding{\lambda,X,\application{g,X},\application{g,X}}}}\]
+which has two sub-terms of the form $\application{g,X}$, one with \lstinline|id="orig"|
+(the one explicitly represented) and one with \lstinline|id="copy"|, represented by the
+\lstinline|OMR| element. In the original, the variable $X$ is bound by the \emph{outer}
+\lstinline|OMBIND| element, and in the copy, the variable $X$is bound by the \emph{inner}
+\lstinline|OMBIND| element. We say that the inner \lstinline|OMBIND| has captured the
+variable $X$.
+
+It is well-known that variable capture does not conserve semantics. For instance, we could
+use $\alpha$-conversion to rename the inner occurrence of $X$ into, say, $Y$ arriving at
+the (same) object
+\[\binding{\lambda,X,\application{f,\binding{\lambda,Y,\application{g,Y},\application{g,X}}}}\]
+Using references that capture variables in this way can easily lead to representation
+errors, and is not recommended.
+
+\subsection{Embedding \OM in \XML Documents}\label{xmldoc}
+     
+The above encoding of \XML encoded \OM specifies the grammar to be used in files that
+encode a single \OM object, and specifies the character streams that a conforming \OM
+application should be able to accept or produce.
+
+
+When embedding \XML encoded \OM objects into a larger \XML document one may wish, or need,
+to use other \XML features. For example use of extra \XML attributes to specify \XML
+Namespaces~\cite{xmlns} or \lstinline|xml:lang| attributes to specify the language used
+in strings~\cite{xml_04}.
+
+If such \XML features are used then the \XML application controlling the document must, if
+passing the \OM fragment to an \OM application, remove any such extra attributes and must
+ensure that the fragment is encoded according to the schema specified above.
+
+\section{The Binary Encoding}\label{sec_binary}
+
+The binary encoding was essentially designed to be more compact than the \XML encodings,
+so that it can be more efficient if large amounts of data are involved. For the current
+encoding, we tried to keep the right balance between compactness, speed of encoding and
+decoding and simplicity (to allow a simple specification and easy implementations).
+
+\subsection{A Grammar for the Binary Encoding}\label{sec_binary_grammar}
+
+\def\abyte{[\_]}\def\fourbytes{\ensuremath{\{\_\}}}
+\begin{figure}\centering\footnotesize
+\begin{center}
+\begin{tabular}{lcp{6cm}lcp{5cm}}
+  start  &  $\longrightarrow$& [24] object [25] 
+           &  $|$ &  [24+64] [$m$]  [$n$] object [25]\\
+   object  & $\longrightarrow$& basic
+      & $|$ &  compound &\\
+      & $|$ & cdbase
+      & $|$ & foreign \\
+      & $|$ & reference &\\
+    basic & $\longrightarrow$ &  integer  
+      & $|$ &  float \\
+      & $|$ &  variable 
+      & $|$ &  symbol   \\
+      & $|$ &  string 
+      & $|$ &  bytearray \\
+    integer  & $\longrightarrow$&[1] \abyte 
+      & $|$ & [1+64] [$n$] id:$n$ \abyte\\
+      & $|$ &  [1+32] \abyte  & &  \\
+      & $|$ &  [1+128] \fourbytes 
+      &  $|$ & [1+64+128] {$n$} id:$n$ \fourbytes\\
+      & $|$ &  [1+32+128] \fourbytes  &
+      &  &\\
+      & $|$ &  [2] [$n$] \abyte digits:$n$
+      & $|$ & [2+64] [$n$] [$m$] \abyte digits:$n$ id:$m$\\
+      & $|$ & [2+32] [$n$] \abyte digits:$n$ & 
+      &  \\
+      & $|$ & [2+128] {$n$} \abyte digits:$n$
+      & $|$ & [2+64+128] {$n$} {$n$} \abyte digits:$n$ id:$n$\\
+      & $|$ & [2+32+128] {$n$} \abyte digits:$n$
+      & & \\
+   float  & $\longrightarrow$& [3] \fourbytes\fourbytes 
+       & $|$ & [3+64] [$n$] id:$n$ \fourbytes\fourbytes\\
+       & &
+       & $|$ & [3+64+128] {$n$} id:$n$ \fourbytes\fourbytes\\
+    variable  & $\longrightarrow$& [5] [$n$] varname:$n$
+       & $|$ & [5+64] [$n$] [$m$] varname:$n$ id:$m$\\
+       & $|$ & [5+128] {$n$} varname:$n$
+       & $|$ & [5+64+128] {$n$} {$m$} varname:$n$ id:$m$\\
+    symbol & $\longrightarrow$& [8] [$n$] [$m$] cdname:$n$ symbname:$m$
+       & $|$ & [8+64] [$n$] [$m$] [$k$] cdname:$n$ symbname:$m$ id:$k$\\
+       & $|$ & [8+128] {$n$} {$m$} cdname:$n$ symbname:$m$
+       & $|$ & [8+64+128] {$n$} {$m$} {$k$} cdname:$n$ symbname:$m$ id:$k$\\
+    string  & $\longrightarrow$& [6] [$n$] bytes:$n$
+       & $|$ & [6+64] [$n$] bytes:$n$\\
+       & $|$ & [6+32] [$n$] bytes:$n$ & & \\
+       & $|$ & [6+128] {$n$} bytes:$n$
+       & $|$ & [6+64+128] {$n$} {$m$} bytes:$n$ id:$m$\\
+       & $|$ & [6+32+128] {$n$} bytes:$n$
+       & & \\
+       & $|$ & [7] [$n$] bytes:$2n$ 
+       & $|$ & [7+64] [$n$] [$m$]bytes:$n$id:$m$ \\
+       & $|$ & [7+32] [$n$] bytes:$2n$
+       & & \\
+       & $|$ & [7+128] {$n$} bytes:$2n$
+       & $|$ & [7+64+128] {$n$} {$m$} bytes:$2n$ id:$m$\\
+       & $|$ & [7+32+128] {$n$} bytes:$2n$ &&\\
+   bytearray  & $\longrightarrow$& [4] [$n$] bytes:$n$
+       & $|$ & [4+64] [$n$] [$m$] bytes:$n$ id:$m$\\
+       & $|$ & [4+32] [$n$] bytes:$n$ && \\
+       & $|$ & [4+128] {$n$} bytes:$n$
+       & $|$ & [4+64+128] {$n$} {$m$} bytes:$n$ id:$m$\\
+       & $|$ & [4+32+128] {$n$} bytes:$n$ && \\
+    cdbase & $\longrightarrow$& [9] [$n$] uri:$n$ 
+       &&\\
+       & $|$ & [9+128] {$n$} uri:$n$ && \\
+    foreign &$\longrightarrow$& [12] [$n$] [$m$] bytes:$n$ bytes:$m$
+       & $|$ & [12+64] [$n$] [$m$] [$k$] bytes:$n$ bytes:$m$ id:$k$ \\
+       & $|$ & [12+32] [$n$] [$m$] bytes:$n$ bytes:$m$ 
+       &    & \\
+       & $|$ & [12+128] {$n$} {$m$} bytes:$n$ bytes:$m$
+       & $|$ & [12+64+128] {$n$} {$m$} {$k$} bytes:$n$ bytes:$m$ id:$k$\\
+       & $|$ & [12+32+128] {$n$} {$m$} bytes:$n$ bytes:$m$
+       &    &\\
+   compound & $\longrightarrow$& application
+      & $|$ & binding \\
+      & $|$ & attribution
+      & $|$ & error \\
+   application & $\longrightarrow$ & [16] object objects [17] 
+       & $|$ & [16+64] [$m$] id:$m$ object objects [17]\\
+       &&
+       & $|$ & [16+64+128] {$m$} id:$m$ object objects [17]\\
+    binding & $\longrightarrow$&[26] object bvars object [27] 
+       & $|$ & [26+64] [$m$] id:$m$ object bvars object [27] \\
+       & & 
+       & $|$ & [26+64+128] {$m$} id:$m$ object bvars object [27]\\
+    attribution & $\longrightarrow$&[18] attrpairs object [19] 
+       & $|$ & [18+64] [$m$] id:$m$ attrpairs object [19]\\
+       & & 
+       & $|$ & [18+64+128] {$m$} id:$m$ attrpairs object [19]\\
+     error &  $\longrightarrow$&[22] symbol objects [23] 
+        & $|$ & [22+64] [$m$] id:$m$ symbol objects [23]\\
+       & & 
+      & $|$ & [22+64+128] {$m$} id:$m$ symbol objects [23]\\
+     attrpairs  & $\longrightarrow$&[20] pairs [21] 
+        & $|$ & [20+64] [$m$] id:$m$ pairs [21]\\
+       & & 
+      & $|$ & [20+64+128] {$m$} id:$m$ pairs [21]\\
+    pairs  & $\longrightarrow$&symbol object &\\
+      & $|$ & symbol object pairs &\\
+    bvars  & $\longrightarrow$&[28] vars [29] 
+      & $|$ & [28+64] [$m$] id:$m$ vars [29]\\
+      & & 
+      & $|$ & [28+64+128] {$m$} id:$m$ vars [29]\\
+   vars  & $\longrightarrow$& \emph{empty}
+      & $|$ & attrvar vars &\\
+   attrvar  & $\longrightarrow$&variable &\\
+      & $|$ & [18] attrpairs attrvar [19] 
+      & $|$ & [18+64] [$m$] id:$m$ attrpairs attrvar [19]\\
+      & & 
+      & $|$ & [18+64+128] {$m$} id:$m$ attrpairs attrvar [19]\\
+  objects  & $\longrightarrow$&\emph{empty} 
+      & $|$ & object objects \\
+  reference &$\longrightarrow$& internal\_reference
+      & $|$ & external\_reference \\
+  internal\_reference  & $\longrightarrow$&[30] \abyte
+      & $|$ & [30+128] \fourbytes \\
+  external\_reference  & $\longrightarrow$& [31] [$n$] uri:$n$
+      & $|$ & [31+128] {$n$} uri:$n$
+\end{tabular}
+\end{center}
+\caption{Grammar of the binary encoding of \OM objects.}\label{fig_bin-enc}
+\end{figure}
+  
+\ref{fig_bin-enc} gives a grammar for the binary encoding (\textquote{start} is the start
+symbol).
+
+The following conventions are used in this section: [$n$] denotes a byte whose value is
+the integer $n$ ($n$ can range from 0 to 255), {$m$} denotes four bytes representing the
+(unsigned) integer $m$ in network byte order, \abyte denotes an arbitrary byte, \fourbytes denotes
+an arbitrary sequence of four bytes.  Finally, \emph{empty} stands for the empty list of
+tokens.
+
+\emph{xxxx}:$n$, where \emph{xxxx} is one of \emph{symbname}, \emph{cdname},
+\emph{varname}, \emph{uri}, \emph{id}, \emph{digits}, or \emph{bytes} denotes a sequence
+of $n$ bytes that conforms to the constraints on \emph{xxxx} strings. For instance, for
+\emph{symbname}, \emph{varname}, or \emph{cdname} this is the regular expression described
+in \ref{sec_names}, for \emph{uri} it is the grammar for URIs in \cite{IETF2396}.
+
+\subsection{Description of the Grammar}\label{sec_bin-desc}
+  
+An \OM object is encoded as a sequence of bytes starting with the begin object tag (values
+24 and 88) and ending with the end object tag (value~25). These are similar to the
+\lstinline|<OMOBJ>| and \lstinline|</OMOBJ>| tags of the \XML encoding. Objects with
+start token [88] have two additional bytes $m$ and $n$ that characterize the version
+($m.n$) of the encoding directly after the start token. This is similar to
+\lstinline|<OMOBJ version="m.n">|.
+
+The encoding of each kind of \OM object begins with a tag that is a single byte, holding a
+\emph{token identifier} that describes the kind of object, two flags, and a status
+bit. The identifier is stored in the first five bits (1 to 5). Bit 6 is used as a
+\emph{status bit} which is currently only used for managing streaming of some basic
+objects. Bits 7 and 8 are the \emph{sharing flag} and the \emph{long flag}. The sharing
+flag indicates that the encoded object may be shared in another (part of an) object
+somewhere else (see \ref{sec_sharing_references}). Note that if the sharing flag is set
+(in the right column of the grammar in \ref{fig_bin-enc}, then the encoding includes a
+representation of an identifier that serves as the target of a reference (internal with
+token identifier 30 or external with token identifier 31). If the long flag is set, this
+signifies that the names, strings, and data fields in the encoded \OM object are longer
+than 255 bytes or characters.
+
+The concept of structure sharing in \OM encodings and in particular the sharing bit in the
+binary encoding has been introduced in \OM~2 (see section \ref{sec_sharing_references} for
+details). The binary encoding in \OM~2 leaves the tokens with sharing flag 0 unchanged to
+ensure \OM~1 compatibility. To make use of functionality like the version attribute on the
+\OM object introduced in \OM~2, the tokens with sharing flag 1 should be used.
+
+
+To facilitate the streaming of \OM objects, some basic objects (integers, strings,
+bytearrays, and foreign objects) have variant token identifiers with the fifth bit
+set. The idea behind this is that these basic objects can be split into packets. If the
+fifth bit is not set, this packet is the final packet of the basic object. If the bit is
+set, then more packets of the basic object will follow directly after this one. Note that
+all packets making up a basic object must have the same token identifier (up to the fifth
+bit). In \ref{fig_bin-enc_stream} we have represented an integer that is split up into
+three packets.
+
+Here is a description of the binary encodings of every kind of \OM object:
+
+\begin{description}
+\item[Integers] are encoded depending on how large they
+      are. There are four possible formats.  Integers between -128 and 127 are
+      encoded as the small integer tags (token
+	identifier 1) followed by a single byte that is the 
+      value of the integer (interpreted as a signed character). For
+      example 16 is encoded as \lstinline|0x01 0x10|.  Integers between
+      $-2^{31}$  (-2147483648) and $2^{31-1}$  (2147483647) are encoded as
+      the small integer tag with the long flag set followed by the integer
+      encoded in little endian format in four bytes (network byte order:
+      the most significant byte comes first). For example, 128 is encoded
+      as \lstinline|0x81| \lstinline|0x00000080|.  The most
+      general encoding begins 
+      with the big integer tag (token identifier 2) with the long flag set
+      if the number of bytes in the encoding of the digits is greater or
+      equal than 256. It is followed by the length (in bytes) of the
+      sequence of digits, encoded on one byte (0 to 255, if the long flag
+      was not set) or four bytes (network byte order, if the long flag was
+      set).  It is then followed by a byte describing the sign and the
+      base.  This 'sign/base' byte is \lstinline|+|
+      (\lstinline|0x2B|) or \lstinline|-|
+      (\lstinline|0x2D|) for the sign or-ed with the base mask bits
+      that can be \lstinline|0| for base 10 
+      or \lstinline|0x40| for base 16 or
+	\lstinline|0x80| for \textquote{base 256}.  It is
+      followed by the 
+      sequence of digits (as 
+      characters for bases 10 and 16 as in the \XML
+	encoing, and as bytes for base 256) in their natural
+      order.  For example, the decimal
+	number 8589934592
+      ($2^{33}$) is encoded  as
+\begin{lstlisting}
+0x02 0x0A 0x2B 0x38 0x35 0x38 0x39 0x39 0x33 0x34 0x35 0x39 0x32
+\end{lstlisting}
+      and the
+      hexadecimal number
+      \lstinline|xffffff1| is 
+      encoded as 
+\begin{lstlisting}
+  0x02 0x08 0x6b 0x66 0x66 0x66 0x66 0x66 0x66 0x66 0x31
+\end{lstlisting}
+in the base 16 character encoding and as 
+\begin{lstlisting}
+0x02 0x04 0xFF 0xFF 0xFF 0xFI
+\end{lstlisting}
+in the byte encoding (base 256).
+
+Note that it is permitted to encode a \textquote{small} integer in any \textquote{bigger}
+format.
+
+To splice sequences of integer packets into integers, we have to consider three cases: In
+the case of token identifiers 1, 33, and 65 the sequence of packets is treated as a
+sequence of integer digits to the base of $2^7$ (most significant first). The case of
+token identifiers 129, 161, and 193 is analogous with digits of base $2^{31}$. In the case
+of token identifiers 2, 34, 66, 130, 162, and 194 the integer is assembled by
+concatenating the string of decimal digits in the packets in sequence order (which
+corresponds to most significant first).  Note that in all cases only the sequence-initial
+packet may contain a signed integer. The sign of this packet determines the sign of the
+overall integer.
+
+
+\begin{figure}\centering
+\begin{tabular}{llllll}
+  Byte &Hex &Meaning &  Byte &Hex &Meaning \\
+  1 &22 &begin streamed big integer tag & 7 &2B &sign + (disregarded)\\
+  2 &FF &255 digits in packet &  8 &... & the 255 digits as characters \\
+  3 &2B &sign + & 9 &2 &begin final big integer tag\\
+  4 &... & the 255 digits as characters & 10 &42 &68 digits in packet \\
+  5 &22 &begin streamed big integer tag & 11 &2B &sign + (disregarded) \\
+  6 &FF &255 digits in packet & 12 &... & the 68 digits as characters 
+\end{tabular}
+\caption{Streaming a large Integer in the Binary Encoding.}\label{fig_bin-enc_stream}
+\end{figure}
+
+\item[Symbols] are encoded as the symbol tags (token identifier 8) with the long flag set
+  if the maximum of the length in bytes in the \acronym{utf-8} encoding of the Content
+  Dictionary name or the symbol name is greater than or equal to 256. The symbol tag is
+  followed by the length in bytes in the \acronym{utf-8} encoding of the Content
+  Dictionary name, the symbol name, and the \lstinline|id| (if the shared bit was set) as
+  a byte (if the long flag was not set) or a four byte integer (in network byte
+  order). These are followed by the bytes of the \acronym{utf-8} encoding of the Content
+  Dictionary name, the symbol name, and the \lstinline|id|.
+\item[Variables] aare encoded using the variable tags (token identifiers 5) with the long
+  flag set if the number of bytes in the \acronym{utf-8} encoding of the variable name is
+  greater than or equal to 256.  Then, there is the number of characters as a byte (if the
+  long flag was not set) or a four byte integer (in network byte order), followed by the
+  characters of the name of the variable. For example, the variable x is encoded as
+  \lstinline|0x05 0x01 0x78|.
+  \item[Floating-point number] are encoded using the floating-point number tags (token
+    identifier 3) followed by eight bytes that are the IEEE 754
+    representation~\cite{ieee754_85}, most significant bytes first. For example, 0.1 is
+    encoded as \lstinline|0x03 0x000000000000f03f|.
+  \item[Character string] are encoded in two ways depending on whether, the string is
+    encoded in \acronym{utf-16} or \acronym{iso-8859-1} (\acronym{latin-1}).  In the case
+    of \acronym{latin-1} it is encoded as the one byte character string tags (token
+    identifier 6) with the long flag set if the number of bytes (characters) in the string
+    is greater than or equal to 256.  Then, there is the number of characters as a byte
+    (if the length flag was not set) or a four byte integer (in network byte order),
+    followed by the characters in the string. If the string is encoded in
+    \acronym{utf-16}, it is encoded as the \acronym{utf-16} character string tags (token
+    identifier 7) with the long flag set if the number of characters in the string is
+    greater or equal to 256. Then, there is the number of \acronym{utf-16} units, which
+    will be the number of characters unless characters in the higher planes of Unicode are
+    used, as a byte (if the long flag was not set) or a four byte integer (in network byte
+    order), followed by the characters (\acronym{utf-16} encoded Unicode).
+
+    Sequences of string packets are assumed to have the same encoding for every
+    packet. They are assembled into strings by concatenating the strings in the packets in
+    sequence order.
+  \item[Bytearrays] are encoded using the bytearray tags (token identifier 4) with the
+    long flag set if the number elements is greater than or equal to 256. Then, there is
+    the number of elements, as a byte (if the long flag was not set) or a four byte
+    integer (in network byte order), followed by the elements of the arrays in their
+    normal order.
+
+    Sequences of bytearray packets are assembled into byte arrays by concatenating the
+    bytearrays in the packets in sequence order.
+  \item[Foreign Objects] are encoded using the foreign object tags (token identifier 12)
+    with the long flag set if the number of bytes is greater than or equal to 256 and the
+    streaming bit set for dividing it up into packets. Then, there is the number
+    $n$ of bytes used to encode the encoding, and the number
+    $m$ of bytes used to encode the foreign
+    object. $n$ and $m$ are represented as a byte
+    (if the long flag was not set) or a four byte integer (in network byte order). These
+    numbers are followed by an $n$-byte representation of the encoding
+    attribute and an $m$ byte sequence of bytes encoding the foreign
+    object in their normal order (we call these the payload bytes). The encoding attribute
+    is encoded in \acronym{utf-8}.
+
+    Sequences of foreign object packets are assembled into foreign objects by
+    concatenating the payload bytes in the packets in sequence order.
+
+    Note that the foreign object is encoded as a stream of bytes, not a stream of
+    characters. Character based formats (including XML based formats) should be encoded in
+    \acronym{utf-8} to produce a stream of bytes to use as the payload of the foreign
+    object.
+  \item[cdbase scopes] are encoded using the token identifier 9. The purpose of these
+    scoping devices is to associate a \lstinline|cdbase| with an object. The start token
+    [9] (or [137] if the long flag is set) is followed by a single-byte (or 4-byte- if the
+    long flag is set) number $n$ and then by a seqence of $n$ bytes that represent the
+    value of the \lstinline|cdbase| attribute (a URI) in \acronym{utf-8} encoding. This
+    is then followed by the binary encoding of a single object: the object over which this
+    \lstinline|cdbase| attribute has scope.
+  \item[Applications] are encoded using the application tags (token identifiers 16 and
+    17). More precisely, the application of $E_0$ to $E_1$, \ldots, $E_n$ is encoded using
+    the application tags (token identifier 16), the sequence of the encodings of $E_0$ to
+    $E_n$ and the end application tags (token identifier 17).
+  \item[Bindings] are encoded using the binding tags (token identifiers 26 and 27). More
+    precisely, the binding by $B$ of variables $V_1$, \ldots $V_n$ in $C$ is encoded as
+    the binding tag (token identifier 26), followed by the encoding of $B$, followed by
+    the binding variables tags (token identifier 28), followed by the encodings of the
+    variables $V_1$, \ldots, $V_n$, followed by the end binding variables tags (token
+    identifier 29), followed by the encoding of $C$, followed by the end binding tags
+    (token identifier 27).
+  \item[Attributions] are encoded using the attribution tags (token identifiers 18 and
+    19). More precisely, attribution of the object $E$ with ($E_1 S_1$, \ldots, $E_n S_n$)
+    pairs (where $S_i$ are the attributes) is encoded as the attributed object tag (token
+    identifier 18), followed by the encoding of the attribute pairs as the attribute pairs
+    tags (token identifier 20), followed by the encoding of each symbol and value,
+    followed by the end attribute pairs tag (token identifier 21), followed by the
+    encoding of $E$, followed by the end attributed object tag (token identifier 19).
+  \item[Errors] are encoded using the error tags (token identifiers 22 and 23). More
+    precisely, $S_0$ applied to $E_1$,\ldots, $E_n$ is encoded as the error tag (token
+    identifier 22), the encoding of $S_0$, the sequence of the encodings of $E_0$to $E_n$
+    and the end error tag (token identifier 23).
+\item[Internal References] are encoded using the internal reference tags [30] and [30+128]
+  (the sharing flag cannot be set on this tag, since chains of references are not allowed
+  in the \OM binary encoding) with long flag set if the number of \OM sub-objects in the
+  encoded \OM is greater than or equal to 256. Then, there is the ordinal number of the
+  referenced \OM object as a byte (if the long flag was not set) or a four byte integer
+  (in network byte order).
+\item[External References] are encoded using the external reference tags [31] and [31+128]
+  (the sharing flag cannot be set on this tag, since chains of references are not allowed
+  in the \OM binary encoding) with the long flag set if the number of bytes in the
+  reference URI is greater than or equal to 256. Then, there is the number of bytes in the
+  URI used for the external reference as a byte (if the long flag was not set) or a four
+  byte integer (in network byte order), followed by the URI.
+\end{description} 
+
+\subsection{Example of Binary Encoding}\label{sec_bin_example}
+
+As a simple
+example of the binary encoding, we can consider the \OM object
+\[\application{times,\application{plus,x,y},\application{plus,x,z}}\]
+
+It is binary encoded as the sequence of bytes given in \ref{fig_bin-enc_ex}.
+
+\begin{figure}\centering\footnotesize
+\begin{tabular}{lllllllll}
+	    Byte &Hex &Meaning &
+	    Byte &Hex &Meaning &
+	    Byte &Hex &Meaning\\
+	    1 &58 &begin object tag &
+	    19 &10 &begin application tag &
+	    40 &10 &begin application tag\\
+	    2 &2 & version 2.0 (major) &
+	    20 &08 &symbol tag &
+	    41 &48 &symbol tag (with share bit on) \\
+	    3 &0 & version 2.0 (minor) &
+	    21 &06 &cd length &
+	    42 &01 &reference to second symbol seen (arith1:plus)\\
+	    4 &10 &begin application tag &
+	    22 &04 &name length &
+	    43 &45 &variable tag (with share bit on)  \\
+	    5 &08 &symbol tag &
+	    23 &61 &a (cd name begin &
+	    44 &00 &reference to first variable seen (x) \\
+	    6 &06 &cd length  &
+	    24 &72 &r  . &
+	    45 &05 &variable tag \\
+	    7 &05 &name length &
+	    25 &69 &i  . &
+	    46 &01 &name length\\
+	    8 &61 &a (cd name begin &
+	    26 &74 &t  . &
+	    47 &7a &z (variable name) \\
+	    9 &72 &r  . &
+	    27 &68 &h  . &
+	    48 &11 &end application tag\\
+	    10 &69 &i  . &
+	    28 &31 &1  .) &
+	    49 &11 &end application tag \\
+	    11 &74 &t  . &
+	    29 &70 &p (symbol name begin &
+	    50 &11 &end application tag\\
+	    12 &68 &h  . &
+	    30 &6c &l  . &
+            &&\\               
+	    13 &31 &1  .) &
+	    31 &75 &u  .  &
+             &&\\
+	    14 &74 &t (symbol name begin &
+	    32 &73 &s  .)  &
+            &&\\
+	    15 &69 &i  . &
+	    33 &05 &variable tag &
+            && \\
+	    16 &6d &m  . &
+	    34 &01 &name length  &
+            && \\
+	    17 &65 &e  . &
+	    35 &78 &x (name)  &
+            &&\\
+	    18 &73 &s  .) &
+	    36 &05 &variable tag  &
+            && \\
+	    &&&
+	    37 &01 &name length  &
+	    &&\\
+            &&&
+	    38 &79 &y (variable name)  &
+	    &&\\
+            &&&
+	    39 &11 &end application tag  &
+	    &&\\
+\end{tabular}
+\caption{A Simple example of the \OM binary encoding.}\label{fig_bin-enc_ex}
+\end{figure}
+
+\subsection{Sharing}\label{sec_both_sharing}
+  
+  
+\OM~2 introduced a new sharing mechanism, described below.  First however we describe the
+original \OM~1 mechanism.
+  
+\subsubsection{Sharing in Objects beginning with the identifier [24]}\label{sec_sharing}
+    
+This form of sharing is deprecated but included for backwards compatibility with \OM~1.
+It supports the sharing of symbols, variables and strings (up to a certain length for
+strings) within one object. That is, sharing between objects is not supported.  A
+reference to a shared symbol, variable or string is encoded as the corresponding tag with
+the long flag not set and the shared flag set, followed by a positive integer $n$ encoded
+as one byte (0 to 255). This integer references the $n+1$-th such sharable sub-object
+(symbol, variable or string up to 255 characters) in the current \OM object (counted in
+the order they are generated by the encoding).  For example, \lstinline|0x48 0x01|
+references a symbol that is identical to the second symbol that was found in the current
+object.  Strings with 8 bit characters and strings with 16 bit characters are two
+different kinds of objects for this sharing. Only strings containing less than 256
+characters can be shared (i.e. only strings up to 255 characters).
+
+  
+  
+  \subsubsection{Sharing with References (beginning with [24+64])}\label{sec_sharing_references}
+    
+  In the binary encoding specified in the last section (which we keep for compatibility
+  reasons, but deprecate in favor of the more efficient binary encoding specified in this
+  section) only symbols, variables, and short strings could be shared. In this section, we
+  will present a second binary encoding, which shares most of the identifiers with the one
+  in the last one, but handles sharing differently. This encoding is signaled by the
+  shared object tag [88].
+
+    
+  The main difference is the interpretation of the sharing flag (bit 7), which can be set
+  on all objects that allow it. Instead of encoding a reference to a previous occurrence
+  of an object of the same type, it indicates whether an object will be referenced later
+  in the encoding. This corresponds to the information, whether an \lstinline|id|
+  attribute is set in the \XML encoding. On the object identifier (where sharing does not
+  make sense), the shared flag signifies the encoding described here ([88]=[24+64]).
+        
+  Otherwise integers, floats, variables, symbols, strings, bytearrays, and constructs are
+  treated exactly as in the binary encoding described in the last section.
+
+    
+  The binary encoding with references uses the additional reference tags [30] for (short)
+  internal references, [30+128] for long internal references, [31] for (short) external
+  references, [31+128] for long external references. Internal references are used to share
+  sub-objects in the encoded object (see \ref{fig_bin-enc2} for an example) by referencing
+  their position; external references allow to reference \OM objects in other documents by
+  a URI.
+
+  Identifiers [30+64] and [30+64+128] are not used, since they would encode references
+  that are shared themselves. Chains of references are redundant, and decrease both space
+  and time efficiency, therefore they are not allowed in the \OM binary encoding.
+
+    
+  References consist of the identifier [30] ([30+128] for long references) followed by a
+  positive integer $n$ coded on one byte (4 bytes for long references). This integer
+  references the $n+1$-th shared sub-object (one where the shared flag is set) in the
+  current object (counted in the order they are generated in the encoding). For example
+  \lstinline|Ox7E Ox01| references the second shared sub-object. \ref{fig_bin-enc2} shows
+  the binary encoding of the object in \ref{fig_shared_vs_unshared} above.
+
+    
+\begin{figure}\centering\footnotesize
+  \begin{tabular}{lllllllll}
+    Byte &Hex &Meaning &
+    Byte &Hex &Meaning &
+    Byte &Hex &Meaning \\
+    1 &58 &begin object tag &
+    12 &50 &begin application tag (shared) &
+    23 &1E &short reference \\
+    2 &2 & version 2.0 (major) &
+    13 &05 &variable tag &
+    24 &00 &to the first shared object \\
+    3 &0 & version 2.0 (minor) &
+    14 &01 &variable length &
+    25 &11 &end application tag \\
+    4 &10 &begin application tag &
+    15 &66 &f  (variable name) &
+    26 &1E &short reference \\
+    5 &05 &variable tag &
+    16 &05 &variable tag &
+    27 &00 &to the second shared object \\
+    6 &01 &variable length &
+    17 &01 &variable length &
+    28 &11 &end application tag \\
+    7 &66 &f  (variable name) &
+    18 &61 &a  (variable name) \\
+    8 &50 &begin application tag (shared) &
+    19 &05 &variable tag \\
+    9 &05 &variable tag &
+    20 &01 &variable length \\
+    10 &01 &variable length &
+    21 &61 &a  (variable name)\\
+    11 &66 &f  (variable name) & 
+    22 &11 &end application tag
+  \end{tabular}
+  \caption{A binary encoding of the \OM object from \ref{fig_shared_vs_unshared}.}\label{fig_bin-enc2}
+\end{figure}    
+
+It is easy to see that in this binary encoding, the size of the encoding is $13+7(d-1)$
+bytes, where $d$ is the depth of the tree, while a totally unshared encoding is
+$8\ast2^d-8$ bytes (sharing variables saves up to 256 bytes for trees up to depth 8 and
+wastes space for greater depths). The shared \XML encoding only uses $32d+29$ bytes, which
+is more space efficient starting at depth 9.
+    
+Note that in the conversion from the \XML to the binary encoding the identifiers on the
+objects are not preserved. Moreover, even though the \XML encoding allows references
+across objects, as in \ref{fig_sharing_between}, the binary encoding does not (the binary
+encoding has no notion of a multi-object collection, while in the \XML encoding this would
+naturally correspond to e.g.~the embedding of multiple \OM objects into a single \XML
+document).
+    
+Note that objects need not be fully shared (or shared at all) in the binary encoding with
+sharing.
+
+\subsection{Implementation Note}\label{sec_impl_note}
+  
+A typical implementation of the binary encoding comes in two parts. The first part deals
+with the unshared encodings, i.e. objects starting with the identifier \lstinline|[24]|.
+  
+This part uses four tables, each of 256 entries, for symbol, variables, 8 bit character
+strings whose lengths are less than 256 characters and 16 bit character strings whose
+lengths are less than 256 characters.  When an object is read, all the tables are first
+flushed. Each time a sharable sub-object is read, it is entered in the corresponding table
+if it is not full. When a reference to the shared $i$-th object of a given type is read,
+it stands for the $i$-th entry in the corresponding table. It is an encoding error if the
+$i$-th position in the table has not already been assigned (i.e. forward references are
+not allowed).  Sharing is not mandatory, there may be duplicate entries in the tables (if
+the application that wrote the object chose not to share optimally).
+  
+The part for the shared representations of \OM objects uses an unbounded array for storing
+shared sub-objects. Whenever an object has the shared flag set, then it is read and a
+pointer to the generated data structure is stored at the next position of the
+array. Whenever a reference of the form \lstinline|[30] [_]| is encountered, the array is
+queried for the value at \lstinline|[_]| and analogously for \lstinline|[30+128] {_}|. 
+Note that the application can decide to copy the value or share it among sub-terms
+as long as it respects the identity conditions given by the tree-nature of the \OM
+objects.  The implementation must take care to ensure that no variables are captured
+during this process (see section \ref{sec_sharing_bvars}), and possibly have methods for
+recovering from cyclic dependency relations (this can be done by standard loop-checking
+methods).
+  
+Writing an object is simple. The tables are first flushed. Each time a sharable sub-object
+is encountered (in the natural order of output given by the encoding), it is either
+entered in the corresponding table (if it is not full) and output in the normal way or
+replaced by the right reference if it is already present in the table.
+
+\subsubsection{Relation to the \OM~1 binary encoding}\label{sec_relation_OM1_binary}
+
+The \OM~2 binary encoding significantly extends the \OM~1 binary encoding to accommodate
+the new features and in particular sharing of sub-objects. The tags and structure of the
+\OM~1 binary encoding are still present in the current \OM binary encoding, so that binary
+encoded \OM~1 objects are still valid in the \OM~2 binary encoding and correspond to the
+same abstract \OM objects. In some cases, the binary encoding tags without the shared flag
+can still be used as more compact representations of the objects (which are not shared,
+and do not have an identifier).
+  
+
+As the binary encoding is geared towards compactness, \OM objects should be constructed so
+as to maximise internal sharing (if computationally feasible). Note that since sharing is
+done only at the encoding level, this does not alter the meaning of an \OM object, only
+allows it to be represented more compactly.
+  
+\section{Summary}\label{sec_enc_summary}
+  
+The key points of this chapter are:
+\begin{itemize}
+\item The \XML encoding for \OM objects uses most common character sets.
+\item The \XML encoding is readable, writable and can be embedded in most documents and
+  transport protocols.
+\item The binary encoding for \OM objects should be used when efficiency is a key
+  issue. It is compact yet simple enough to allow fast encoding and decoding of objects.
+\end{itemize}
+  
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "omstd20"
+%%% End:

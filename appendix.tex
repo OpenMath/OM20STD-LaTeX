@@ -1,0 +1,200 @@
+\begin{appendix}
+\chapter{CD Files}\label{app_cdfiles}
+
+\section{The \texttt{meta} Content Dictionary}\label{app_cdcd}
+\lstinputlisting{meta.ocd}
+
+\section{The  \texttt{arith1} Content Dictionary File}\label{arith1.ocd}
+\lstinputlisting{arith1.ocd}
+
+\section{The  \texttt{arith1} STS Signature File}\label{arith1.sts}
+\lstinputlisting{arith1.sts}
+
+\section{The  \texttt{MathML} CDGroup}\label{mathml.cdg}
+\lstinputlisting{mathml.cdg}
+
+\section{The \texttt{error} Content Dictionary}\label{errorcd}
+\lstinputlisting{error.ocd}
+
+\chapter{\OM Schema in Relax NG XML Syntax (Normative)}\label{app_openmath.rng}
+
+This is the Relax NG Schema described in \ref{sec_xml} expressed according to the Relax NG
+XML Syntax.
+
+\lstinputlisting{openmath2.rng}
+
+\chapter{Restricting the \OM Schema (Non-Normative)}\label{app_relaxrestricted}
+Relax NG allows one to state constraints such as <emphasis> if the cd attribute of OMS is
+arith1 then the name attribute must be one of lcm, gcd, plus etc.</emphasis> Thus it is
+easy to use a stylesheet to generate for any given CD, a Relax NG schema that expresses
+the constraint that an \lstinline|OMS| naming that CD must only use symbols defined in
+the specified dictionary.  Similarly it is possible to use the \emph{role} information
+contained in the CD to restrict which symbols can be the first child of an
+\lstinline|OMBIND| or the odd-numbered children of an \lstinline|OMATP|.
+  
+The modularisation mechanisms of Relax NG then allow one to include these schema for all
+the CDs that you want to allow and, for example, to replace the regexp-based validation of
+the \lstinline|OMS| attributes by explicit lists of allowed CD names, and for each CD
+Name, a list of allowed symbol names.
+  
+    For example, a CD-specific Relax NG Schema for the arith1 CD shown in
+    \ref{arith1.ocd} would look like:
+\begin{lstlisting}
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="">
+  <define name="cd.attlist.OMS" combine="choice">
+    <attribute name="cd">
+      <value type="string">arith1</value>
+    </attribute>
+    <attribute name="name">
+      <choice>
+        <value type="string">lcm</value>
+        <value type="string">gcd</value>
+        <value type="string">plus</value>
+        <value type="string">unary_minus</value>
+        <value type="string">minus</value>
+        <value type="string">times</value>
+        <value type="string">divide</value>
+        <value type="string">power</value>
+        <value type="string">abs</value>
+        <value type="string">root</value>
+        <value type="string">sum</value>
+        <value type="string">product</value>
+      </choice>
+    </attribute>
+  </define>
+</grammar>
+\end{lstlisting}
+or, using the Relax NG compact syntax:
+\begin{lstlisting}
+  cd.attlist.OMS |= 
+  attribute cd {string "arith1" },
+  attribute name {
+  string "lcm" |
+  string "gcd" |
+  string "plus" |
+  string "unary_minus" |
+  string "minus" |
+  string "times" |
+  string "divide" |
+  string "power" |
+  string "abs" |
+  string "root" |
+  string "sum" |
+  string "product" }
+\end{lstlisting}
+
+ To build a schema that allows only symbols from arith1 we just
+  need to include the \OM schema described in \ref{ssec_xml}, override the attribute declarations for
+  OMS, and then include the schema for arith1.  For example:
+\begin{lstlisting}
+<?xml version="1.0" encoding="UTF-8"?>
+    <grammar xmlns="http://relaxng.org/ns/structure/1.0">
+      <include href="openmath.rng">
+        <define name="attlist.OMS">
+          <ref name="cd.attlist.OMS"/>
+        </define>
+      </include>
+      <include href="arith1.rng"/>
+    </grammar>
+\end{lstlisting}
+    or, in the compact syntax:
+\begin{lstlisting}
+  include "openmath.rnc" {
+    attlist.OMS = cd.attlist.OMS}
+  include "arith1.rnc"
+\end{lstlisting}
+Using this approach it is possible to include as many files as required.
+
+\chapter{\OM Schema in XSD Syntax (Non-Normative)}\label{app_xsd}
+This is an XSD Schema generated from the Relax NG Schema described in \ref{sec_xml}.
+  
+\lstinputlisting{openmath2.xsd}
+
+\chapter{\OM DTD (Non-Normative)}\label{app_dtd}
+
+This is a DTD generated from the Relax NG Schema described in \ref{sec_xml}.  Note that we
+cannot express the fact that the \lstinline|OMFOREIGN| element can contain any
+well-formed XML, so we have simply restricted it to contain any XML defined in the DTD.
+  
+\lstinputlisting{openmath2.dtd}
+
+\chapter{Changes between \OM~1.1 and \OM~2 (Non-Normative)}\label{app_whats_new}
+  
+In this appendix we describe the major changes that occurred between version 1.1 and
+version 2 of the \OM standard. All changes to the encodings and content dictionaries have
+been designed to be backward compatible, in other words all existing \OM objects and
+Content Dictionaries are still valid in \OM~2.  On the other hand an existing \OM~1.1
+application may not be able to process \OM~2 objects.
+  
+\section{Changes to the Formal Definition of Objects}\label{chgformal}
+    
+Additional features of abstract objects have been introduced:
+
+\begin{itemize}
+\item \OM symbols have an optional role qualifier which restricts the place where they may
+  occur within compound objects.  Although part of the abstract description of a symbol
+  this information is intended to be stored in the CD.  In the \XML encoding it may be
+  used to provide a more restricted schema leading to tighter validation.
+\item In addition to their \emph{name} and \emph{cd} properties, symbols now have an
+  optional \emph{cdbase} property.  This can be used to disambiguate between two CDs which
+  are produced independently but have the same name, and can also be used to produce a
+  canonical URI for any \OM symbol for use in frameworks such as RDFS or MathML which need
+  one.
+\item An \OM object may be attributed with a non-\OM object using the new \emph{foreign}
+  constructor.  This allows an \XML-encoded \OM object to be attributed with appropriate
+  Presentation MathML, for example, or a base-64 encoded MPEG file of its aural rendering.
+\item In addition, an \OM error object may take as its arguments non-\OM objects wrapped
+  in the new \emph{foreign} constructor.
+\item The new role property can be used to indicate that a symbol is an
+  \emph{attribution}, in which case an application may ignore or remove it, or a
+  <emphasis>semantic attribution</emphasis> in which case removing it is no longer
+  guaranteed to produce an equivalent object.
+\item Restrictions on the names of symbols, variables and content dictionaries have been
+  relaxed to be compatible with XML and to be less Anglo-Saxon.
+\end{itemize}
+  
+\section{Changes to the encodings}\label{chgenc}
+    
+The \OM version 2 standard still mandates two encodings: \XML and binary. The \XML
+encoding in particular has been updated to reflect the latest development of \XML and is
+now a full \XML application.  Version 2 encodings are backward compatible with version 1.1
+encodings.
+\begin{itemize}
+\item Both encodings have been updated to support the changes to the model of abstract
+  objects described above.
+\item Encodings support internal and external sharing of objects
+\item An optional attribute defining the version of the encoding can be specified for the
+  encoded object
+\item The \XML encoding in version 2 is defined by a Relax NG schema and the mandated
+  character-based grammar of version 1 has been removed, while the DTD has been relegated
+  to an Appendix.
+\item The symbolic values \lstinline|INF|, \lstinline|-INF| and \lstinline|NaN| have
+  been added to the decimal attribute of an \lstinline|OMF| in the \XML encoding, and
+  guidelines on the interpretation of \lstinline|NaN|s added to the compliance section.
+\item The Binary encoding has been extended to support the streaming of objects.
+\end{itemize}
+    
+\section{Changes to Content Dictionaries}\label{chgcd}
+    
+\begin{itemize}
+\item In \OM version 2 Content Dictionaries are defined in terms of the abstract
+  information content that needs to be specified for defining \OM symbols. The current
+  implementation is thus just one possible encoding of this abstract model.
+\item The \emph{CDUses} element is not part of this information model and has been made
+  optional and deprecated in the reference encoding since it is trivial to extract its
+  content automatically from the CD.
+\item A CD may now, optionally, define its cdbase.
+\item A CD symbol definition may now, optionally, define its role.
+\item An FMP may, optionally, have a \lstinline|kind| attribute for use in classifying
+  different kinds of definitions.  The details of how this attribute is used are not
+  mandated by the standard.
+\item The XML encoded Content Dictionaries now use elements from the namespace
+  \url{http://www.openmath.org/OpenMathCD}.
+\end{itemize}
+\end{appendix}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "omstd20"
+%%% End:
