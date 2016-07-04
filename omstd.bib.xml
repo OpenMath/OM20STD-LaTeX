@@ -1,0 +1,2750 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?latexml searchpaths="/Users/kohlhase/vc/git/github.com/OpenMath/OM20STD-LaTeX"?>
+<!--  %**** String Line 25 **** --><!--  %**** String Line 50 **** --><!--  %**** String Line 75 **** --><!--  %Extra “relax --><!--  %Very primitive and the only place that it shows up --><!--  %**** String Line 25 **** --><!--  %Similar to “@@hyph above. Later also “let“-“@dischyph --><!--  %Don’t know what this is, but it is using the new stuff --><!--  %New dimension, initial set to z@ --><!--  %**** String Line 50 **** --><!--  %Very short definition of “@sqrt, is never redefined and seems to be some kind of alias. --><!--  %first time “newtoks --><!--  %**** String Line 75 **** --><!--  %**** String Line 100 **** --><!--  %Some control structure from latex.ltx --><!--  %(amazing that it actually works!) --><!--  %How much of this control struture will I need? --><!--  %**** String Line 125 **** --><!--  %**** String Line 150 **** --><!--  %**** String Line 25 **** --><?latexml RelaxNGSchema="LaTeXML"?>
+<document xmlns="http://dlmf.nist.gov/LaTeXML">
+  <resource src="LaTeXML.css" type="text/css"/>
+  <bibliography citestyle="numbers" xml:id="bib">
+    <title/>
+    <biblist>
+      <bibentry key="POSIX" type="book" xml:id="bib.bib1">
+        <bib-data role="altauthor">IEEE and The Open Group</bib-data>
+        <bib-title>Std 1003.1, 2003 edition, the open group base specifications issue 6</bib-title>
+        <bib-date role="publication">2003</bib-date>
+        <bib-url href="http://www.unix.org/version3/ieee_std.html">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@book{POSIX,
+ altauthor = {IEEE and The Open Group},
+     title = {Std 1003.1, 2003 Edition, The Open Group Base Specifications Issue 6},
+      year = {2003},
+       url = {http://www.unix.org/version3/ieee_std.html}}
+</bib-data>
+      </bibentry>
+      <bibentry key="IETF2396" type="misc" xml:id="bib.bib2">
+        <bib-name role="author">
+          <surname>IETF</surname>
+        </bib-name>
+        <bib-title>RFC 2396 - uniform resource identifiers (uri): generic syntax</bib-title>
+        <bib-date role="publication">August 1998</bib-date>
+        <bib-url href="http://www.ietf.org/rfc/rfc2396.txt">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{IETF2396,
+    author = {IETF},
+     title = {RFC 2396 - Uniform Resource Identifiers (URI): Generic Syntax},
+      year = {August 1998},
+       url = {http://www.ietf.org/rfc/rfc2396.txt}}
+</bib-data>
+      </bibentry>
+      <bibentry key="XSD" type="book" xml:id="bib.bib3">
+        <bib-name role="author">
+          <surname>Consortium</surname>
+          <givenname>World Wide Web</givenname>
+        </bib-name>
+        <bib-title>XML schema part 1: structures &amp; part 2: datatypes</bib-title>
+        <bib-date role="publication">May 2001</bib-date>
+        <bib-url href="http://www.w3.org/TR/xmlschema-1/">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@book{XSD,
+    author = {World Wide Web Consortium},
+     title = {XML Schema Part 1: Structures \&amp; Part 2: Datatypes},
+      year = {May 2001},
+       url = {http://www.w3.org/TR/xmlschema-1/}}
+</bib-data>
+      </bibentry>
+      <bibentry key="RELAX-COMPACT" type="book" xml:id="bib.bib4">
+        <bib-name role="author">
+          <surname>Specification</surname>
+          <givenname>OASIS Committee</givenname>
+        </bib-name>
+        <bib-title>RELAX ng compact syntax</bib-title>
+        <bib-date role="publication">November 2002</bib-date>
+        <bib-data role="self" type="BibTeX">@book{RELAX-COMPACT,
+    author = {OASIS Committee Specification},
+     title = {RELAX NG Compact Syntax},
+      year = {November 2002}}
+</bib-data>
+      </bibentry>
+      <bibentry key="RELAX" type="book" xml:id="bib.bib5">
+        <bib-name role="author">
+          <surname>Specification</surname>
+          <givenname>OASIS Committee</givenname>
+        </bib-name>
+        <bib-title>RELAX ng specification</bib-title>
+        <bib-date role="publication">December 2001</bib-date>
+        <bib-url href="http://www.oasis-open.org/committees/relax-ng/spec-20011203.html">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@book{RELAX,
+    author = {OASIS Committee Specification},
+     title = {RELAX NG Specification},
+      year = {December 2001},
+       url = {http://www.oasis-open.org/committees/relax-ng/spec-20011203.html}}
+</bib-data>
+      </bibentry>
+      <bibentry key="MAPLE" type="book" xml:id="bib.bib6">
+        <bib-name role="author">
+          <surname>Char</surname>
+          <givenname>B. W.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Geddes</surname>
+          <givenname>K. O.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Gonnet</surname>
+          <givenname>G. H.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Watt</surname>
+          <givenname>S. M.</givenname>
+        </bib-name>
+        <bib-title>Maple user’s guide</bib-title>
+        <bib-date role="publication">1985</bib-date>
+        <bib-publisher>WATCOM Publications Limited</bib-publisher>
+        <bib-edition>4th</bib-edition>
+        <bib-url href="http://www.maplesoft.com/home.html">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@book{MAPLE,
+    author = {B. W. Char and K. O. Geddes and G. H. Gonnet and S. M. Watt},
+     title = {Maple User's Guide},
+      year = {1985},
+ publisher = {WATCOM Publications Limited},
+   edition = {4th},
+       url = {http://www.maplesoft.com/home.html}}
+</bib-data>
+      </bibentry>
+      <bibentry key="LIE" type="book" xml:id="bib.bib7">
+        <bib-name role="author">
+          <surname>van Leeuwen</surname>
+          <givenname>M. A. A.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Cohen</surname>
+          <givenname>A.M.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Lisser</surname>
+          <givenname>B.</givenname>
+        </bib-name>
+        <bib-title>LiE: a package for lie group computations</bib-title>
+        <bib-publisher>CAN, Amsterdam</bib-publisher>
+        <bib-date role="publication">1992</bib-date>
+        <bib-url href="http://www.can.nl/SystemsOverview/Special/GroupTheory/LiE/">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@book{LIE,
+    author = {M. A. A. van Leeuwen and A.M. Cohen and B. Lisser},
+     title = {LiE: A Package for Lie Group Computations},
+ publisher = {CAN, Amsterdam},
+      year = {1992},
+       url = {http://www.can.nl/SystemsOverview/Special/GroupTheory/LiE/}}
+</bib-data>
+      </bibentry>
+      <bibentry key="MUPAD" type="book" xml:id="bib.bib8">
+        <bib-name role="author">
+          <surname>et al.)</surname>
+          <givenname>The MuPAD Group (Benno Fuchssteiner</givenname>
+        </bib-name>
+        <bib-title>MuPAD user’s manual - mupad version 1.2.2</bib-title>
+        <bib-publisher>John Wiley and sons, Chichester, New York</bib-publisher>
+        <bib-date role="publication">1996</bib-date>
+        <bib-identifier id="Wiley: 0-471-96716-5, Teubner: 3-519-02114-5" scheme="isbn">ISBN Wiley: 0-471-96716-5, Teubner: 3-519-02114-5</bib-identifier>
+        <bib-url href="http://www.mupad.de">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@book{MUPAD,
+    author = {The MuPAD Group (Benno Fuchssteiner et al.)},
+     title = {MuPAD User's Manual - MuPAD Version 1.2.2},
+ publisher = {John Wiley and sons, Chichester, New York},
+      year = {1996},
+      isbn = {Wiley: 0-471-96716-5, Teubner: 3-519-02114-5},
+       url = {http://www.mupad.de}}
+</bib-data>
+      </bibentry>
+      <bibentry key="NuPRL" type="book" xml:id="bib.bib9">
+        <bib-name role="author">
+          <surname>Constable</surname>
+          <givenname>R. L.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Allen</surname>
+          <givenname>S. F.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Bromley</surname>
+          <givenname>H. M.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Cleaveland</surname>
+          <givenname>W. R.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Cremer</surname>
+          <givenname>J. F.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Harper</surname>
+          <givenname>R. W.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Howe</surname>
+          <givenname>D. J.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Knoblock</surname>
+          <givenname>T. B.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Mendler</surname>
+          <givenname>N. P.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Panangaden</surname>
+          <givenname>P.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Sasaki</surname>
+          <givenname>J. T.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Smith</surname>
+          <givenname>S. F.</givenname>
+        </bib-name>
+        <bib-title>Implementing mathematics with the nuprl proof development system</bib-title>
+        <bib-publisher>Prentice Hall</bib-publisher>
+        <bib-date role="publication">1986</bib-date>
+        <bib-url href="http://simon.cs.cornell.edu/Info/Projects/NuPrl/nuprl.html">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@book{NuPRL,
+    author = {R. L. Constable and S. F. Allen and H. M. Bromley and W. R. Cleaveland and J. F. Cremer and  R. W. Harper and D. J. Howe and T. B. Knoblock and  N. P. Mendler and P. Panangaden and J. T. Sasaki and S. F. Smith},
+     title = {Implementing Mathematics with the Nuprl Proof Development System},
+ publisher = {Prentice Hall},
+      year = {1986},
+       url = {http://simon.cs.cornell.edu/Info/Projects/NuPrl/nuprl.html}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Kent-PDFbook" type="book" xml:id="bib.bib10">
+        <bib-name role="author">
+          <surname>Kent</surname>
+          <givenname>Gordon</givenname>
+        </bib-name>
+        <bib-title>Internet publishing with acrobat</bib-title>
+        <bib-date role="publication">1996</bib-date>
+        <bib-publisher>Adobe Press</bib-publisher>
+        <bib-data role="self" type="BibTeX">@book{Kent-PDFbook,
+    author = {Kent, Gordon},
+     title = {Internet Publishing With Acrobat},
+      year = {1996},
+ publisher = {Adobe Press}}
+</bib-data>
+      </bibentry>
+      <bibentry key="PDF-Reference-Manual" type="book" xml:id="bib.bib11">
+        <bib-name role="author">
+          <surname>Incorporated</surname>
+          <givenname>Adobe Systems</givenname>
+        </bib-name>
+        <bib-title>Portable document format reference manual</bib-title>
+        <bib-date role="publication">1996</bib-date>
+        <bib-publisher>Adobe Systems Incorporated</bib-publisher>
+        <bib-data role="self" type="BibTeX">@book{PDF-Reference-Manual,
+    author = {Adobe Systems Incorporated},
+     title = {Portable Document Format Reference Manual},
+      year = {1996},
+ publisher = {Adobe Systems Incorporated}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Knuth-TeXBook" type="book" xml:id="bib.bib12">
+        <bib-name role="author">
+          <surname>Knuth</surname>
+          <givenname>Donald E.</givenname>
+        </bib-name>
+        <bib-title>The texbook</bib-title>
+        <bib-date role="publication">1992</bib-date>
+        <bib-publisher>Addison-Wesley, Reading, Massachusetts</bib-publisher>
+        <bib-data role="self" type="BibTeX">@book{Knuth-TeXBook,
+    author = {Knuth, Donald E.},
+     title = {The TeXbook},
+      year = {1992},
+ publisher = {Addison-Wesley, Reading, Massachusetts}}
+</bib-data>
+      </bibentry>
+      <bibentry key="PPML" type="manual" xml:id="bib.bib13">
+        <bib-title>The ppml manual</bib-title>
+        <bib-url href="ftp://babar.inria.fr/pub/croap/Docs/ppml.ps">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@manual{PPML,
+     title = {The Ppml Manual},
+       url = {ftp://babar.inria.fr/pub/croap/Docs/ppml.ps}}
+</bib-data>
+      </bibentry>
+      <bibentry key="COQ" type="manual" xml:id="bib.bib14">
+        <bib-title>The coq proof assistant: the standard library</bib-title>
+        <bib-name role="author">
+          <surname>Coq</surname>
+          <givenname>Projet</givenname>
+        </bib-name>
+        <bib-note role="annotation">version 6.1</bib-note>
+        <bib-url href="http://www.ens-lyon.fr/LIP/groupes/coq">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@manual{COQ,
+     title = {The Coq Proof Assistant: The standard library},
+    author = {Projet Coq},
+      note = {version 6.1},
+       url = {http://www.ens-lyon.fr/LIP/groupes/coq}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Knuth-MetaFontBook" type="book" xml:id="bib.bib15">
+        <bib-name role="author">
+          <surname>Knuth</surname>
+          <givenname>Donald E.</givenname>
+        </bib-name>
+        <bib-title>MetaFont</bib-title>
+        <bib-date role="publication">1986</bib-date>
+        <bib-publisher>Addison-Wesley, Reading, Massachusetts</bib-publisher>
+        <bib-data role="self" type="BibTeX">@book{Knuth-MetaFontBook,
+    author = {Knuth, Donald E.},
+     title = {MetaFont},
+      year = {1986},
+ publisher = {Addison-Wesley, Reading, Massachusetts}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Lamport-LaTeX2eBook" type="book" xml:id="bib.bib16">
+        <bib-name role="author">
+          <surname>Lamport</surname>
+          <givenname>Leslie</givenname>
+        </bib-name>
+        <bib-title>LaTeX: a document preparation system, (2nd ed.)</bib-title>
+        <bib-date role="publication">1994</bib-date>
+        <bib-publisher>Addison-Wesley, Reading, Massachusetts</bib-publisher>
+        <bib-data role="self" type="BibTeX">@book{Lamport-LaTeX2eBook,
+    author = {Lamport, Leslie},
+     title = {LaTeX: A Document Preparation System, (2nd ed.)},
+      year = {1994},
+ publisher = {Addison-Wesley, Reading, Massachusetts}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Spivak-AMSTeXBook" type="book" xml:id="bib.bib17">
+        <bib-name role="author">
+          <surname>Spivak</surname>
+          <givenname>M. D.</givenname>
+        </bib-name>
+        <bib-title>The joy of tex – a gourmet guide to typesetting with the amstex macro package</bib-title>
+        <bib-date role="publication">1986</bib-date>
+        <bib-publisher>American Mathematical Society, Providence, Rhode Island</bib-publisher>
+        <bib-data role="self" type="BibTeX">@book{Spivak-AMSTeXBook,
+    author = {Spivak, M. D.},
+     title = {The Joy of TeX – A Gourmet Guide to Typesetting with the AmSTeX macro package},
+      year = {1986},
+ publisher = {American Mathematical Society, Providence, Rhode Island}}
+</bib-data>
+      </bibentry>
+      <bibentry key="PVM" type="book" xml:id="bib.bib18">
+        <bib-name role="author">
+          <surname>Geist</surname>
+          <givenname>A.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Beguelin</surname>
+          <givenname>A.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Dongarra</surname>
+          <givenname>J.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Jiang</surname>
+          <givenname>W.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Manchek</surname>
+          <givenname>R.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Sunderam</surname>
+          <givenname>V.</givenname>
+        </bib-name>
+        <bib-title>PVM: parallel virtual machine: a users’ guide and tutorial for networked parallel computing</bib-title>
+        <bib-publisher>MIT Press, Scientific and Engineering Computation</bib-publisher>
+        <bib-date role="publication">1994</bib-date>
+        <bib-name role="editor">
+          <surname>Kowalik</surname>
+          <givenname>Janusz</givenname>
+        </bib-name>
+        <bib-data role="self" type="BibTeX">@book{PVM,
+    author = {A. Geist and A. Beguelin and J. Dongarra and W. Jiang and R. Manchek and V. Sunderam},
+     title = {PVM: Parallel Virtual Machine: A Users' Guide and
+      Tutorial for Networked Parallel Computing},
+ publisher = {MIT Press, Scientific and Engineering Computation},
+      year = {1994},
+    editor = {Janusz Kowalik}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Abbott_98" type="misc" xml:id="bib.bib19">
+        <bib-name role="author">
+          <surname>Abbott</surname>
+          <givenname>J.</givenname>
+        </bib-name>
+        <bib-title>Univariate factorization over the integers</bib-title>
+        <bib-date role="publication">1998</bib-date>
+        <bib-data role="self" type="BibTeX">@misc{Abbott_98,
+    author = {J. Abbott},
+     title = {Univariate factorization over the integers},
+      year = {1998}}
+</bib-data>
+      </bibentry>
+      <bibentry key="COCOA" type="manual" xml:id="bib.bib20">
+        <bib-title>CoCoA, a system for doing computations in commutative algebra</bib-title>
+        <bib-name role="author">
+          <surname>Capani</surname>
+          <givenname>A.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Niesi</surname>
+          <givenname>G.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Robbiano</surname>
+          <givenname>L.</givenname>
+        </bib-name>
+        <bib-date role="publication">1995</bib-date>
+        <bib-url href="ftp://cocoa.dima.unige.it">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@manual{COCOA,
+     title = {CoCoA, a system for doing Computations in Commutative Algebra},
+    author = {A. Capani and G. Niesi and L. Robbiano},
+      year = {1995},
+       url = {ftp://cocoa.dima.unige.it}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Giovini_Niesi_90" type="inproceedings" xml:id="bib.bib21">
+        <bib-name role="author">
+          <surname>Niesi</surname>
+          <givenname>G.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Niesi</surname>
+          <givenname>G.</givenname>
+        </bib-name>
+        <bib-title>Design and implementation of symbolic computation systems - international symposium disco’90</bib-title>
+        <bib-related role="host" type="proceedings">
+          <bib-part role="series">Lecture Bibliomiscs in Computer Science</bib-part>
+          <bib-part role="volume">429</bib-part>
+          <bib-publisher>Springer Verlag</bib-publisher>
+        </bib-related>
+        <bib-part role="pages">20– 29</bib-part>
+        <bib-title>Design and implementation of symbolic computation systems - international symposium disco’90</bib-title>
+        <bib-date role="publication">1990</bib-date>
+        <bib-place>Berlin</bib-place>
+        <bib-data role="self" type="BibTeX">@inproceedings{Giovini_Niesi_90,
+    author = {A. Giovini},
+    author = {G. Niesi},
+     title = {CoCoA: A user-friendly system for commutative algebra},
+    series = {Lecture Bibliomiscs in Computer Science},
+    volume = {429},
+     pages = {20- 29},
+     title = {Design and Implementation of Symbolic Computation Systems  -
+      International Symposium DISCO'90},
+      year = {1990},
+ publisher = {Springer Verlag},
+   address = {Berlin}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Dreyfuss" type="article" xml:id="bib.bib22">
+        <bib-name role="author">
+          <surname>Dreyfuss</surname>
+          <givenname>Paul</givenname>
+        </bib-name>
+        <bib-title>CORBA: theory and practice</bib-title>
+        <bib-related role="host" type="journal">
+          <bib-title>View Source Magazine</bib-title>
+        </bib-related>
+        <bib-url href="http://developer.netscape.com/news/viewsource/">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@article{Dreyfuss,
+    author = {Paul Dreyfuss},
+     title = {CORBA: THEORY AND PRACTICE},
+   journal = {View Source Magazine},
+       url = {http://developer.netscape.com/news/viewsource/}}
+</bib-data>
+      </bibentry>
+      <bibentry key="CORBA" type="misc" xml:id="bib.bib23">
+        <bib-name role="author">
+          <surname>Visigenic</surname>
+        </bib-name>
+        <bib-title>Distributed object computing in the internet age</bib-title>
+        <bib-url href="http://www.visigenic.com/pdf/visibrok.pdf">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{CORBA,
+    author = {Visigenic},
+     title = {Distributed Object Computing in the Internet Age},
+       url = {http://www.visigenic.com/pdf/visibrok.pdf}}
+</bib-data>
+      </bibentry>
+<!--  %**** String Line 25 **** -->      <bibentry key="Li-Ron_97" type="misc" xml:id="bib.bib24">
+        <bib-name role="author">
+          <surname>Li-Ron</surname>
+          <givenname>Yael</givenname>
+        </bib-name>
+        <bib-title>Communicator 4.0 vs. internet explorer 4.0: and the winner is …</bib-title>
+        <bib-note role="annotation">PC World</bib-note>
+        <bib-date role="publication">1997</bib-date>
+        <bib-url href="http://www.pcworld.com/software/internet_www/articles/dec97/1512p206.html">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{Li-Ron_97,
+    author = {Yael Li-Ron},
+     title = {Communicator 4.0 vs. Internet Explorer 4.0: And the Winner Is …},
+      note = {PC World},
+      year = {1997},
+       url = {http://www.pcworld.com/software/internet_www/articles/dec97/1512p206.html}}
+</bib-data>
+      </bibentry>
+      <bibentry key="cme" type="misc" xml:id="bib.bib25">
+        <bib-name role="author">
+          <surname>Chew</surname>
+          <givenname>P.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Constable</surname>
+          <givenname>R. L.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Pingali</surname>
+          <givenname>K.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Vavasis</surname>
+          <givenname>S.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Zippel</surname>
+          <givenname>R.</givenname>
+        </bib-name>
+        <bib-title>Collaborative mathematics environments</bib-title>
+        <bib-note role="annotation">Project Summary</bib-note>
+        <bib-data role="self" type="BibTeX">@misc{cme,
+    author = {P. Chew and R. L. Constable and K. Pingali and S. Vavasis and R. Zippel},
+     title = {Collaborative Mathematics Environments},
+      note = {Project Summary}}
+</bib-data>
+      </bibentry>
+      <bibentry key="intro_hol" type="book" xml:id="bib.bib26">
+        <bib-name role="author">
+          <surname>Melham</surname>
+          <givenname>T.F.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Melham</surname>
+          <givenname>T.F.</givenname>
+        </bib-name>
+        <bib-title>Introduction to hol: a theorem proving environment for higher order logic</bib-title>
+        <bib-publisher>Cambridge University Press</bib-publisher>
+        <bib-date role="publication">1993</bib-date>
+        <bib-data role="self" type="BibTeX">@book{intro_hol,
+    author = {M.J.C. Gordon},
+    author = {T.F. Melham},
+     title = {Introduction to HOL: A theorem proving environment for higher order logic},
+ publisher = {Cambridge University Press},
+      year = {1993}}
+</bib-data>
+      </bibentry>
+      <bibentry key="harrison-fais" type="inproceedings" xml:id="bib.bib27">
+        <bib-name role="author">
+          <surname>Harrison</surname>
+          <givenname>John</givenname>
+        </bib-name>
+        <bib-title>Pure mathematics in a mechanized logic</bib-title>
+        <bib-related role="host" type="proceedings">
+          <bib-title>Proceedings of the Finnish Artificial Intelligence
+Society Symposium: Logic, Mathematics and the
+Computer</bib-title>
+          <bib-name role="editor">
+            <surname>Gefwert</surname>
+            <givenname>Christoffer</givenname>
+          </bib-name>
+          <bib-name role="editor">
+            <surname>Orponen</surname>
+            <givenname>Pekka</givenname>
+          </bib-name>
+          <bib-name role="editor">
+            <surname>Seppänen</surname>
+            <givenname>Juoko</givenname>
+          </bib-name>
+          <bib-publisher>Finnish Artificial Intelligence Society</bib-publisher>
+          <bib-part role="volume">14</bib-part>
+        </bib-related>
+        <bib-date role="publication">1996</bib-date>
+        <bib-part role="pages">153 – 169</bib-part>
+        <bib-data role="self" type="BibTeX">@inproceedings{harrison-fais,
+    author = {John Harrison},
+     title = {Pure Mathematics in a Mechanized Logic},
+ booktitle = {Proceedings of the Finnish Artificial Intelligence
+      Society Symposium: Logic, Mathematics and the
+      Computer},
+    editor = {Christoffer Gefwert and Pekka Orponen and Juoko Sepp{\"a}nen},
+ publisher = {Finnish Artificial Intelligence Society},
+    volume = {14},
+      year = {1996},
+     pages = {153 - 169}}
+</bib-data>
+      </bibentry>
+      <bibentry key="harrison-thesis" type="report" xml:id="bib.bib28">
+        <bib-name role="author">
+          <surname>Harrison</surname>
+          <givenname>John Robert</givenname>
+        </bib-name>
+        <bib-title>Theorem proving with the real numbers</bib-title>
+        <bib-publisher>University of Cambridge Computer Laboratory</bib-publisher>
+        <bib-place>New Museums Site, Pembroke Street, Cambridge, CB2 3QG, UK</bib-place>
+        <bib-date role="publication">1996</bib-date>
+        <bib-part role="number">408</bib-part>
+        <bib-url href="http://www.cl.cam.ac.uk/users/jrh/papers/thesis.html">Link</bib-url>
+        <bib-type>Technical report</bib-type>
+        <bib-data role="self" type="BibTeX">@techreport{harrison-thesis,
+    author = {John Robert Harrison},
+     title = {Theorem Proving with the Real Numbers},
+ publisher = {University of Cambridge Computer Laboratory},
+   address = {New Museums Site, Pembroke Street, Cambridge, CB2 3QG, UK},
+      year = {1996},
+    number = {408},
+       url = {http://www.cl.cam.ac.uk/users/jrh/papers/thesis.html}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Harrison_Thery_94" type="inproceedings" xml:id="bib.bib29">
+        <bib-name role="author">
+          <surname>Harrison</surname>
+          <givenname>J.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Théry</surname>
+          <givenname>L.</givenname>
+        </bib-name>
+        <bib-title>Extending the hol theorem prover with a computer algebra system to reason about the reals</bib-title>
+        <bib-related role="host" type="proceedings">
+          <bib-name role="editor">
+            <surname>Joyce</surname>
+            <givenname>J. J.</givenname>
+          </bib-name>
+          <bib-name role="editor">
+            <surname>Seger</surname>
+            <givenname>C.-J. H.</givenname>
+          </bib-name>
+          <bib-part role="volume">780</bib-part>
+          <bib-part role="series">Lecture Bibliomiscs in Computer Science</bib-part>
+          <bib-title>Higher
+Order Logic Theorem Proving and its Applications: 6th
+International Workshop, HUG’93</bib-title>
+          <bib-publisher>Springer-Verlag</bib-publisher>
+        </bib-related>
+        <bib-part role="pages">174–184</bib-part>
+        <bib-date role="publication">1993</bib-date>
+        <bib-place>Vancouver, B.C.</bib-place>
+        <bib-data role="self" type="BibTeX">@inproceedings{Harrison_Thery_94,
+    author = {J. Harrison and L. Th{\'e}ry},
+     title = {Extending the HOL Theorem Prover with a       Computer Algebra System to Reason About the Reals},
+    editor = {J. J. Joyce and C.-J. H. Seger},
+    volume = {780},
+    series = {Lecture Bibliomiscs in Computer Science},
+     pages = {174-184},
+ booktitle = {Higher
+      Order Logic Theorem Proving and its Applications: 6th
+      International Workshop, HUG'93},
+      year = {1993},
+ publisher = {Springer-Verlag},
+   address = {Vancouver, B.C.}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Harrison_Thery_93" type="inproceedings" xml:id="bib.bib30">
+        <bib-name role="author">
+          <surname>Harrison</surname>
+          <givenname>J.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Théry</surname>
+          <givenname>L.</givenname>
+        </bib-name>
+        <bib-title>Reasoning about the reals: the marriage of hol and maple</bib-title>
+        <bib-related role="host" type="proceedings">
+          <bib-name role="editor">
+            <surname>Voronkov</surname>
+            <givenname>A.</givenname>
+          </bib-name>
+          <bib-part role="volume">698</bib-part>
+          <bib-part role="series">Lecture Bibliomiscs in Artificial Intelligence</bib-part>
+          <bib-title>Logic Programming and Automated
+Reasoning: 4th International Conference</bib-title>
+          <bib-publisher>Springer-Verlag</bib-publisher>
+        </bib-related>
+        <bib-part role="pages">351–353</bib-part>
+        <bib-date role="publication">1993</bib-date>
+        <bib-place>St. Petersburg</bib-place>
+        <bib-data role="self" type="BibTeX">@inproceedings{Harrison_Thery_93,
+    author = {J. Harrison and L. Th{\'e}ry},
+     title = {Reasoning About the Reals: the marriage of HOL and       Maple},
+    editor = {A. Voronkov},
+    volume = {698},
+    series = {Lecture Bibliomiscs in Artificial Intelligence},
+     pages = {351-353},
+ booktitle = {Logic Programming and Automated
+      Reasoning: 4th International Conference},
+      year = {1993},
+ publisher = {Springer-Verlag},
+   address = {St. Petersburg}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Ballarin_Homann_Calmet_95" type="inproceedings" xml:id="bib.bib31">
+        <bib-name role="author">
+          <surname>Ballarin</surname>
+          <givenname>C.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Homann</surname>
+          <givenname>K.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Calmet</surname>
+          <givenname>J.</givenname>
+        </bib-name>
+        <bib-title>Theorems and algorithms: an interface between isabelle and maple.</bib-title>
+        <bib-related role="host" type="proceedings">
+          <bib-name role="editor">
+            <surname>Levelt</surname>
+            <givenname>A.H.M.</givenname>
+          </bib-name>
+          <bib-title>Proceedings of International
+Symposium on Symbolic and Algebraic Computation (ISSAC’95)</bib-title>
+          <bib-publisher>ACM Press</bib-publisher>
+        </bib-related>
+        <bib-part role="pages">150–157</bib-part>
+        <bib-date role="publication">1995</bib-date>
+        <bib-data role="self" type="BibTeX">@inproceedings{Ballarin_Homann_Calmet_95,
+    author = {C. Ballarin and K. Homann and J. Calmet},
+     title = {Theorems and Algorithms: An Interface between       Isabelle and Maple.},
+    editor = {A.H.M. Levelt},
+     pages = {150-157},
+ booktitle = {Proceedings of International
+      Symposium on Symbolic and Algebraic Computation (ISSAC'95)},
+      year = {1995},
+ publisher = {ACM Press}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Calmet_Homann_96" type="inproceedings" xml:id="bib.bib32">
+        <bib-name role="author">
+          <surname>Calmet</surname>
+          <givenname>Jacques</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Homann</surname>
+          <givenname>Karsten</givenname>
+        </bib-name>
+        <bib-title>Classification of communication and cooperation mechanisms for logical and symbolic computation systems</bib-title>
+        <bib-related role="host" type="proceedings">
+          <bib-name role="editor">
+            <surname>Baader</surname>
+            <givenname>Franz</givenname>
+          </bib-name>
+          <bib-name role="editor">
+            <surname>Schulz</surname>
+            <givenname>Klaus U.</givenname>
+          </bib-name>
+          <bib-part role="series">Applied Logic</bib-part>
+          <bib-title>Proceedings of First International Workshop
+”Frontiers of Combining Systems” (FroCoS’96)</bib-title>
+          <bib-publisher>Kluwer</bib-publisher>
+        </bib-related>
+        <bib-date role="publication">1996</bib-date>
+        <bib-data role="self" type="BibTeX">@inproceedings{Calmet_Homann_96,
+    author = {Jacques Calmet and Karsten Homann},
+     title = {Classification of Communication and Cooperation
+      Mechanisms for Logical and Symbolic Computation
+      Systems},
+    editor = {Franz Baader and Klaus U. Schulz},
+    series = {Applied Logic},
+ booktitle = {Proceedings of First International Workshop
+      "Frontiers of Combining Systems" (FroCoS'96)},
+      year = {1996},
+ publisher = {Kluwer}}
+</bib-data>
+      </bibentry>
+      <bibentry key="OM1.2" type="misc" xml:id="bib.bib33">
+        <bib-name role="author">
+          <surname>Buswell</surname>
+          <givenname>Stephen</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Dalmas</surname>
+          <givenname>Stephane</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Davenport</surname>
+          <givenname>James</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Howgrave-Graham</surname>
+          <givenname>Nick</givenname>
+        </bib-name>
+        <bib-title>Emerging technologies</bib-title>
+        <bib-date role="publication">1998</bib-date>
+        <bib-data role="self" type="BibTeX">@misc{OM1.2,
+    author = {Stephen Buswell and Stephane Dalmas and James Davenport and Nick Howgrave-Graham},
+     title = {Emerging Technologies},
+      year = {1998}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Abbott_Leeuwen_Strotmann_98" type="article" xml:id="bib.bib34">
+        <bib-name role="author">
+          <surname>Abbott</surname>
+          <givenname>John A.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>van Leeuwen</surname>
+          <givenname>André</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Strotmann</surname>
+          <givenname>Andreas</givenname>
+        </bib-name>
+        <bib-title>OpenMath: communicating mathematical information between co-operating agents in a knowledge network</bib-title>
+        <bib-date role="publication">1998</bib-date>
+        <bib-url href="http://www.brunel.ac.uk/~hssrjis/issue/index8.html">Link</bib-url>
+        <bib-part role="volume">3/4</bib-part>
+        <bib-related role="host" type="journal">
+          <bib-title>Journal of Intelligent Systems</bib-title>
+        </bib-related>
+        <bib-note role="annotation">Special Issue: ”Improving the Design of Intelligent
+Systems: Outstanding Problems and Some Methods for their Solution.”</bib-note>
+        <bib-data role="self" type="BibTeX">@article{Abbott_Leeuwen_Strotmann_98,
+    author = {John A. Abbott and Andr{\'e} van Leeuwen and Andreas Strotmann},
+     title = {{OpenMath}: Communicating Mathematical Information        between Co-operating Agents in a Knowledge Network},
+      year = {1998},
+       url = {http://www.brunel.ac.uk/~hssrjis/issue/index8.html},
+    volume = {3/4},
+   journal = {Journal of Intelligent Systems},
+      note = {Special Issue: "Improving the Design of Intelligent
+      Systems: Outstanding Problems and Some Methods for their Solution."}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Robbiano_98" type="inproceedings" xml:id="bib.bib35">
+        <bib-name role="author">
+          <surname>Robbiano</surname>
+          <givenname>L.</givenname>
+        </bib-name>
+        <bib-title>Gröbner bases and statistics</bib-title>
+        <bib-related role="host" type="proceedings">
+          <bib-name role="editor">
+            <surname>Buchberger</surname>
+            <givenname>Bruno</givenname>
+          </bib-name>
+          <bib-name role="editor">
+            <surname>Winkler</surname>
+            <givenname>Franz</givenname>
+          </bib-name>
+          <bib-part role="volume">251</bib-part>
+          <bib-part role="series">London Mathematical Society Lecture Bibliomisc Series</bib-part>
+          <bib-title>Gröbner Bases and Applications</bib-title>
+          <bib-publisher>Cambridge University Press</bib-publisher>
+        </bib-related>
+        <bib-part role="pages">179 – 204</bib-part>
+        <bib-date role="publication">1998</bib-date>
+        <bib-data role="self" type="BibTeX">@inproceedings{Robbiano_98,
+    author = {L. Robbiano},
+     title = {Gr{\"o}bner Bases and Statistics},
+    editor = {Bruno Buchberger and Franz Winkler},
+    volume = {251},
+    series = {London Mathematical Society Lecture Bibliomisc Series},
+     pages = {179 - 204},
+ booktitle = {Gr{\"o}bner Bases and Applications},
+      year = {1998},
+ publisher = {Cambridge University Press}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Moller_98" type="inproceedings" xml:id="bib.bib36">
+        <bib-name role="author">
+          <surname>Möller</surname>
+          <givenname>H.M.</givenname>
+        </bib-name>
+        <bib-title>Gröbner bases and numerical analysis</bib-title>
+        <bib-related role="host" type="proceedings">
+          <bib-name role="editor">
+            <surname>Buchberger</surname>
+            <givenname>Bruno</givenname>
+          </bib-name>
+          <bib-name role="editor">
+            <surname>Winkler</surname>
+            <givenname>Franz</givenname>
+          </bib-name>
+          <bib-part role="volume">251</bib-part>
+          <bib-part role="series">London Mathematical Society Lecture Bibliomisc Series</bib-part>
+          <bib-title>Gröbner Bases and Applications</bib-title>
+          <bib-publisher>Cambridge University Press</bib-publisher>
+        </bib-related>
+        <bib-part role="pages">159 – 179</bib-part>
+        <bib-date role="publication">1998</bib-date>
+        <bib-data role="self" type="BibTeX">@inproceedings{Moller_98,
+    author = {H.M. M{\"o}ller},
+     title = {Gr{\"o}bner Bases and Numerical Analysis},
+    editor = {Bruno Buchberger and Franz Winkler},
+    volume = {251},
+    series = {London Mathematical Society Lecture Bibliomisc Series},
+     pages = {159 - 179},
+ booktitle = {Gr{\"o}bner Bases and Applications},
+      year = {1998},
+ publisher = {Cambridge University Press}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Canny_Manocha_93" type="article" xml:id="bib.bib37">
+        <bib-name role="author">
+          <surname>Canny</surname>
+          <givenname>J.F.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Manocha</surname>
+          <givenname>D.</givenname>
+        </bib-name>
+        <bib-title>Multipolynomial resultant algorithms</bib-title>
+        <bib-related role="host" type="journal">
+          <bib-title>Journal of Symbolic Computation</bib-title>
+        </bib-related>
+        <bib-date role="publication">1993</bib-date>
+        <bib-part role="volume">15</bib-part>
+        <bib-part role="pages">99 – 122</bib-part>
+        <bib-data role="self" type="BibTeX">@article{Canny_Manocha_93,
+    author = {J.F. Canny and D. Manocha},
+     title = {Multipolynomial resultant algorithms},
+   journal = {Journal of Symbolic Computation},
+      year = {1993},
+    volume = {15},
+     pages = {99 - 122}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Arnon_Beach_McIsaac_Waldspurger_88" type="inproceedings" xml:id="bib.bib38">
+        <bib-name role="author">
+          <surname>Arnon</surname>
+          <givenname>D.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>McIsaac</surname>
+          <givenname>R.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Waldspurger</surname>
+          <givenname>K.</givenname>
+        </bib-name>
+        <bib-title>CaminoReal: an interactive mathematical bibliomiscbook</bib-title>
+        <bib-related role="host" type="proceedings">
+          <bib-title>International Conference on Electronic Publishing,
+Document Manipulation and Typography</bib-title>
+          <bib-publisher>Cambridge University Press</bib-publisher>
+        </bib-related>
+        <bib-date role="publication">1988</bib-date>
+        <bib-place>Nice</bib-place>
+        <bib-data role="self" type="BibTeX">@inproceedings{Arnon_Beach_McIsaac_Waldspurger_88,
+    author = {D. Arnon and R. McIsaac and K. Waldspurger},
+     title = {CaminoReal: an Interactive Mathematical Bibliomiscbook},
+ booktitle = {International Conference on Electronic Publishing,
+      Document Manipulation and Typography},
+      year = {1988},
+ publisher = {Cambridge University Press},
+   address = {Nice}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Dalmas_Gaetano_Sausse_94a" type="report" xml:id="bib.bib39">
+        <bib-name role="author">
+          <surname>Dalmas</surname>
+          <givenname>S.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Gaëtano</surname>
+          <givenname>M.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Sausse</surname>
+          <givenname>A.</givenname>
+        </bib-name>
+        <bib-title>ASAP: a protocol for symbolic computation systems</bib-title>
+        <bib-publisher>INRIA</bib-publisher>
+        <bib-date role="publication">1994</bib-date>
+        <bib-part role="number">162</bib-part>
+        <bib-type>Technical report</bib-type>
+        <bib-data role="self" type="BibTeX">@techreport{Dalmas_Gaetano_Sausse_94a,
+    author = {S. Dalmas and M. Ga{\"e}tano and A. Sausse},
+     title = {ASAP: a protocol for symbolic computation systems},
+ publisher = {INRIA},
+      year = {1994},
+    number = {162}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Abbott_Dalmas_Dewar_Diaz_Gray_Sheridan_Strotmann_Vorkoetter_96" type="misc" xml:id="bib.bib40">
+        <bib-name role="author">
+          <surname>Abbott</surname>
+          <givenname>J.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Dalmas</surname>
+          <givenname>S.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Dewar</surname>
+          <givenname>M.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Diaz</surname>
+          <givenname>A.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Gray</surname>
+          <givenname>S.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Sheridan</surname>
+          <givenname>S.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Strotmann</surname>
+          <givenname>A.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Vorkoetter</surname>
+          <givenname>S.</givenname>
+        </bib-name>
+        <bib-title>Report of the OpenMath communications committee</bib-title>
+        <bib-date role="publication">1995</bib-date>
+        <bib-data role="self" type="BibTeX">@misc{Abbott_Dalmas_Dewar_Diaz_Gray_Sheridan_Strotmann_Vorkoetter_96,
+    author = {J. Abbott and S. Dalmas and M. Dewar and A. Diaz and S. Gray and S. Sheridan and A. Strotmann and S. Vorkoetter},
+     title = {Report of the {OpenMath} Communications Committee},
+      year = {1995}}
+</bib-data>
+      </bibentry>
+      <bibentry key="LEGOmanual" type="manual" xml:id="bib.bib41">
+        <bib-name role="author">
+          <surname>Luo</surname>
+          <givenname>Z.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Pollack</surname>
+          <givenname>R.</givenname>
+        </bib-name>
+        <bib-title>LEGO proof development system: user’s manual</bib-title>
+        <bib-organization>Department of Computer Science, University of Edinburgh</bib-organization>
+        <bib-date role="publication">1992</bib-date>
+        <bib-data role="self" type="BibTeX">@manual{LEGOmanual,
+    author = {Z. Luo and R. Pollack},
+     title = {LEGO Proof Development System: User's Manual},
+institution = {Department of Computer Science, University of Edinburgh},
+      year = {1992}}
+</bib-data>
+      </bibentry>
+      <bibentry key="luo_thesis" type="thesis" xml:id="bib.bib42">
+        <bib-name role="author">
+          <surname>Luo</surname>
+          <givenname>Z.</givenname>
+        </bib-name>
+        <bib-title>An extended calculus of constructions</bib-title>
+        <bib-data role="shoole">Edinburgh University</bib-data>
+        <bib-date role="publication">1990</bib-date>
+        <bib-type>Ph.D. Thesis</bib-type>
+        <bib-data role="self" type="BibTeX">@phdthesis{luo_thesis,
+    author = {Z. Luo},
+     title = {An Extended Calculus of Constructions},
+    shoole = {Edinburgh University},
+      year = {1990}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Martin_Shand_97" type="report" xml:id="bib.bib43">
+        <bib-name role="author">
+          <surname>Martin</surname>
+          <givenname>U.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Shand</surname>
+          <givenname>D.</givenname>
+        </bib-name>
+        <bib-title>Investigating some embedded verification techniques for computer algebra tools</bib-title>
+        <bib-publisher>RISC-Linz, Research Institute for Symbolic Computation</bib-publisher>
+        <bib-date role="publication">1997</bib-date>
+        <bib-part role="number">No. 97-20</bib-part>
+        <bib-place>J. Kepler University, Linz (A)</bib-place>
+        <bib-url href="http://www-theory.dcs.st-and.ac.uk/~ddshand/Papers/pub.html">Link</bib-url>
+        <bib-type>Technical report</bib-type>
+        <bib-data role="self" type="BibTeX">@techreport{Martin_Shand_97,
+    author = {U. Martin and D. Shand},
+     title = {Investigating some Embedded Verification Techniques       for Computer Algebra Tools},
+ publisher = {RISC-Linz, Research Institute for Symbolic Computation},
+      year = {1997},
+    number = {No. 97-20},
+   address = {J. Kepler University, Linz (A)},
+       url = {http://www-theory.dcs.st-and.ac.uk/~ddshand/Papers/pub.html}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Barendregt_Barendsen_97" type="misc" xml:id="bib.bib44">
+        <bib-name role="author">
+          <surname>Barendregt</surname>
+          <givenname>H.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Barendsen</surname>
+          <givenname>E.</givenname>
+        </bib-name>
+        <bib-title>Efficient computations in formal proofs</bib-title>
+        <bib-data role="self" type="BibTeX">@misc{Barendregt_Barendsen_97,
+    author = {H. Barendregt and E. Barendsen},
+     title = {Efficient Computations in Formal Proofs}}
+</bib-data>
+      </bibentry>
+      <bibentry key="CA_industry_93" type="book" xml:id="bib.bib45">
+        <bib-title>Computer algebra in industry,</bib-title>
+        <bib-publisher>Wiley Chichester</bib-publisher>
+        <bib-date role="publication">1993</bib-date>
+        <bib-name role="editor">
+          <surname>Cohen</surname>
+          <givenname>A. M.</givenname>
+        </bib-name>
+        <bib-part role="series">Problem Solving in Practice</bib-part>
+        <bib-data role="self" type="BibTeX">@book{CA_industry_93,
+     title = {Computer Algebra in Industry,},
+ publisher = {Wiley Chichester},
+      year = {1993},
+    editor = {A. M. Cohen},
+    series = {Problem Solving in Practice}}
+</bib-data>
+      </bibentry>
+      <bibentry key="vrmlspec97" type="unpublished" xml:id="bib.bib46">
+        <bib-name role="author">
+          <surname>Carey</surname>
+          <givenname>R.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Marrin</surname>
+          <givenname>C.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Bell</surname>
+          <givenname>G.</givenname>
+        </bib-name>
+        <bib-title>The virtual reality modelling language</bib-title>
+        <bib-note role="annotation">International Standard ISO/IEC 14772-1:1997</bib-note>
+        <bib-url href="http://www.vrml.org/Specifications/VRML97/">Link</bib-url>
+        <bib-date role="publication">1997</bib-date>
+        <bib-data role="self" type="BibTeX">@unpublished{vrmlspec97,
+    author = {R. Carey and C. Marrin and G. Bell},
+     title = {The Virtual Reality Modelling Language},
+      note = {International Standard ISO/IEC 14772-1:1997},
+       url = {http://www.vrml.org/Specifications/VRML97/},
+      year = {1997}}
+</bib-data>
+      </bibentry>
+      <bibentry key="vrmlarm97" type="book" xml:id="bib.bib47">
+        <bib-name role="author">
+          <surname>Carey</surname>
+          <givenname>R.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Bell</surname>
+          <givenname>G.</givenname>
+        </bib-name>
+        <bib-title>The annotated vrml reference manual</bib-title>
+        <bib-publisher>Addison-Wesley</bib-publisher>
+        <bib-date role="publication">1997</bib-date>
+        <bib-data role="self" type="BibTeX">@book{vrmlarm97,
+    author = {R. Carey and G. Bell},
+     title = {The Annotated VRML Reference Manual},
+ publisher = {Addison-Wesley},
+      year = {1997}}
+</bib-data>
+      </bibentry>
+      <bibentry key="eaispec97" type="unpublished" xml:id="bib.bib48">
+        <bib-name role="author">
+          <surname>Marrin</surname>
+          <givenname>C.</givenname>
+        </bib-name>
+        <bib-title>External authoring interface reference</bib-title>
+        <bib-note role="annotation">Proposal for a VRML 2.0 Informative Annex</bib-note>
+        <bib-url href="http://www.vrml.org/WorkingGroups/vrml-eai/ExternalInterface.html">Link</bib-url>
+        <bib-date role="publication">1997</bib-date>
+        <bib-data role="self" type="BibTeX">@unpublished{eaispec97,
+    author = {C. Marrin},
+     title = {External Authoring Interface Reference},
+      note = {Proposal for a VRML 2.0 Informative Annex},
+       url = {http://www.vrml.org/WorkingGroups/vrml-eai/ExternalInterface.html},
+      year = {1997}}
+</bib-data>
+      </bibentry>
+<!--  %**** String Line 50 **** -->      <bibentry key="harrison-form" type="report" xml:id="bib.bib49">
+        <bib-name role="author">
+          <surname>Harrison</surname>
+          <givenname>John</givenname>
+        </bib-name>
+        <bib-title>Formalized mathematics</bib-title>
+        <bib-publisher>Turku Centre for Computer Science (TUCS)</bib-publisher>
+        <bib-place>Lemminkaisenkatu 14 A, FIN-20520 Turku,
+Finland</bib-place>
+        <bib-date role="publication">1996</bib-date>
+        <bib-part role="number">36</bib-part>
+        <bib-url href="http://www.cl.cam.ac.uk/users/jrh/papers/form-math3.html">Link</bib-url>
+        <bib-type>Technical report</bib-type>
+        <bib-data role="self" type="BibTeX">@techreport{harrison-form,
+    author = {John Harrison},
+     title = {Formalized Mathematics},
+ publisher = {Turku Centre for Computer Science (TUCS)},
+   address = {Lemminkaisenkatu 14 A, FIN-20520 Turku,
+      Finland},
+      year = {1996},
+    number = {36},
+       url = {http://www.cl.cam.ac.uk/users/jrh/papers/form-math3.html}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Dunstan_Kelsey_Linton_Martin_98" type="inproceedings" xml:id="bib.bib50">
+        <bib-name role="author">
+          <surname>Dunstan</surname>
+          <givenname>Martin</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Kelsey</surname>
+          <givenname>Tom</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Linton</surname>
+          <givenname>Steve</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Martin</surname>
+          <givenname>Ursula</givenname>
+        </bib-name>
+        <bib-title>Lightweight formal methods for computer algebra systems</bib-title>
+        <bib-related role="host" type="proceedings">
+          <bib-title>ISSAC’98: International Symposium on Symbolic and Algebraic Computation</bib-title>
+          <bib-name role="editor">
+            <surname>Gloor</surname>
+            <givenname>O.</givenname>
+          </bib-name>
+          <bib-publisher>ACM Press</bib-publisher>
+        </bib-related>
+        <bib-date role="publication">1998</bib-date>
+        <bib-place>Rostock, Germany</bib-place>
+        <bib-data role="self" type="BibTeX">@inproceedings{Dunstan_Kelsey_Linton_Martin_98,
+    author = {Martin Dunstan and Tom Kelsey and Steve Linton and Ursula Martin},
+     title = {Lightweight Formal Methods for Computer Algebra Systems},
+ booktitle = {ISSAC'98: International Symposium on Symbolic and Algebraic Computation},
+      year = {1998},
+    editor = {O. Gloor},
+   address = {Rostock, Germany},
+ publisher = {ACM Press}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Jackson_95" type="thesis" xml:id="bib.bib51">
+        <bib-name role="author">
+          <surname>Jackson</surname>
+          <givenname>Paul</givenname>
+        </bib-name>
+        <bib-title>Enhancing the nuprl proof development system and applying it to computational abstract algebra</bib-title>
+        <bib-organization>Cornell University</bib-organization>
+        <bib-date role="publication">1995</bib-date>
+        <bib-part role="series">TR95-1509</bib-part>
+        <bib-type>Ph.D. Thesis</bib-type>
+        <bib-data role="self" type="BibTeX">@phdthesis{Jackson_95,
+    author = {Paul Jackson},
+     title = {Enhancing the Nuprl Proof Development System and        Applying it to Computational Abstract Algebra},
+    school = {Cornell University},
+      year = {1995},
+    series = {TR95-1509}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Thery_98" type="inproceedings" xml:id="bib.bib52">
+        <bib-name role="author">
+          <surname>Théry</surname>
+          <givenname>Laurent</givenname>
+        </bib-name>
+        <bib-title>A certified version of buchberger algorithm</bib-title>
+        <bib-related role="host" type="proceedings">
+          <bib-title>Automated Deduction - CADE 15:
+15th International Conference on Automated Deduction</bib-title>
+          <bib-name role="editor">
+            <surname>Kirchner</surname>
+            <givenname>C.</givenname>
+          </bib-name>
+          <bib-name role="editor">
+            <surname>Kirchner</surname>
+            <givenname>H.</givenname>
+          </bib-name>
+          <bib-part role="volume">1421</bib-part>
+          <bib-part role="series">Lecture Bibliomiscs in Artificial Intelligence</bib-part>
+          <bib-publisher>Springer Verlag</bib-publisher>
+        </bib-related>
+        <bib-date role="publication">1998</bib-date>
+        <bib-place>Landau, Germany</bib-place>
+        <bib-data role="self" type="BibTeX">@inproceedings{Thery_98,
+    author = {Laurent Th{\'e}ry},
+     title = {A Certified Version of Buchberger Algorithm},
+ booktitle = {Automated Deduction - CADE 15:
+      15th International Conference on Automated Deduction},
+      year = {1998},
+    editor = {C. Kirchner and H. Kirchner},
+    volume = {1421},
+    series = {Lecture Bibliomiscs in Artificial Intelligence},
+   address = {Landau, Germany},
+ publisher = {Springer Verlag}}
+</bib-data>
+      </bibentry>
+      <bibentry key="PolyMath_JAVA" type="misc" xml:id="bib.bib53">
+        <bib-name role="author">
+          <surname>Team</surname>
+          <givenname>PolyMath OpenMath Development</givenname>
+        </bib-name>
+        <bib-title>Java OpenMath library: version 0.7c</bib-title>
+        <bib-url href="http://pdg.cecm.sfu.ca/openmath/">Link</bib-url>
+        <bib-date role="publication">1999</bib-date>
+        <bib-data role="self" type="BibTeX">@misc{PolyMath_JAVA,
+    author = {PolyMath {OpenMath} Development Team},
+     title = {Java {OpenMath} Library: Version 0.7c},
+       url = {http://pdg.cecm.sfu.ca/openmath/},
+      year = {1999}}
+</bib-data>
+      </bibentry>
+      <bibentry key="STARS" type="misc" xml:id="bib.bib54">
+        <bib-name role="author">
+          <surname>Buswell</surname>
+          <givenname>Stephen</givenname>
+        </bib-name>
+        <bib-title>STARS</bib-title>
+        <bib-url href="http://www.stilo.com">Link</bib-url>
+        <bib-date role="publication">1999</bib-date>
+        <bib-data role="self" type="BibTeX">@misc{STARS,
+    author = {Stephen Buswell},
+     title = {STARS},
+       url = {http://www.stilo.com},
+      year = {1999}}
+</bib-data>
+      </bibentry>
+      <bibentry key="OMurl" type="misc" xml:id="bib.bib55">
+        <bib-name role="author">
+          <surname>Website</surname>
+          <givenname>OpenMath Society</givenname>
+        </bib-name>
+        <bib-title>Www.openmath.org</bib-title>
+        <bib-data role="self" type="BibTeX">@misc{OMurl,
+    author = {{OpenMath} Society Website},
+     title = {www.openmath.org}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Dalmas_Gaetano_Watt_97" type="inproceedings" xml:id="bib.bib56">
+        <bib-name role="author">
+          <surname>Dalmas</surname>
+          <givenname>S.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Gaëtano</surname>
+          <givenname>M.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Watt</surname>
+          <givenname>S.</givenname>
+        </bib-name>
+        <bib-title>An OpenMath 1.0 implementation</bib-title>
+        <bib-part role="pages">241 – 248</bib-part>
+        <bib-related role="host" type="proceedings">
+          <bib-title>Proceedings of ISSAC 97</bib-title>
+          <bib-publisher>ACM Press</bib-publisher>
+        </bib-related>
+        <bib-date role="publication">1997</bib-date>
+        <bib-data role="self" type="BibTeX">@inproceedings{Dalmas_Gaetano_Watt_97,
+    author = {S. Dalmas and M. Ga{\"e}tano and S. Watt},
+     title = {An {OpenMath}~1.0 Implementation},
+     pages = {241 - 248},
+ booktitle = {Proceedings of ISSAC 97},
+      year = {1997},
+ publisher = {ACM Press}}
+</bib-data>
+      </bibentry>
+      <bibentry key="OM_96" type="misc" xml:id="bib.bib57">
+        <bib-name role="author">
+          <surname>Committee</surname>
+          <givenname>OpenMath Steering</givenname>
+        </bib-name>
+        <bib-title>OpenMath version 1.0 released</bib-title>
+        <bib-date role="publication">1996</bib-date>
+        <bib-url href="http://www.openmath.org">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{OM_96,
+    author = {{OpenMath} Steering Committee},
+     title = {{OpenMath} Version 1.0 released},
+      year = {1996},
+       url = {http://www.openmath.org}}
+</bib-data>
+      </bibentry>
+      <bibentry key="OM_98" type="misc" xml:id="bib.bib58">
+        <bib-name role="author">
+          <surname>Consortium</surname>
+          <givenname>OpenMath</givenname>
+        </bib-name>
+        <bib-title>OpenMath version 1 - draft</bib-title>
+        <bib-date role="publication">1998</bib-date>
+        <bib-url href="ftp://ftp-sop.inria.fr/safir/OM/v1.ps">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{OM_98,
+    author = {{OpenMath} Consortium},
+     title = {{OpenMath} Version 1 - Draft},
+      year = {1998},
+       url = {ftp://ftp-sop.inria.fr/safir/OM/v1.ps}}
+</bib-data>
+      </bibentry>
+      <bibentry key="OM_1.1" type="misc" xml:id="bib.bib59">
+        <bib-name role="author">
+          <surname>Consortium</surname>
+          <givenname>OpenMath</givenname>
+        </bib-name>
+        <bib-title>OpenMath version 1.1</bib-title>
+        <bib-date role="publication">2002</bib-date>
+        <bib-url href="http://www.openmath.org/standard/om11/">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{OM_1.1,
+    author = {{OpenMath} Consortium},
+     title = {{OpenMath} Version 1.1},
+      year = {2002},
+       url = {http://www.openmath.org/standard/om11/}}
+</bib-data>
+      </bibentry>
+      <bibentry key="OM_primer" type="misc" xml:id="bib.bib60">
+        <bib-name role="author">
+          <surname>Consortium</surname>
+          <givenname>OpenMath</givenname>
+        </bib-name>
+        <bib-title>OpenMath primer</bib-title>
+        <bib-date role="publication">2004</bib-date>
+        <bib-url href="http://www.openmath.org/standard/primer/">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{OM_primer,
+    author = {{OpenMath} Consortium},
+     title = {{OpenMath} Primer},
+      year = {2004},
+       url = {http://www.openmath.org/standard/primer/}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Gonnet_Seppala_Watt_96" type="misc" xml:id="bib.bib61">
+        <bib-name role="author">
+          <surname>Gonnet</surname>
+          <givenname>G.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Seppala</surname>
+          <givenname>M.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Watt</surname>
+          <givenname>S.</givenname>
+        </bib-name>
+        <bib-title>Semantic dictionaries for OpenMath</bib-title>
+        <bib-note role="annotation">Presented at the 6th OpenMath Workshop, Zürich</bib-note>
+        <bib-date role="publication">1996</bib-date>
+        <bib-url href="http://www.inf.ethz.ch/personal/gonnet/ContDict.html">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{Gonnet_Seppala_Watt_96,
+    author = {G. Gonnet and M. Seppala and S. Watt},
+     title = {Semantic Dictionaries for {OpenMath}},
+      note = {Presented at the 6th {OpenMath} Workshop, Z{\"u}rich},
+      year = {1996},
+       url = {http://www.inf.ethz.ch/personal/gonnet/ContDict.html}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Constable_98" type="misc" xml:id="bib.bib62">
+        <bib-name role="author">
+          <surname>Constable</surname>
+          <givenname>Robert</givenname>
+        </bib-name>
+        <bib-note role="annotation">Personal Communication</bib-note>
+        <bib-date role="publication">1998</bib-date>
+        <bib-data role="self" type="BibTeX">@misc{Constable_98,
+    author = {Robert Constable},
+      note = {Personal Communication},
+      year = {1998}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Caprotti_Cohen_Elbers_Geuvers_98" type="misc" xml:id="bib.bib63">
+        <bib-name role="author">
+          <surname>Caprotti</surname>
+          <givenname>O.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Cohen</surname>
+          <givenname>A. M.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Elbers</surname>
+          <givenname>H.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Geuvers</surname>
+          <givenname>H.</givenname>
+        </bib-name>
+        <bib-title>Connecting OpenMath to formal math</bib-title>
+        <bib-data role="booktitle">Calculemus and Types '98</bib-data>
+        <bib-date role="publication">1998</bib-date>
+        <bib-data role="self" type="BibTeX">@misc{Caprotti_Cohen_Elbers_Geuvers_98,
+    author = {O. Caprotti and A. M. Cohen and H. Elbers and H. Geuvers},
+     title = {Connecting {OpenMath} to Formal Math},
+ booktitle = {Calculemus and Types '98},
+      year = {1998}}
+</bib-data>
+      </bibentry>
+      <bibentry key="UNICODE" type="book" xml:id="bib.bib64">
+        <bib-name role="author">
+          <surname>Consortium</surname>
+          <givenname>Unicode</givenname>
+        </bib-name>
+        <bib-title>The unicode standard: version 4.0.0</bib-title>
+        <bib-publisher>Addison-Wesley</bib-publisher>
+        <bib-date role="publication">2003</bib-date>
+        <bib-identifier id="ISBN 0-321-18578-1" scheme="isbn">ISBN ISBN 0-321-18578-1</bib-identifier>
+        <bib-url href="http://www.unicode.org/versions/Unicode4.0.0">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@book{UNICODE,
+    author = {Unicode Consortium},
+     title = {The Unicode Standard: Version 4.0.0},
+ publisher = {Addison-Wesley},
+      year = {2003},
+      isbn = {ISBN 0-321-18578-1},
+       url = {http://www.unicode.org/versions/Unicode4.0.0}}
+</bib-data>
+      </bibentry>
+      <bibentry key="ieee754_85" type="misc" xml:id="bib.bib65">
+        <bib-key>ieee</bib-key>
+        <bib-title>IEEE standard for binary floating-point arithmetic, ansi/ieee standard 754</bib-title>
+        <bib-date role="publication">1985</bib-date>
+        <bib-url href="http://standards.ieee.org/reading/ieee/std_public/description/busarch/754-1985_desc.html">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{ieee754_85,
+       key = {ieee},
+     title = {IEEE Standard for binary Floating-Point Arithmetic, ANSI/IEEE Standard 754},
+      year = {1985},
+       url = {http://standards.ieee.org/reading/ieee/std_public/description/busarch/754-1985_desc.html}}
+</bib-data>
+      </bibentry>
+      <bibentry key="rfc1642" type="misc" xml:id="bib.bib66">
+        <bib-name role="author">
+          <surname>Goldsmith</surname>
+          <givenname>D.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Davis</surname>
+          <givenname>M.</givenname>
+        </bib-name>
+        <bib-title>UTF-7: a mail safe transformation format of unicode</bib-title>
+        <bib-note role="annotation">RFC: 1642</bib-note>
+        <bib-date role="publication">1994</bib-date>
+        <bib-data role="self" type="BibTeX">@misc{rfc1642,
+    author = {D. Goldsmith and M. Davis},
+     title = {UTF-7: A Mail Safe Transformation Format of Unicode},
+      note = {RFC: 1642},
+      year = {1994}}
+</bib-data>
+      </bibentry>
+      <bibentry key="rfc2045" type="misc" xml:id="bib.bib67">
+        <bib-name role="author">
+          <surname>Borenstein</surname>
+          <givenname>N.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Freed</surname>
+          <givenname>N.</givenname>
+        </bib-name>
+        <bib-title>MIME (multipurpose internet mail extensions) part one: format of internet message bodies</bib-title>
+        <bib-note role="annotation">RFC: 2045</bib-note>
+        <bib-date role="publication">1996</bib-date>
+        <bib-url href="http://www.ietf.org/rfc/rfc2045.txt">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{rfc2045,
+    author = {N. Borenstein and N. Freed},
+     title = {MIME (Multipurpose Internet Mail Extensions) Part One: Format of Internet Message Bodies},
+      note = {RFC: 2045},
+      year = {1996},
+       url = {http://www.ietf.org/rfc/rfc2045.txt}}
+</bib-data>
+      </bibentry>
+      <bibentry key="rfc2046" type="misc" xml:id="bib.bib68">
+        <bib-name role="author">
+          <surname>Borenstein</surname>
+          <givenname>N.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Freed</surname>
+          <givenname>N.</givenname>
+        </bib-name>
+        <bib-title>MIME (multipurpose internet mail extensions) part two: media types</bib-title>
+        <bib-note role="annotation">RFC: 2046</bib-note>
+        <bib-date role="publication">1996</bib-date>
+        <bib-url href="http://www.ietf.org/rfc/rfc2046.txt">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{rfc2046,
+    author = {N. Borenstein and N. Freed},
+     title = {MIME (Multipurpose Internet Mail Extensions) Part Two: Media Types},
+      note = {RFC: 2046},
+      year = {1996},
+       url = {http://www.ietf.org/rfc/rfc2046.txt}}
+</bib-data>
+      </bibentry>
+      <bibentry key="iso646_83" type="misc" xml:id="bib.bib69">
+        <bib-key>iso 646</bib-key>
+        <bib-title>ISO 7-bit coded character set for information interchange</bib-title>
+        <bib-note role="annotation">ISO 646:1983</bib-note>
+        <bib-date role="publication">1983</bib-date>
+        <bib-data role="self" type="BibTeX">@misc{iso646_83,
+       key = {iso 646},
+     title = {ISO 7-bit coded character set for information interchange},
+      note = {ISO 646:1983},
+      year = {1983}}
+</bib-data>
+      </bibentry>
+      <bibentry key="rfc2152" type="misc" xml:id="bib.bib70">
+        <bib-name role="author">
+          <surname>Goldsmith</surname>
+          <givenname>D.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Davis</surname>
+          <givenname>M.</givenname>
+        </bib-name>
+        <bib-title>UTF-7: a mail safe transformation format of unicode</bib-title>
+        <bib-note role="annotation">RFC: 2152</bib-note>
+        <bib-date role="publication">1997</bib-date>
+        <bib-url href="http://www.cis.ohio-state.edu/htbin/rfc/rfc2152.html">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{rfc2152,
+    author = {D. Goldsmith and M. Davis},
+     title = {UTF-7: A Mail Safe Transformation Format of Unicode},
+      note = {RFC: 2152},
+      year = {1997},
+       url = {http://www.cis.ohio-state.edu/htbin/rfc/rfc2152.html}}
+</bib-data>
+      </bibentry>
+      <bibentry key="xmlns" type="misc" xml:id="bib.bib71">
+        <bib-name role="author">
+          <surname>Consortium</surname>
+          <givenname>World Wide Web</givenname>
+        </bib-name>
+        <bib-title>Namespaces in xml</bib-title>
+        <bib-date role="publication">1999</bib-date>
+        <bib-url href="http://www.w3.org/TR/REC-xml-names/">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{xmlns,
+    author = {World Wide Web Consortium},
+     title = {Namespaces in XML},
+      year = {1999},
+       url = {http://www.w3.org/TR/REC-xml-names/}}
+</bib-data>
+      </bibentry>
+      <bibentry key="xml-stylesheet" type="misc" xml:id="bib.bib72">
+        <bib-name role="author">
+          <surname>Consortium</surname>
+          <givenname>World Wide Web</givenname>
+        </bib-name>
+        <bib-title>Associating style sheets with xml documents version 1.0</bib-title>
+        <bib-type>W3C Recommendation</bib-type>
+        <bib-date role="publication">1998</bib-date>
+        <bib-url href="http://www.w3.org/TR/xml-stylesheet/">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{xml-stylesheet,
+    author = {World Wide Web Consortium},
+     title = {Associating Style Sheets with XML documents Version 1.0},
+      type = {W3C Recommendation},
+      year = {1998},
+       url = {http://www.w3.org/TR/xml-stylesheet/}}
+</bib-data>
+      </bibentry>
+      <bibentry key="utf8" type="misc" xml:id="bib.bib73">
+        <bib-name role="author">
+          <surname>Yergeau</surname>
+          <givenname>F.</givenname>
+        </bib-name>
+        <bib-title>UTF-8, a transformation format of iso 10646</bib-title>
+        <bib-note role="annotation">RFC 2279</bib-note>
+        <bib-date role="publication">1998</bib-date>
+        <bib-publisher>Alis Technologies</bib-publisher>
+        <bib-data role="self" type="BibTeX">@misc{utf8,
+    author = {F. Yergeau},
+     title = {UTF-8, a transformation format of ISO 10646},
+      note = {RFC 2279},
+      year = {1998},
+ publisher = {Alis Technologies}}
+</bib-data>
+      </bibentry>
+<!--  %**** String Line 75 **** -->      <bibentry key="iso9660" type="misc" xml:id="bib.bib74">
+        <bib-name role="author">
+          <surname>committee / subcommittee: JTC 1</surname>
+          <givenname>Technical</givenname>
+        </bib-name>
+        <bib-title>ISO 9660:1988 information processing - volume and file structure of cdrom for information interchange</bib-title>
+        <bib-note role="annotation">ISO 9660</bib-note>
+        <bib-date role="publication">1988</bib-date>
+        <bib-url href="http://www.iso.org/iso/en/CatalogueDetailPage.CatalogueDetail?CSNUMBER=17505">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{iso9660,
+    author = {Technical committee / subcommittee: JTC 1},
+     title = {ISO 9660:1988 Information processing  -  Volume and File Structure of CDROM for Information Interchange},
+      note = {ISO 9660},
+      year = {1988},
+       url = {http://www.iso.org/iso/en/CatalogueDetailPage.CatalogueDetail?CSNUMBER=17505}}
+</bib-data>
+      </bibentry>
+      <bibentry key="OM_D122" type="misc" xml:id="bib.bib75">
+        <bib-name role="author">
+          <surname>Buswell</surname>
+          <givenname>S.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Dalmas</surname>
+          <givenname>S.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Davenport</surname>
+          <givenname>J.</givenname>
+        </bib-name>
+        <bib-title>OpenMath task 1.2: emerging technologies</bib-title>
+        <bib-date role="publication">1998</bib-date>
+        <bib-data role="self" type="BibTeX">@misc{OM_D122,
+    author = {S. Buswell and S. Dalmas and J. Davenport},
+     title = {{OpenMath} task 1.2: Emerging Technologies},
+      year = {1998}}
+</bib-data>
+      </bibentry>
+      <bibentry key="xml_98" type="misc" xml:id="bib.bib76">
+        <bib-name role="author">
+          <surname>Consortium</surname>
+          <givenname>World Wide Web</givenname>
+        </bib-name>
+        <bib-title>Extensible markup language (xml) 1.0.</bib-title>
+        <bib-note role="annotation">W3C Recommendation REC-xml-19980210</bib-note>
+        <bib-date role="publication">1998</bib-date>
+        <bib-url href="http://www.w3.org/TR/1998/REC-xml-19980210">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{xml_98,
+    author = {World Wide Web Consortium},
+     title = {Extensible Markup Language (XML) 1.0.},
+      note = {W3C Recommendation REC-xml-19980210},
+      year = {1998},
+       url = {http://www.w3.org/TR/1998/REC-xml-19980210}}
+</bib-data>
+      </bibentry>
+      <bibentry key="xml_04" type="misc" xml:id="bib.bib77">
+        <bib-name role="author">
+          <surname>Consortium</surname>
+          <givenname>World Wide Web</givenname>
+        </bib-name>
+        <bib-title>Extensible markup language (xml) 1.1., w3c recommendation rec-xml11-20040204</bib-title>
+        <bib-date role="publication">2004</bib-date>
+        <bib-url href="http://www.w3.org/TR/2004/REC-xml11-20040204/">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{xml_04,
+    author = {World Wide Web Consortium},
+     title = {Extensible Markup Language (XML) 1.1., W3C Recommendation REC-xml11-20040204},
+      year = {2004},
+       url = {http://www.w3.org/TR/2004/REC-xml11-20040204/}}
+</bib-data>
+      </bibentry>
+      <bibentry key="OM_D131a" type="misc" xml:id="bib.bib78">
+        <bib-name role="author">
+          <surname>Consortium</surname>
+          <givenname>OpenMath</givenname>
+        </bib-name>
+        <bib-title>The OpenMath standard</bib-title>
+        <bib-date role="publication">1998</bib-date>
+        <bib-url href="http://www.nag.co.uk/projects/OpenMath.html">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{OM_D131a,
+    author = {{OpenMath} Consortium},
+     title = {The {OpenMath} Standard},
+      year = {1998},
+       url = {http://www.nag.co.uk/projects/OpenMath.html}}
+</bib-data>
+      </bibentry>
+      <bibentry key="OM_D132c" type="misc" xml:id="bib.bib79">
+        <bib-name role="author">
+          <surname>Davenport</surname>
+          <givenname>J.</givenname>
+        </bib-name>
+        <bib-title>A small OpenMath type system</bib-title>
+        <bib-date role="publication">1999</bib-date>
+        <bib-url href="http://www.openmath.org/standard/sts.pdf">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{OM_D132c,
+    author = {J. Davenport},
+     title = {A Small {OpenMath} Type System},
+      year = {1999},
+       url = {http://www.openmath.org/standard/sts.pdf}}
+</bib-data>
+      </bibentry>
+      <bibentry key="OMD132a" type="report" xml:id="bib.bib80">
+        <bib-name role="author">
+          <surname>Consortium</surname>
+          <givenname>The OpenMath</givenname>
+        </bib-name>
+        <bib-title>The OpenMath standard</bib-title>
+        <bib-publisher>OpenMath Esprit Consortium</bib-publisher>
+        <bib-date role="publication">1999</bib-date>
+        <bib-part role="number">1.3.2a</bib-part>
+        <bib-url href="http://www.nag.co.uk/projects/OpenMath.html">Link</bib-url>
+        <bib-note role="annotation">O. Caprotti and A. M. Cohen Eds.</bib-note>
+        <bib-type>Technical report</bib-type>
+        <bib-data role="self" type="BibTeX">@techreport{OMD132a,
+    author = {The {OpenMath} Consortium},
+     title = {The {OpenMath} Standard},
+ publisher = {{OpenMath} Esprit Consortium},
+      year = {1999},
+    number = {1.3.2a},
+       url = {http://www.nag.co.uk/projects/OpenMath.html},
+      note = {O. Caprotti and A. M. Cohen Eds.}}
+</bib-data>
+      </bibentry>
+      <bibentry key="OMD132b" type="report" xml:id="bib.bib81">
+        <bib-name role="author">
+          <surname>Caprotti</surname>
+          <givenname>Olga</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Cohen</surname>
+          <givenname>Arjeh M.</givenname>
+        </bib-name>
+        <bib-title>A type system for OpenMath</bib-title>
+        <bib-publisher>OpenMath Esprit Consortium</bib-publisher>
+        <bib-date role="publication">1999</bib-date>
+        <bib-url href="http://www.openmath.org/standard/ecc.pdf">Link</bib-url>
+        <bib-type>Technical report</bib-type>
+        <bib-data role="self" type="BibTeX">@techreport{OMD132b,
+    author = {Olga Caprotti and Arjeh M. Cohen},
+     title = {A Type System for {OpenMath}},
+ publisher = {{OpenMath} Esprit Consortium},
+      year = {1999},
+       url = {http://www.openmath.org/standard/ecc.pdf}}
+</bib-data>
+      </bibentry>
+      <bibentry key="OM_D133b" type="report" xml:id="bib.bib82">
+        <bib-name role="author">
+          <surname>Caprotti</surname>
+          <givenname>Olga</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Cohen</surname>
+          <givenname>Arjeh M.</givenname>
+        </bib-name>
+        <bib-title>Development of strong OpenMath</bib-title>
+        <bib-publisher>OpenMath Esprit Consortium</bib-publisher>
+        <bib-date role="publication">October</bib-date>
+        <bib-url href="http://www.nag.co.uk/projects/OpenMath.html">Link</bib-url>
+        <bib-date role="publication">October</bib-date>
+        <bib-type>Technical report</bib-type>
+        <bib-data role="self" type="BibTeX">@techreport{OM_D133b,
+    author = {Olga Caprotti and Arjeh M. Cohen},
+     title = {Development of Strong {OpenMath}},
+ publisher = {{OpenMath} Esprit Consortium},
+      year = {1999},
+       url = {http://www.nag.co.uk/projects/OpenMath.html},
+      year = {October}}
+</bib-data>
+      </bibentry>
+      <bibentry key="ida" type="book" xml:id="bib.bib83">
+        <bib-name role="author">
+          <surname>Cohen</surname>
+          <givenname>A. M.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Cuypers</surname>
+          <givenname>H.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Sterk</surname>
+          <givenname>H.</givenname>
+        </bib-name>
+        <bib-title>Algebra interactive, interactive course material</bib-title>
+        <bib-publisher>SV</bib-publisher>
+        <bib-date role="publication">1999</bib-date>
+        <bib-identifier id="ISBN 3-540-65368-6" scheme="isbn">ISBN ISBN 3-540-65368-6</bib-identifier>
+        <bib-data role="self" type="BibTeX">@book{ida,
+    author = {A. M. Cohen and  H. Cuypers and H. Sterk},
+     title = {Algebra Interactive, interactive course material},
+ publisher = {SV},
+      year = {1999},
+      isbn = {ISBN 3-540-65368-6}}
+</bib-data>
+      </bibentry>
+      <bibentry key="CaprottiCohen99" type="misc" xml:id="bib.bib84">
+        <bib-name role="author">
+          <surname>Caprotti</surname>
+          <givenname>Olga</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Cohen</surname>
+          <givenname>Arjeh M.</givenname>
+        </bib-name>
+        <bib-title>Integrating computational and deduction systems using OpenMath</bib-title>
+        <bib-data role="booktitle">Calculemus'99: Systems for Integrated Computation and Deduction</bib-data>
+        <bib-date role="publication">1999</bib-date>
+        <bib-place>Trento, Italy</bib-place>
+        <bib-data role="self" type="BibTeX">@misc{CaprottiCohen99,
+    author = {Olga Caprotti and Arjeh M. Cohen},
+     title = {Integrating Computational and Deduction Systems Using {OpenMath}},
+ booktitle = {Calculemus'99: Systems for Integrated Computation and Deduction},
+      year = {1999},
+   address = {Trento, Italy}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Buchberger_Jebelan_Kriftner_Marin_Tomuta_Vasaru_97" type="inproceedings" xml:id="bib.bib85">
+        <bib-name role="author">
+          <surname>Buchberger</surname>
+          <givenname>B.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Jebelean</surname>
+          <givenname>T.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Kriftner</surname>
+          <givenname>F.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Marin</surname>
+          <givenname>M.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Tomuta</surname>
+          <givenname>E.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Vasaru</surname>
+          <givenname>D.</givenname>
+        </bib-name>
+        <bib-title>A survey of the theorema project</bib-title>
+        <bib-related role="host" type="proceedings">
+          <bib-title>Proceedings of ISSAC’97</bib-title>
+          <bib-publisher>Association for Computing Machinery</bib-publisher>
+        </bib-related>
+        <bib-date role="publication">1997</bib-date>
+        <bib-place>Maui, Hawaii</bib-place>
+        <bib-data role="self" type="BibTeX">@inproceedings{Buchberger_Jebelan_Kriftner_Marin_Tomuta_Vasaru_97,
+    author = {B. Buchberger and T. Jebelean and F. Kriftner and M. Marin and E. Tomuta and D. Vasaru},
+     title = {A Survey of the Theorema Project},
+ booktitle = {Proceedings of ISSAC'97},
+      year = {1997},
+   address = {Maui, Hawaii},
+ publisher = {Association for Computing Machinery}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Clarke_Zhao_92" type="inproceedings" xml:id="bib.bib86">
+        <bib-name role="author">
+          <surname>Clarke</surname>
+          <givenname>E.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Zhao</surname>
+          <givenname>X.</givenname>
+        </bib-name>
+        <bib-title>Analytica - a theorem prover in mathematica</bib-title>
+        <bib-related role="host" type="proceedings">
+          <bib-title>11th Conference on Automated Deduction</bib-title>
+          <bib-name role="editor">
+            <surname>Kapur</surname>
+            <givenname>D.</givenname>
+          </bib-name>
+          <bib-part role="volume">607</bib-part>
+          <bib-part role="series">Lecture Bibliomiscs in Computer Science</bib-part>
+          <bib-publisher>Springer Verlag</bib-publisher>
+        </bib-related>
+        <bib-part role="pages">761 – 765</bib-part>
+        <bib-date role="publication">1992</bib-date>
+        <bib-data role="self" type="BibTeX">@inproceedings{Clarke_Zhao_92,
+    author = {E. Clarke and X. Zhao},
+     title = {Analytica - a theorem prover in Mathematica},
+ booktitle = {11th Conference on Automated Deduction},
+     pages = {761 - 765},
+      year = {1992},
+    editor = {D. Kapur},
+    volume = {607},
+    series = {Lecture Bibliomiscs in Computer Science},
+ publisher = {Springer Verlag}}
+</bib-data>
+      </bibentry>
+      <bibentry key="MathML_98" type="misc" xml:id="bib.bib87">
+        <bib-name role="author">
+          <surname>Buswell</surname>
+          <givenname>Stephen</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Devitt</surname>
+          <givenname>Stan</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Diaz</surname>
+          <givenname>Angel</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Poppelier</surname>
+          <givenname>Nico</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Smith</surname>
+          <givenname>Bruce</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Soiffer</surname>
+          <givenname>Neil</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Sutor</surname>
+          <givenname>Robert</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Watt</surname>
+          <givenname>Stephen</givenname>
+        </bib-name>
+        <bib-title>Mathematical markup language (mathml) 1.0 specification, w3c recommendation 19980407</bib-title>
+        <bib-date role="publication">1998</bib-date>
+        <bib-url href="http://www.w3.org/TR/REC-MathML/">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{MathML_98,
+    author = {Stephen Buswell and Stan Devitt and Angel Diaz and Nico Poppelier and Bruce Smith and Neil Soiffer and Robert Sutor and Stephen Watt},
+     title = {Mathematical Markup Language (MathML) 1.0 Specification, W3C Recommendation 19980407},
+      year = {1998},
+       url = {http://www.w3.org/TR/REC-MathML/}}
+</bib-data>
+      </bibentry>
+      <bibentry key="MathML_99" type="misc" xml:id="bib.bib88">
+        <bib-name role="author">
+          <surname>Ion</surname>
+          <givenname>Patrick</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Miner</surname>
+          <givenname>Robert</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Buswell</surname>
+          <givenname>Stephen</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Devitt</surname>
+          <givenname>Stan</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Diaz</surname>
+          <givenname>Angel</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Poppelier</surname>
+          <givenname>Nico</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Smith</surname>
+          <givenname>Bruce</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Soiffer</surname>
+          <givenname>Neil</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Sutor</surname>
+          <givenname>Robert</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Watt</surname>
+          <givenname>Stephen</givenname>
+        </bib-name>
+        <bib-title>Mathematical markup language (mathml[tm]) 1.01 specification, rec-mathml-19980407; revised 19990707</bib-title>
+        <bib-date role="publication">1999</bib-date>
+        <bib-url href="http://www.w3.org/TR/REC-MathML/">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{MathML_99,
+    author = {Patrick Ion and Robert Miner and Stephen Buswell and Stan Devitt and Angel Diaz and Nico Poppelier and Bruce Smith and Neil Soiffer and Robert Sutor and Stephen Watt},
+     title = {Mathematical Markup Language (MathML[tm]) 1.01 Specification, REC-MathML-19980407; revised 19990707},
+      year = {1999},
+       url = {http://www.w3.org/TR/REC-MathML/}}
+</bib-data>
+      </bibentry>
+      <bibentry key="MathML_2000" type="misc" xml:id="bib.bib89">
+        <bib-name role="author">
+          <surname>Consortium</surname>
+          <givenname>World Wide Web</givenname>
+        </bib-name>
+        <bib-title>Mathematical markup language (mathml) 2.0 specification</bib-title>
+        <bib-date role="publication">2001</bib-date>
+        <bib-url href="http://www.w3.org/TR/REC-MathML2/">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{MathML_2000,
+    author = {World Wide Web Consortium},
+     title = {Mathematical Markup Language (MathML) 2.0 Specification},
+      year = {2001},
+       url = {http://www.w3.org/TR/REC-MathML2/}}
+</bib-data>
+      </bibentry>
+      <bibentry key="MathML_2003" type="misc" xml:id="bib.bib90">
+        <bib-name role="author">
+          <surname>Consortium</surname>
+          <givenname>World Wide Web</givenname>
+        </bib-name>
+        <bib-title>Mathematical markup language (mathml) 2.0 specification (second edition)</bib-title>
+        <bib-date role="publication">2003</bib-date>
+        <bib-url href="http://www.w3.org/TR/MathML2/">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{MathML_2003,
+    author = {World Wide Web Consortium},
+     title = {Mathematical Markup Language (MathML) 2.0 Specification     (Second Edition)},
+      year = {2003},
+       url = {http://www.w3.org/TR/MathML2/}}
+</bib-data>
+      </bibentry>
+      <bibentry key="CTCOQMATH" type="manual" xml:id="bib.bib91">
+        <bib-title>CtCoqmath</bib-title>
+        <bib-publisher>INRIA</bib-publisher>
+        <bib-place>Sophia Antipolis</bib-place>
+        <bib-url href="http://www-sop.inria.fr/croap/CFC/Ctcoqmath.html">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@manual{CTCOQMATH,
+     title = {CtCoqmath},
+ publisher = {INRIA},
+   address = {Sophia Antipolis},
+       url = {http://www-sop.inria.fr/croap/CFC/Ctcoqmath.html}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Pottier_Thery_98" type="inproceedings" xml:id="bib.bib92">
+        <bib-name role="author">
+          <surname>Pottier</surname>
+          <givenname>L.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Théry</surname>
+          <givenname>L.</givenname>
+        </bib-name>
+        <bib-title>Certifier computer algebra</bib-title>
+        <bib-related role="host" type="proceedings">
+          <bib-title>Calculemus and Types ’98</bib-title>
+        </bib-related>
+        <bib-place>Eindhoven</bib-place>
+        <bib-date role="publication">1998</bib-date>
+        <bib-url href="http://www-sop.inria.fr/croap/CFC/">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@inproceedings{Pottier_Thery_98,
+    author = {L. Pottier and L. Th{\'e}ry},
+     title = {Certifier Computer Algebra},
+ booktitle = {Calculemus and Types '98},
+   address = {Eindhoven},
+      year = {1998},
+       url = {http://www-sop.inria.fr/croap/CFC/}}
+</bib-data>
+      </bibentry>
+      <bibentry key="LAG" type="manual" xml:id="bib.bib93">
+        <bib-title>The lego algebra group</bib-title>
+        <bib-url href="http://www.cs.man.ac.uk/~petera/LAG/">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@manual{LAG,
+     title = {The Lego Algebra Group},
+       url = {http://www.cs.man.ac.uk/~petera/LAG/}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Bailey_98" type="thesis" xml:id="bib.bib94">
+        <bib-name role="author">
+          <surname>Bailey</surname>
+          <givenname>Anthony</givenname>
+        </bib-name>
+        <bib-title>The machine-checked literate formalisation of algebra in type theory</bib-title>
+        <bib-organization>University of Manchester</bib-organization>
+        <bib-date role="publication">January 15th 1998</bib-date>
+        <bib-type>Ph.D. Thesis</bib-type>
+        <bib-data role="self" type="BibTeX">@phdthesis{Bailey_98,
+    author = {Anthony Bailey},
+     title = {The Machine-Checked Literate Formalisation of Algebra in Type Theory},
+    school = {University of Manchester},
+      year = {January 15th 1998}}
+</bib-data>
+      </bibentry>
+      <bibentry key="OMRS" type="misc" xml:id="bib.bib95">
+        <bib-name role="author">
+          <surname>Project</surname>
+          <givenname>Open Mechanized Reasoning System</givenname>
+        </bib-name>
+        <bib-url href="http://www.mrg.dist.unige.it/omrs">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{OMRS,
+    author = {Open Mechanized Reasoning System Project},
+       url = {http://www.mrg.dist.unige.it/omrs}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Giunchiglia_Pecchiari_Talcott_96" type="inproceedings" xml:id="bib.bib96">
+        <bib-name role="author">
+          <surname>Giunchiglia</surname>
+          <givenname>Fausto</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Pecchiari</surname>
+          <givenname>Paolo</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Talcott</surname>
+          <givenname>Carolyn</givenname>
+        </bib-name>
+        <bib-title>Reasoning theories: towards an architecture for open mechanized reasoning systems</bib-title>
+        <bib-related role="host" type="proceedings">
+          <bib-title>”Frontiers of Combining Systems - First International Workshop” (FroCoS’96)</bib-title>
+          <bib-name role="editor">
+            <surname>Baader</surname>
+            <givenname>F.</givenname>
+          </bib-name>
+          <bib-name role="editor">
+            <surname>Schulz</surname>
+            <givenname>K.U.</givenname>
+          </bib-name>
+          <bib-part role="series">Applied Logic Series</bib-part>
+          <bib-publisher>Kluwer</bib-publisher>
+        </bib-related>
+        <bib-part role="pages">157 – 174</bib-part>
+        <bib-date role="publication">1996</bib-date>
+        <bib-place>Munich, Germany</bib-place>
+        <bib-data role="self" type="BibTeX">@inproceedings{Giunchiglia_Pecchiari_Talcott_96,
+    author = {Fausto Giunchiglia and Paolo Pecchiari and Carolyn Talcott},
+     title = {Reasoning Theories: Towards an Architecture for Open       Mechanized Reasoning Systems},
+ booktitle = {"Frontiers of Combining Systems - First International Workshop" (FroCoS'96)},
+     pages = {157 - 174},
+      year = {1996},
+    editor = {F. Baader and K.U. Schulz},
+    series = {Applied Logic Series},
+   address = {Munich, Germany},
+ publisher = {Kluwer}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Bertoli_Calmet_Giunchiglia_Homann_98" type="inproceedings" xml:id="bib.bib97">
+        <bib-name role="author">
+          <surname>Bertoli</surname>
+          <givenname>P.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Calmet</surname>
+          <givenname>J.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Giunchiglia</surname>
+          <givenname>F.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Homann</surname>
+          <givenname>K.</givenname>
+        </bib-name>
+        <bib-title>Specification and integration of theorem provers and computer algebra systems</bib-title>
+        <bib-related role="host" type="proceedings">
+          <bib-title>Artificial Intelligence and Symbolic Computation: International Conference AISC’98</bib-title>
+          <bib-name role="editor">
+            <surname>Calmet</surname>
+            <givenname>J.</givenname>
+          </bib-name>
+          <bib-name role="editor">
+            <surname>Plaza</surname>
+            <givenname>J.</givenname>
+          </bib-name>
+          <bib-part role="volume">1476</bib-part>
+          <bib-part role="series">Lecture Notes in Artificial Intelligence</bib-part>
+        </bib-related>
+        <bib-date role="publication">1998</bib-date>
+        <bib-place>Plattsburgh, New York, USA</bib-place>
+        <bib-data role="self" type="BibTeX">@inproceedings{Bertoli_Calmet_Giunchiglia_Homann_98,
+    author = {P. Bertoli and J. Calmet and F. Giunchiglia and K. Homann},
+     title = {Specification and Integration of Theorem Provers and Computer Algebra Systems},
+ booktitle = {Artificial Intelligence and Symbolic Computation: International Conference AISC'98},
+      year = {1998},
+    editor = {J. Calmet and J. Plaza},
+    volume = {1476},
+    series = {Lecture Notes in Artificial Intelligence},
+   address = {Plattsburgh, New York, USA}}
+</bib-data>
+      </bibentry>
+      <bibentry key="FIPA" type="misc" xml:id="bib.bib98">
+        <bib-name role="author">
+          <surname>for Intelligent Physical Agents</surname>
+          <givenname>Foundation</givenname>
+        </bib-name>
+        <bib-url href="http://www.fipa.org">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{FIPA,
+    author = {Foundation for Intelligent Physical Agents},
+       url = {http://www.fipa.org}}
+</bib-data>
+      </bibentry>
+<!--  %**** String Line 100 **** -->      <bibentry key="Franke_Hess_Jung_Kohlhase_Sorge_99" type="article" xml:id="bib.bib99">
+        <bib-name role="author">
+          <surname>Franke</surname>
+          <givenname>A.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Hess</surname>
+          <givenname>S.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Jung</surname>
+          <givenname>Ch.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Kohlhase</surname>
+          <givenname>M.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Sorge</surname>
+          <givenname>V.</givenname>
+        </bib-name>
+        <bib-title>Agent-oriented integration of distributed mathematical services</bib-title>
+        <bib-date role="publication">1999</bib-date>
+        <bib-part role="volume">5</bib-part>
+        <bib-part role="number">3</bib-part>
+        <bib-part role="pages">156 – 187</bib-part>
+        <bib-related role="host" type="journal">
+          <bib-title>Journal of Universal Computer Science</bib-title>
+        </bib-related>
+        <bib-note role="annotation">Special issue on Integration of Deduction System</bib-note>
+        <bib-url href="http://medoc.springer.de:8000/jucs_5_3/agent_oriented_integration_of;internal&amp;amp;sk=060C4837">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@article{Franke_Hess_Jung_Kohlhase_Sorge_99,
+    author = {A. Franke and S. Hess and Ch. Jung and M. Kohlhase and V. Sorge},
+     title = {Agent-Oriented Integration of Distributed Mathematical Services},
+      year = {1999},
+    volume = {5},
+    number = {3},
+     pages = {156 - 187},
+   journal = {Journal of Universal Computer Science},
+      note = {Special issue on Integration of Deduction System},
+       url = {http://medoc.springer.de:8000/jucs_5_3/agent_oriented_integration_of;internal&amp;amp;sk=060C4837}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Franke_Hess_Jung_Kohlhase_Sorge_98" type="inproceedings" xml:id="bib.bib100">
+        <bib-name role="author">
+          <surname>Franke</surname>
+          <givenname>A.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Hess</surname>
+          <givenname>S.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Jung</surname>
+          <givenname>Ch.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Kohlhase</surname>
+          <givenname>M.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Sorge</surname>
+          <givenname>V.</givenname>
+        </bib-name>
+        <bib-title>An implementation of distributed mathematical services</bib-title>
+        <bib-related role="host" type="proceedings">
+          <bib-title>Calculemus and Types 98</bib-title>
+        </bib-related>
+        <bib-date role="publication">1998</bib-date>
+        <bib-place>Eindhoven</bib-place>
+        <bib-data role="self" type="BibTeX">@inproceedings{Franke_Hess_Jung_Kohlhase_Sorge_98,
+    author = {A. Franke and S. Hess and Ch. Jung and M. Kohlhase and V. Sorge},
+     title = {An Implementation of Distributed Mathematical Services},
+ booktitle = {Calculemus and Types 98},
+      year = {1998},
+   address = {Eindhoven}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Bertot_Thery_98" type="article" xml:id="bib.bib101">
+        <bib-name role="author">
+          <surname>Bertot</surname>
+          <givenname>Yves</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Théry</surname>
+          <givenname>Laurent</givenname>
+        </bib-name>
+        <bib-title>A generic approach to building user interfaces for theorem provers</bib-title>
+        <bib-related role="host" type="journal">
+          <bib-title>Journal of Symbolic Computation</bib-title>
+        </bib-related>
+        <bib-date role="publication">1998</bib-date>
+        <bib-part role="volume">25</bib-part>
+        <bib-part role="pages">161 – 194</bib-part>
+        <bib-data role="self" type="BibTeX">@article{Bertot_Thery_98,
+    author = {Yves Bertot and Laurent Th{\'e}ry},
+     title = {A Generic Approach to Building User Interfaces for Theorem Provers},
+   journal = {Journal of Symbolic Computation},
+      year = {1998},
+    volume = {25},
+     pages = {161 - 194}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Luo_Callaghan_97" type="inproceedings" xml:id="bib.bib102">
+        <bib-name role="author">
+          <surname>Luo</surname>
+          <givenname>Z.</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Callaghan</surname>
+          <givenname>P.</givenname>
+        </bib-name>
+        <bib-title>Mathematical vernacular and conceptual well-formedness in mathematical language</bib-title>
+        <bib-related role="host" type="proceedings">
+          <bib-title>Proceedings of the 2nd International Conference on Logical Aspects of Computational Linguistics 97</bib-title>
+          <bib-part role="volume">1582</bib-part>
+          <bib-part role="series">Lecture Bibliomiscs in Computer Science</bib-part>
+        </bib-related>
+        <bib-date role="publication">1997</bib-date>
+        <bib-place>Nancy</bib-place>
+        <bib-data role="self" type="BibTeX">@inproceedings{Luo_Callaghan_97,
+    author = {Z. Luo and P. Callaghan},
+     title = {Mathematical Vernacular and Conceptual Well-formedness in Mathematical Language},
+ booktitle = {Proceedings of the 2nd International Conference on Logical Aspects of Computational Linguistics 97},
+      year = {1997},
+    volume = {1582},
+    series = {Lecture Bibliomiscs in Computer Science},
+   address = {Nancy}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Finin_Labrou_Mayfield_97" type="incollection" xml:id="bib.bib103">
+        <bib-name role="author">
+          <surname>Finin</surname>
+          <givenname>Tim</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Labrou</surname>
+          <givenname>Yannis</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Mayfield</surname>
+          <givenname>James</givenname>
+        </bib-name>
+        <bib-title>KQML as an agent communication language</bib-title>
+        <bib-related role="host" type="book">
+          <bib-title>Software Agents</bib-title>
+          <bib-publisher>MIT Press</bib-publisher>
+          <bib-name role="editor">
+            <surname>Bradshaw</surname>
+            <givenname>Jeff</givenname>
+          </bib-name>
+          <bib-place>Cambridge</bib-place>
+        </bib-related>
+        <bib-date role="publication">1997</bib-date>
+        <bib-data role="self" type="BibTeX">@incollection{Finin_Labrou_Mayfield_97,
+    author = {Tim Finin and Yannis Labrou and James Mayfield},
+     title = {KQML as an agent communication language},
+ booktitle = {Software Agents},
+ publisher = {MIT Press},
+      year = {1997},
+    editor = {Jeff Bradshaw},
+   address = {Cambridge}}
+</bib-data>
+      </bibentry>
+      <bibentry key="FIPA_99" type="misc" xml:id="bib.bib104">
+        <bib-name role="author">
+          <surname>for Intelligent Physical Agents</surname>
+          <givenname>Foundation</givenname>
+        </bib-name>
+        <bib-title>The fipa ’99 baselines</bib-title>
+        <bib-url href="http://www.fipa.org/spec/fipa99.html">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{FIPA_99,
+    author = {Foundation for Intelligent Physical Agents},
+     title = {The FIPA '99 Baselines},
+       url = {http://www.fipa.org/spec/fipa99.html}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Linton_Solomon_99" type="misc" xml:id="bib.bib105">
+        <bib-name role="author">
+          <surname>Linton</surname>
+          <givenname>Steve</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Solomon</surname>
+          <givenname>Andrew</givenname>
+        </bib-name>
+        <bib-title>GAP, OpenMath, and mcp</bib-title>
+        <bib-data role="tooktitle">ISSAC Workshop: Internet Accessible Mathematical Computation</bib-data>
+        <bib-date role="publication">99</bib-date>
+        <bib-data role="self" type="BibTeX">@misc{Linton_Solomon_99,
+    author = {Steve Linton and Andrew Solomon},
+     title = {GAP, {OpenMath}, and MCP},
+ tooktitle = {ISSAC Workshop: Internet Accessible Mathematical Computation},
+      year = {99}}
+</bib-data>
+      </bibentry>
+      <bibentry key="IAMC" type="report" xml:id="bib.bib106">
+        <bib-name role="author">
+          <surname>Wang</surname>
+          <givenname>Paul</givenname>
+        </bib-name>
+        <bib-title>Design and protocol for internet accessible mathematical computation</bib-title>
+        <bib-publisher>ICM/Kent State University</bib-publisher>
+        <bib-date role="publication">1999</bib-date>
+        <bib-part role="number">ICM-199901-001</bib-part>
+        <bib-type>Technical report</bib-type>
+        <bib-data role="self" type="BibTeX">@techreport{IAMC,
+    author = {Paul Wang},
+     title = {Design and Protocol for Internet Accessible Mathematical Computation},
+ publisher = {ICM/Kent State University},
+      year = {1999},
+    number = {ICM-199901-001}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Harvey_99context" type="report" xml:id="bib.bib107">
+        <bib-name role="author">
+          <surname>Harvey</surname>
+          <givenname>Vilya</givenname>
+        </bib-name>
+        <bib-title>OpenMath in context</bib-title>
+        <bib-publisher>OpenMath Esprit Consortium</bib-publisher>
+        <bib-date role="publication">1999</bib-date>
+        <bib-url href="http://www.nag.co.uk/projects/OpenMath/papers/context.pdf">Link</bib-url>
+        <bib-type>Technical report</bib-type>
+        <bib-data role="self" type="BibTeX">@techreport{Harvey_99context,
+    author = {Vilya Harvey},
+     title = {{OpenMath} in Context},
+ publisher = {{OpenMath} Esprit Consortium},
+      year = {1999},
+       url = {http://www.nag.co.uk/projects/OpenMath/papers/context.pdf}}
+</bib-data>
+      </bibentry>
+      <bibentry key="SDMGCHDISCO96" type="incollection" xml:id="bib.bib108">
+        <bib-name role="author">
+          <surname>Dalmas</surname>
+          <givenname>Stéphane</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Gaëtano</surname>
+          <givenname>Marc</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Huchet</surname>
+          <givenname>Claude</givenname>
+        </bib-name>
+        <bib-title>A deductive database for mathematical formulas</bib-title>
+        <bib-related role="host" type="book">
+          <bib-title>Design and Implementation of Symbolic Computation Systems</bib-title>
+          <bib-publisher>Springer Verlag</bib-publisher>
+          <bib-name role="editor">
+            <surname>Calmet</surname>
+            <givenname>Jacques</givenname>
+          </bib-name>
+          <bib-name role="editor">
+            <surname>Limongelli</surname>
+            <givenname>Carla</givenname>
+          </bib-name>
+          <bib-part role="number">1128</bib-part>
+          <bib-part role="series">LNCS</bib-part>
+        </bib-related>
+        <bib-part role="pages">287 – 296</bib-part>
+        <bib-date role="publication">1996</bib-date>
+        <bib-data role="self" type="BibTeX">@incollection{SDMGCHDISCO96,
+    author = {St{\'e}phane Dalmas and Marc Ga{\"e}tano and Claude Huchet},
+     title = {A Deductive Database for Mathematical formulas},
+ booktitle = {Design and Implementation of Symbolic Computation Systems},
+ publisher = {Springer Verlag},
+    editor = {Jacques Calmet and Carla Limongelli},
+    number = {1128},
+    series = {LNCS},
+     pages = {287 - 296},
+      year = {1996}}
+</bib-data>
+      </bibentry>
+      <bibentry key="DOM_98" type="misc" xml:id="bib.bib109">
+        <bib-title>Document object model (dom) level 1 specification, w3c recommendation rec-dom-level-1-19981001</bib-title>
+        <bib-date role="publication">1998</bib-date>
+        <bib-url href="http://www.w3.org/TR/REC-DOM-Level-1/">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{DOM_98,
+     title = {Document Object Model (DOM) Level 1 Specification, W3C Recommendation REC-DOM-Level-1-19981001},
+      year = {1998},
+       url = {http://www.w3.org/TR/REC-DOM-Level-1/}}
+</bib-data>
+      </bibentry>
+      <bibentry key="owl" type="misc" xml:id="bib.bib110">
+        <bib-name role="author">
+          <surname>Consortium</surname>
+          <givenname>World Wide Web</givenname>
+        </bib-name>
+        <bib-title>OWL web ontology language overview</bib-title>
+        <bib-date role="publication">2004</bib-date>
+        <bib-url href="http://www.w3.org/TR/2004/REC-owl-features-20040210/">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{owl,
+    author = {World Wide Web Consortium},
+     title = {OWL Web Ontology Language Overview},
+      year = {2004},
+       url = {http://www.w3.org/TR/2004/REC-owl-features-20040210/}}
+</bib-data>
+      </bibentry>
+      <bibentry key="rdf" type="misc" xml:id="bib.bib111">
+        <bib-name role="author">
+          <surname>Consortium</surname>
+          <givenname>World Wide Web</givenname>
+        </bib-name>
+        <bib-title>Resource description framework (rdf): concepts and abstract syntax</bib-title>
+        <bib-date role="publication">2004</bib-date>
+        <bib-url href="http://www.w3.org/TR/2004/REC-rdf-concepts-20040210/">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{rdf,
+    author = {World Wide Web Consortium},
+     title = {Resource Description Framework (RDF): Concepts and Abstract Syntax},
+      year = {2004},
+       url = {http://www.w3.org/TR/2004/REC-rdf-concepts-20040210/}}
+</bib-data>
+      </bibentry>
+      <bibentry key="XSL_2001" type="misc" xml:id="bib.bib112">
+        <bib-name role="author">
+          <surname>Consortium</surname>
+          <givenname>World Wide Web</givenname>
+        </bib-name>
+        <bib-title>Extensible stylesheet language (xsl) specification</bib-title>
+        <bib-date role="publication">2001</bib-date>
+        <bib-url href="http://www.w3.org/TR/xsl/">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{XSL_2001,
+    author = {World Wide Web Consortium},
+     title = {Extensible Stylesheet Language (XSL) Specification},
+      year = {2001},
+       url = {http://www.w3.org/TR/xsl/}}
+</bib-data>
+      </bibentry>
+      <bibentry key="XSLT_99" type="misc" xml:id="bib.bib113">
+        <bib-name role="author">
+          <surname>Consortium</surname>
+          <givenname>World Wide Web</givenname>
+        </bib-name>
+        <bib-title>XSL transformations (xslt)</bib-title>
+        <bib-date role="publication">1999</bib-date>
+        <bib-url href="http://www.w3.org/TR/xslt">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{XSLT_99,
+    author = {World Wide Web Consortium},
+     title = {XSL Transformations (XSLT)},
+      year = {1999},
+       url = {http://www.w3.org/TR/xslt}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Kohlhase_99" type="inproceedings" xml:id="bib.bib114">
+        <bib-name role="author">
+          <surname>Kohlhase</surname>
+          <givenname>M.</givenname>
+        </bib-name>
+        <bib-title>OpenMath for knowledge-based automated theorem proving</bib-title>
+        <bib-related role="host" type="proceedings">
+          <bib-title>Electronic Proceedings of the 12th OpenMath Workshop</bib-title>
+        </bib-related>
+        <bib-date role="publication">1999</bib-date>
+        <bib-place>Eindhoven, Netherlands</bib-place>
+        <bib-url href="http://www.riaca.win.tue.nl/projects/OpenMath/workshop">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@inproceedings{Kohlhase_99,
+    author = {M. Kohlhase},
+     title = {{OpenMath} for knowledge-based automated theorem proving},
+ booktitle = {Electronic Proceedings of the 12th {OpenMath} Workshop},
+      year = {1999},
+   address = {Eindhoven, Netherlands},
+       url = {http://www.riaca.win.tue.nl/projects/OpenMath/workshop}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Cohen_Kohlhase_99om" type="misc" xml:id="bib.bib115">
+        <bib-name role="author">
+          <surname>Cohen</surname>
+          <givenname>Arjeh</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Kohlhase</surname>
+          <givenname>Michael</givenname>
+        </bib-name>
+        <bib-title>Proposal of an extension to OpenMath by defining mathematical properties</bib-title>
+        <bib-data role="booktitle">12th {OpenMath} Workshop</bib-data>
+        <bib-date role="publication">1999</bib-date>
+        <bib-url href="http://www.win.tue.nl/~amc/kohlhase.dvi">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{Cohen_Kohlhase_99om,
+    author = {Arjeh Cohen and Michael Kohlhase},
+     title = {Proposal of an Extension to {OpenMath} by Defining       Mathematical Properties},
+ booktitle = {12th {OpenMath} Workshop},
+      year = {1999},
+       url = {http://www.win.tue.nl/~amc/kohlhase.dvi}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Caprotti_99CFCa" type="misc" xml:id="bib.bib116">
+        <bib-name role="author">
+          <surname>Caprotti</surname>
+          <givenname>Olga</givenname>
+        </bib-name>
+        <bib-title>OpenMath: accessing and using mathematical information electronically</bib-title>
+        <bib-note role="annotation">CFC meeting talk</bib-note>
+        <bib-date role="publication">1999</bib-date>
+        <bib-note role="annotation">Slide presentation available at http://www.riaca.win.tue.nl/ olga/om/CFCom.ps</bib-note>
+        <bib-data role="self" type="BibTeX">@misc{Caprotti_99CFCa,
+    author = {Olga Caprotti},
+     title = {{OpenMath}: Accessing and Using Mathematical Information Electronically},
+      note = {CFC meeting talk},
+      year = {1999},
+      note = {Slide presentation available at http://www.riaca.win.tue.nl/~olga/om/CFCom.ps}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Caprotti_99CFCb" type="misc" xml:id="bib.bib117">
+        <bib-name role="author">
+          <surname>Caprotti</surname>
+          <givenname>Olga</givenname>
+        </bib-name>
+        <bib-title>OpenMath and coq: communicating certified mathematical content</bib-title>
+        <bib-note role="annotation">CFC meeting talk</bib-note>
+        <bib-date role="publication">1999</bib-date>
+        <bib-url href="http://www.riaca.win.tue.nl/~olga/om/cfcCOCOM.ps">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@misc{Caprotti_99CFCb,
+    author = {Olga Caprotti},
+     title = {{OpenMath} and COQ: Communicating Certified Mathematical Content},
+      note = {CFC meeting talk},
+      year = {1999},
+       url = {http://www.riaca.win.tue.nl/~olga/om/cfcCOCOM.ps}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Caprotti_99imacs" type="misc" xml:id="bib.bib118">
+        <bib-name role="author">
+          <surname>Caprotti</surname>
+          <givenname>Olga</givenname>
+        </bib-name>
+        <bib-title>Interfacing ca and proof checkers with OpenMath</bib-title>
+        <bib-data role="booktitle">IMACA-ACA 99</bib-data>
+        <bib-date role="publication">1999</bib-date>
+        <bib-data role="self" type="BibTeX">@misc{Caprotti_99imacs,
+    author = {Olga Caprotti},
+     title = {Interfacing CA and Proof Checkers with {OpenMath}},
+ booktitle = {IMACA-ACA 99},
+      year = {1999}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Caprotti_Carlisle_99" type="article" xml:id="bib.bib119">
+        <bib-name role="author">
+          <surname>Caprotti</surname>
+          <givenname>Olga</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Carlisle</surname>
+          <givenname>David</givenname>
+        </bib-name>
+        <bib-title>OpenMath and mathml: semantic mark up for mathematics</bib-title>
+        <bib-related role="host" type="journal">
+          <bib-title>Crossroad</bib-title>
+        </bib-related>
+        <bib-date role="publication">1999</bib-date>
+        <bib-part role="volume">Special Issue on Markup Languages</bib-part>
+        <bib-url href="http://www.acm.org/crossroads">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@article{Caprotti_Carlisle_99,
+    author = {Olga Caprotti and David Carlisle},
+     title = {{OpenMath} and MathML: Semantic Mark Up for Mathematics},
+   journal = {Crossroad},
+      year = {1999},
+    volume = {Special Issue on Markup Languages},
+       url = {http://www.acm.org/crossroads}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Caprotti_Cohen_99calc" type="inproceedings" xml:id="bib.bib120">
+        <bib-name role="author">
+          <surname>Caprotti</surname>
+          <givenname>Olga</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Cohen</surname>
+          <givenname>Arjeh</givenname>
+        </bib-name>
+        <bib-title>Integrating computational and deduction systems using OpenMath</bib-title>
+        <bib-related role="host" type="proceedings">
+          <bib-title>Proceedings of Calculemus 99</bib-title>
+        </bib-related>
+        <bib-date role="publication">1999</bib-date>
+        <bib-place>Trento</bib-place>
+        <bib-data role="self" type="BibTeX">@inproceedings{Caprotti_Cohen_99calc,
+    author = {Olga Caprotti and Arjeh Cohen},
+     title = {Integrating Computational and Deduction Systems Using {OpenMath}},
+ booktitle = {Proceedings of Calculemus 99},
+      year = {1999},
+   address = {Trento}}
+</bib-data>
+      </bibentry>
+      <bibentry key="Caprotti_Cohen_99iamc" type="inproceedings" xml:id="bib.bib121">
+        <bib-name role="author">
+          <surname>Caprotti</surname>
+          <givenname>Olga</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Cohen</surname>
+          <givenname>Arjeh</givenname>
+        </bib-name>
+        <bib-title>Interactive mathematics with strong OpenMath</bib-title>
+        <bib-related role="host" type="proceedings">
+          <bib-title>Internet Accessible Mathematical Computation</bib-title>
+        </bib-related>
+        <bib-date role="publication">1999</bib-date>
+        <bib-place>Vancouver, Canada</bib-place>
+        <bib-url href="http://symbolicnet.mcs.kent.edu/icm/research/iamc99proceedings.html">Link</bib-url>
+        <bib-data role="self" type="BibTeX">@inproceedings{Caprotti_Cohen_99iamc,
+    author = {Olga Caprotti and Arjeh Cohen},
+     title = {Interactive Mathematics with Strong {OpenMath}},
+ booktitle = {Internet Accessible Mathematical Computation},
+      year = {1999},
+   address = {Vancouver, Canada},
+       url = {http://symbolicnet.mcs.kent.edu/icm/research/iamc99proceedings.html}}
+</bib-data>
+      </bibentry>
+      <bibentry key="url_OMsem99" type="misc" xml:id="bib.bib122">
+        <bib-title>Seminar on OpenMath for industry</bib-title>
+        <bib-url href="http://www.riaca.win.tue.nl/projects/OpenMath/convention.html">Link</bib-url>
+        <bib-date role="publication">1999</bib-date>
+        <bib-data role="self" type="BibTeX">@misc{url_OMsem99,
+     title = {Seminar on {OpenMath} for Industry},
+       url = {http://www.riaca.win.tue.nl/projects/OpenMath/convention.html},
+      year = {1999}}
+</bib-data>
+      </bibentry>
+      <bibentry key="url_OMworkshop12" type="misc" xml:id="bib.bib123">
+        <bib-title>12th OpenMath workshop</bib-title>
+        <bib-url href="http://www.riaca.win.tue.nl/projects/OpenMath/workshop/">Link</bib-url>
+        <bib-date role="publication">1999</bib-date>
+        <bib-data role="self" type="BibTeX">@misc{url_OMworkshop12,
+     title = {12th  {OpenMath} Workshop},
+       url = {http://www.riaca.win.tue.nl/projects/OpenMath/workshop/},
+      year = {1999}}
+</bib-data>
+      </bibentry>
+<!--  %**** String Line 125 **** -->    </biblist>
+  </bibliography>
+</document>
