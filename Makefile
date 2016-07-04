@@ -12,7 +12,7 @@ $(PDF): %.pdf: %.tex $(SRC) Makefile
 	pdflatex $<
 	pdflatex $<
 
-$(BIB).xml: $(BIB)
+$(BIB).xml: %.xml: %
 	latexmlc $< --bibtex --destination=$@ --log=$<.ltxlog
 
 $(HTML): %.html: %.tex $(SRC) $(BIB).xml Makefile
@@ -20,8 +20,4 @@ $(HTML): %.html: %.tex $(SRC) $(BIB).xml Makefile
 
 # my latexml runs into a segfault and deletes the html, so 
 .PRECIOUS: $(HTML)
-
-
-
-
 

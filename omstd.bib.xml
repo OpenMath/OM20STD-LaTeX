@@ -7,12 +7,18 @@
     <title/>
     <biblist>
       <bibentry key="POSIX" type="book" xml:id="bib.bib1">
-        <bib-data role="altauthor">IEEE and The Open Group</bib-data>
+        <bib-name role="author">
+          <surname>IEEE</surname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Group</surname>
+          <givenname>The Open</givenname>
+        </bib-name>
         <bib-title>Std 1003.1, 2003 edition, the open group base specifications issue 6</bib-title>
         <bib-date role="publication">2003</bib-date>
         <bib-url href="http://www.unix.org/version3/ieee_std.html">Link</bib-url>
         <bib-data role="self" type="BibTeX">@book{POSIX,
- altauthor = {IEEE and The Open Group},
+    author = {IEEE and The Open Group},
      title = {Std 1003.1, 2003 Edition, The Open Group Base Specifications Issue 6},
       year = {2003},
        url = {http://www.unix.org/version3/ieee_std.html}}
