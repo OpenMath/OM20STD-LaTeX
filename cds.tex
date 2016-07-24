@@ -172,45 +172,45 @@ We now describe the elements used in the above schema in terms of the abstract d
 of CDs in \ref{sect_func}.  Unless stated otherwise information is encoded as the content
 of the relevant element.
 
-\begin{description}
-\item[\lstinline|CDName|] The name of the Content Dictionary.
-\item[\lstinline|Description|] The text occurring in the \lstinline|Description| element
+\begin{itemize}
+\item \lstinline|CDName|: The name of the Content Dictionary.
+\item \lstinline|Description|: The text occurring in the \lstinline|Description| element
   is used to give a description of the enclosing element, which could be a symbol or the
   entire Content Dictionary. The content of this element can be any \XML text.
-\item[\lstinline|CDReviewDate|] The review date of the Content Dictionary.
-\item[\lstinline|CDDate|] The revision date of this version of the Content Dictionary.
-\item[\lstinline|CDVersion|] The major version number of the CD.
-\item[\lstinline|CDRevision|] The minor version number of the CD.
-\item[\lstinline|CDStatus|] The status of the Content Dictionary.
-\item[\lstinline|CDBase|] The CD base of the CD.
-\item[\lstinline|CDURL|] The text occurring in the \lstinline|CDURL| element should be a
+\item \lstinline|CDReviewDate|: The review date of the Content Dictionary.
+\item \lstinline|CDDate|: The revision date of this version of the Content Dictionary.
+\item \lstinline|CDVersion|: The major version number of the CD.
+\item \lstinline|CDRevision|: The minor version number of the CD.
+\item \lstinline|CDStatus|: The status of the Content Dictionary.
+\item \lstinline|CDBase|: The CD base of the CD.
+\item \lstinline|CDURL|: The text occurring in the \lstinline|CDURL| element should be a
   valid URL where the source file for the Content Dictionary encoding can be found (if it
   exists). The filename should conform to ISO 9660~\cite{iso9660}.
-\item[\lstinline|CDUses|] The content of this element should be a series of
+\item \lstinline|CDUses|: The content of this element should be a series of
   \lstinline|CDName| elements, each naming a Content Dictionary used in the
   \lstinline|Example| and \lstinline|FMP|s of the current Content Dictionary. This
   element is optional and deprecated since the information can easily be extracted
   automatically.
-\item[\lstinline|CDComment|] The content of this element should be text that does not
+\item \lstinline|CDComment|: The content of this element should be text that does not
   convey any crucial information concerning the current Content Dictionary. It can be used
   in the Content Dictionary header to report the author of the Content Dictionary and to
   log change information. In the body of the Content Dictionary, it can be used to attach
   extra remarks to certain symbols.
-\item[\lstinline|CDDefinition|] The element which contains the definition of an
+\item \lstinline|CDDefinition|: The element which contains the definition of an
   individual symbol.
-\item[\lstinline|Name|]The name of a symbol.
-\item[\lstinline|Role|] The role of a symbol: it must be one of \emph{binder},
+\item \lstinline|Name|:The name of a symbol.
+\item \lstinline|Role|: The role of a symbol: it must be one of \emph{binder},
   \emph{attribution}, \emph{semantic-attribution}, \emph{error}, \emph{application}, or
   \emph{constant}.
-\item[\lstinline|Example|] The text occurring in the \lstinline|Example| element is used
+\item \lstinline|Example|: The text occurring in the \lstinline|Example| element is used
   to give examples of the enclosing symbol, and can be any \XML text. In addition to text
   the element may contain examples as \XML encoded \OM, inside \lstinline|OMOBJ|
   elements.  Note that \lstinline|Examples| must be with respect to some symbol and
   cannot be \textquote{loose} in the Content Dictionary.
-\item[\lstinline|CMP|] A Commented Mathematical Property.
-\item[\lstinline|FMP|] A Formal Mathematical Property.  It may take an optional
+\item \lstinline|CMP|: A Commented Mathematical Property.
+\item \lstinline|FMP|: A Formal Mathematical Property.  It may take an optional
   \lstinline|kind| attribute.
-\end{description}
+\end{itemize}
 
 \section{Additional Information}\label{addfiles}
 
@@ -315,38 +315,38 @@ CDs, identified by name and optionally version number and URL.
 The notion of being a valid CDGroup implies that the following requirements on the content
 of the elements described by the schema given in \ref{sect_sigschema} are also met.
 
-\begin{description}
-\item[\lstinline|CDGroup|] The \XML element \lstinline|CDGroup| is the outermost element
+\begin{itemize}
+\item \lstinline|CDGroup|: The \XML element \lstinline|CDGroup| is the outermost element
   in a CDGroup document.
-\item[\lstinline|CDGroupName|] The text occurring in the \lstinline|CDGroupName| element
+\item \lstinline|CDGroupName|: The text occurring in the \lstinline|CDGroupName| element
   corresponds to the name of the CDGroup. For the syntactical requirements, see
   \lstinline|CDName| in \ref{sect_pcdata}.
-\item[\lstinline|CDGroupVersion|]
-\item[\lstinline|CDGroupRevision|] The text occurring in these elements contains the
+\item \lstinline|CDGroupVersion|:
+\item \lstinline|CDGroupRevision|: The text occurring in these elements contains the
   major and minor version numbers of the CDGroup.
-\item[\lstinline|CDGroupURL|] The text occurring in the \lstinline|CDGroupURL| element
+\item \lstinline|CDGroupURL|: The text occurring in the \lstinline|CDGroupURL| element
   identifies the location of the CDGroup file, not necessarily of the member Content
   Dictionaries. For the syntactical requirements, see \lstinline|CDURL| in
   \ref{sect_pcdata}.
-\item[\lstinline|CDGroupDescription|] The text occurring in the
+\item \lstinline|CDGroupDescription|: The text occurring in the
   \lstinline|CDGroupDescription| element describes the mathematical area of the CDGroup.
-\item[\lstinline|CDGroupMember|] The \XML element \lstinline|CDGroupMember| encloses the
+\item \lstinline|CDGroupMember|: The \XML element \lstinline|CDGroupMember| encloses the
   data identifying each member of the CDGroup.
-\item[\lstinline|CDName|] The text occurring in the \lstinline|CDName| element
+\item \lstinline|CDName|: The text occurring in the \lstinline|CDName| element
   corresponds to the name of a Content Dictionary in the CDGroup. For the syntactical
   requirements, see \lstinline|CDName| in \ref{sect_pcdata}.
-\item[\lstinline|CDVersion|] The text occurring in the \lstinline|CDVersion| element
+\item \lstinline|CDVersion|: The text occurring in the \lstinline|CDVersion| element
   identifies which version of the Content Dictionary is to be taken as member of the
   CDGroup. This element is optional. In case it is missing, the latest version is the one
   included in the CDGroup.  For the syntactical requirements, see \lstinline|CDVersion|
   in \ref{sect_pcdata}.
-\item[\lstinline|CDURL|] The text occurring in the \lstinline|CDURL| element identifies
+\item \lstinline|CDURL|: The text occurring in the \lstinline|CDURL| element identifies
   the location of the Content Dictionary to be taken as member of the CDGroup. This
   element is optional. In case it is missing, the location of the CDGroup identified by
   the element \lstinline|CDGroupURL| is assumed.  For the syntactical requirements, see
   \lstinline|CDURL| in \ref{sect_pcdata}.
-\item[\lstinline|CDComment|] See \lstinline|CDComment| in \ref{sect_pcdata}.
-\end{description}
+\item \lstinline|CDComment|: See \lstinline|CDComment| in \ref{sect_pcdata}.
+\end{itemize}
 
 \section{Content Dictionaries Reviewing Process}\label{cdapprove}
 
